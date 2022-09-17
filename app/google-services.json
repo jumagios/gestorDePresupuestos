@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "475051645643",
+    "project_id": "gestion-de-presupuesto",
+    "storage_bucket": "gestion-de-presupuesto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475051645643:android:41510ca990f904f000d94e",
+        "android_client_info": {
+          "package_name": "com.example.gestionpresupuesto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475051645643-tvgjgood3ukipn33912kp7dfo7j4qn65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLDDLD7CepNYAres-NZ_dwOrPQefh0fl0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "475051645643-tvgjgood3ukipn33912kp7dfo7j4qn65.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

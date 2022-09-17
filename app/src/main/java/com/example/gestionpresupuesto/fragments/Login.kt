@@ -12,10 +12,13 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.User
+import com.example.gestionpresupuesto.repository.ProductRepository
+import com.example.gestionpresupuesto.viewmodels.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class Login : Fragment() {
 
+    private lateinit var viewModel: LoginViewModel
     lateinit var v : View
     lateinit var txtUser : TextView
     lateinit var txtPass : TextView
@@ -36,8 +39,16 @@ class Login : Fragment() {
         return v
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
+    }
+
     override fun onStart() {
         super.onStart()
+
+        viewModel.createProduct("testID", 500.50) //TEST BASE DE DATOS!
 
         btnLogin.setOnClickListener{
             val userName = txtUser.text.toString()
