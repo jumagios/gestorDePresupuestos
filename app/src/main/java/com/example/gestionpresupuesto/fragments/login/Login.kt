@@ -1,4 +1,4 @@
-package com.example.gestionpresupuesto.fragments
+package com.example.gestionpresupuesto.fragments.login
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,17 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.User
-import com.example.gestionpresupuesto.repository.ProductRepository
 import com.example.gestionpresupuesto.viewmodels.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class Login : Fragment() {
 
-    private lateinit var viewModel: LoginViewModel
+    //private lateinit var viewModel: LoginViewModel
     lateinit var v : View
     lateinit var txtUser : TextView
     lateinit var txtPass : TextView
@@ -41,19 +39,19 @@ class Login : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
     }
 
     override fun onStart() {
         super.onStart()
 
-        viewModel.createProduct("testID", 500.50) //TEST BASE DE DATOS!
+        //viewModel.createProduct("testID", 500.50) //TEST BASE DE DATOS!
 
         btnLogin.setOnClickListener{
             val userName = txtUser.text.toString()
             if (existUser(userName) && existPass(txtPass.text.toString())) {
-                val action = LoginDirections.actionLoginToMain()
+                val action = LoginDirections.actionLoginToMenuActivity()
                 v.findNavController().navigate(action)
             } else {
                 Snackbar.make(v, "Password o usuario incorrecto", Snackbar.LENGTH_SHORT).show()

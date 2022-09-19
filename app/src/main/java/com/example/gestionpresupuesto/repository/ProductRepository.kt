@@ -6,7 +6,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.Locale.Category
-
+/*
 class ProductRepository {
 
     private val db = Firebase.firestore
@@ -54,3 +54,4 @@ class ProductRepository {
     }
 
 }
+*/

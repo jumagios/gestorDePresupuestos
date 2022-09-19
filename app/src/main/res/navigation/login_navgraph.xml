@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/login"
-        android:name="com.example.gestionpresupuesto.fragments.Login"
+        android:name="com.example.gestionpresupuesto.fragments.login.Login"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_login_to_main"
-            app:destination="@id/main" />
+            android:id="@+id/action_login_to_menuActivity"
+            app:destination="@id/menuActivity" />
     </fragment>
-    <fragment
-        android:id="@+id/main"
-        android:name="com.example.gestionpresupuesto.fragments.Main"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+    <activity
+        android:id="@+id/menuActivity"
+        android:name="com.example.gestionpresupuesto.activities.MenuActivity"
+        android:label="activity_menu"
+        tools:layout="@layout/activity_menu" />
 </navigation>

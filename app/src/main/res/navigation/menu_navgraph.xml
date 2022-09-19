@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_navgraph"
+    app:startDestination="@id/mainProductList">
+    <fragment
+        android:id="@+id/budget"
+        android:name="com.example.gestionpresupuesto.fragments.menu.Budget"
+        android:label="fragment_menu_budget"
+        tools:layout="@layout/fragment_menu_budget" />
+    <fragment
+        android:id="@+id/user"
+        android:name="com.example.gestionpresupuesto.fragments.menu.User"
+        android:label="fragment_menu_user"
+        tools:layout="@layout/fragment_menu_user" />
+    <fragment
+        android:id="@+id/mainProductList"
+        android:name="com.example.gestionpresupuesto.fragments.menu.MainProductList"
+        android:label="fragment_main_product_list"
+        tools:layout="@layout/fragment_main_product_list" />
+</navigation>
