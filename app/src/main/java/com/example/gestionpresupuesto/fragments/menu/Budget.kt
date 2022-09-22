@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.viewmodels.BudgetViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -49,8 +50,12 @@ class Budget : Fragment() {
         ) // hay que agregar los parametros que vienen desde la vista
         // tambien hay que pensar bien como se va a armar la parametrizacion, faltan definiciones
 
-    }
+        viewModel.getAllBudgets()
 
+        viewModel.budgetList.observe(viewLifecycleOwner, Observer { result ->
+
+        }) // esto es livedata
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
