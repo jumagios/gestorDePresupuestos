@@ -1,5 +1,6 @@
 package com.example.gestionpresupuesto.viewmodels
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gestionpresupuesto.entities.Budget
@@ -13,8 +14,9 @@ import java.time.LocalDate
 class BudgetViewModel : ViewModel() {
 
     var budgetRepository = BudgetRepository()
+    var budgetList = MutableLiveData<MutableList<Budget>>()
 
-    fun  createBudget(
+    fun createBudget(
         clientName: String,
         clientDomicile: String,
         betweenStreets: String,
@@ -30,27 +32,43 @@ class BudgetViewModel : ViewModel() {
         totalPrice: Double,
         discountPercentage: Double,
         currency: Double,
-        profitPercentage: Double)  {
+        profitPercentage: Double
+    ) {
 
         viewModelScope.launch(Dispatchers.Main) {
 
 
-               budgetRepository.createBudget(clientName,
-                   clientDomicile,
-                   betweenStreets,
-                   phone,
-                   budgetDate,
-                   expirationDate,
-                   creationDate,
-                   isDeleted,
-                   deletedDate,
-                   userID,
-                   userType,
-                   productsItems,
-                   totalPrice,
-                   discountPercentage,
-                   currency,
-                   profitPercentage)
+            budgetRepository.createBudget(
+                clientName,
+                clientDomicile,
+                betweenStreets,
+                phone,
+                budgetDate,
+                expirationDate,
+                creationDate,
+                isDeleted,
+                deletedDate,
+                userID,
+                userType,
+                productsItems,
+                totalPrice,
+                discountPercentage,
+                currency,
+                profitPercentage
+            )
+        }
+    }
+
+
+    fun getAllBudgets() {
+
+        viewModelScope.launch(Dispatchers.Main) {
+
+            var firestoreBudgetList = budgetRepository.getAllBudgets()
+            firestoreBudgetList.reverse() // para mostrar primero ultima agregada
+
+            budgetList.value = firestoreBudgetList
+
         }
     }
 }

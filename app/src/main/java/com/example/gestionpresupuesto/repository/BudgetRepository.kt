@@ -1,13 +1,16 @@
 package com.example.gestionpresupuesto.repository
 
+import android.content.ContentValues
 import android.util.Log
 import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.entities.Item
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.type.DateTime
+import kotlinx.coroutines.tasks.await
 import java.time.LocalDate
 
 class BudgetRepository {
@@ -66,5 +69,26 @@ class BudgetRepository {
         return budgetToCreate
     }
 
+    suspend fun getAllBudgets(): MutableList<Budget> {
 
+        var budgetList = mutableListOf<Budget>()
+
+        try {
+
+            var data = db.collection("budgets").get().await()
+
+            for (document in data) {
+
+                    budgetList.add(document.toObject<Budget>())
+            }
+
+        } catch (e: Exception) {
+
+            Log.d("BudgetRepository", e.message.toString())
+
+        }
+
+        return budgetList
+
+    }
 }
