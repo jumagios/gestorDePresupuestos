@@ -7,12 +7,12 @@
         android:title="PDF" />
 
     <item
-        android:id="@+id/mainProductList"
+        android:id="@+id/containerProduct"
         android:icon="@drawable/ic_baseline_nest_cam_wired_stand_24"
         android:title="Productos"
         />
     <item
-        android:id="@+id/user"
+        android:id="@+id/containerUser"
         android:icon="@drawable/ic_baseline_people_24"
         android:title="Usuarios" />
 

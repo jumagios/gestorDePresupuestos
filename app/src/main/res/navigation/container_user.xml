@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_user"
+    app:startDestination="@id/containerUser2">
+    <fragment
+        android:id="@+id/containerUser2"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.ContainerUser"
+        android:label="ContainerUser" />
+    <fragment
+        android:id="@+id/userCreator"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.UserCreator"
+        android:label="fragment_user_creator"
+        tools:layout="@layout/fragment_user_creator" />
+    <fragment
+        android:id="@+id/user2"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.User"
+        android:label="fragment_menu_user"
+        tools:layout="@layout/fragment_menu_user" />
+</navigation>
