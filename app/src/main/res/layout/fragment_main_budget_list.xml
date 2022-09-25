@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.menu.MainProductList" >
+    tools:context=".fragments.menu.containerFragmentProduct.MainProductList" >
 
     <!--Search view for filtering list view-->
 

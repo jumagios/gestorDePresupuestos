@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_budget"
+    app:startDestination="@id/containerBudget2">
+
+    <fragment
+        android:id="@+id/containerBudget2"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.ContainerBudget"
+        android:label="fragment_container_budget"
+        tools:layout="@layout/fragment_container_budget" />
+    <fragment
+        android:id="@+id/budget"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.Budget"
+        android:label="fragment_menu_budget"
+        tools:layout="@layout/fragment_menu_budget" />
+</navigation>
