@@ -1,7 +1,5 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
-import android.os.BugreportManager
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +9,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.gestionpresupuesto.R
-import com.example.gestionpresupuesto.viewmodels.ContainerBudgetViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -27,9 +24,9 @@ class ContainerBudget : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.fragment_container_budget, container, false)
 
-        tabLayout = v.findViewById(R.id.tab_layout)
+        tabLayout = v.findViewById(R.id.tab_layout_bud)
 
-        viewPager = v.findViewById(R.id.view_pager)
+        viewPager = v.findViewById(R.id.view_pager_bud)
 
 
 
@@ -45,6 +42,7 @@ class ContainerBudget : Fragment() {
         TabLayoutMediator(tabLayout, viewPager, TabLayoutMediator.TabConfigurationStrategy { tab, position ->
             when (position) {
                 0 -> tab.text = "Listar"
+                1 -> tab.text = "Crear"
                 else -> tab.text = "undefined"
             }
 
@@ -58,6 +56,7 @@ class ContainerBudget : Fragment() {
 
             return when(position){
                 0 -> Budget()
+                1 -> BudgetCreator()
                 else -> Budget()
             }
         }
