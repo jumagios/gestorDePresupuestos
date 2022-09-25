@@ -101,10 +101,10 @@ class Budget : Fragment() {
     private fun search(budgetList : MutableList<Budget>, query: String?) {
 
         val temporalBudgetList = mutableListOf<Budget>()
-        query!!.lowercase(Locale.getDefault())
+        val queryLowerCase = query!!.lowercase(Locale.getDefault())
 
         budgetList.forEach {
-            if (it.clientDomicile.lowercase().contains(query)) {
+            if (it.clientDomicile.lowercase().contains(queryLowerCase)) {
                 temporalBudgetList.add(it)
             }
                  var auxiliarAdapter = BudgetAdapter(temporalBudgetList, requireContext())
