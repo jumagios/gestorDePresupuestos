@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Product
 
@@ -34,6 +36,13 @@ class MainProductListAdapter(
         fun setStock(stock: Int) {
             val sto: TextView = view.findViewById(R.id.txt_stock_item)
             sto.text = stock.toString()
+
+        }
+
+        fun setImage(img: String) {
+            var imgURL : ImageView = view.findViewById(R.id.img_item)
+            Glide.with(imgURL).load(img).override(200,200).into(imgURL)
+
         }
 
     }
@@ -47,6 +56,7 @@ class MainProductListAdapter(
         holder.setName(productList[position].name)
         holder.setPrice(productList[position].price)
         holder.setStock(productList[position].cantStock)
+        holder.setImage(productList[position].imageURL)
 
 
     }
