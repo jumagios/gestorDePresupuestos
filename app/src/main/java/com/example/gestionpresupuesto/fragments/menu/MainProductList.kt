@@ -41,14 +41,14 @@ class MainProductList : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        products.add(Product("1",1.5,"Camara"))
-        products.add(Product("2",2.5,"Camara2"))
-        products.add(Product("3",3.5,"Camara3"))
-        products.add(Product("4",4.5,"Camara4"))
-        products.add(Product("5",5.5,"Camara5"))
-        products.add(Product("6",6.5,"Camara6"))
-        products.add(Product("7",7.5,"Camara7"))
-        products.add(Product("8",8.5,"Camara8"))
+        products.add(Product("1",1.5,"Camara",15))
+        products.add(Product("2",2.5,"Camara2",24))
+        products.add(Product("3",3.5,"Camara3",0))
+        products.add(Product("4",4.5,"Camara4",12))
+        products.add(Product("5",5.5,"Camara5",250))
+        products.add(Product("6",6.5,"Camara6",4))
+        products.add(Product("7",7.5,"Camara7",0))
+        products.add(Product("8",8.5,"Camara8",1))
 
         recProducts.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)

@@ -32,7 +32,8 @@ class Login : Fragment() {
         txtPass = v.findViewById(R.id.loginPass)
         btnLogin = v.findViewById(R.id.btnLogin)
 
-        userList.add(User("lucas","lopez"))
+        userList.add(User("",""))
+
 
         return v
     }

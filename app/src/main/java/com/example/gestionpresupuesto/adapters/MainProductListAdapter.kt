@@ -26,6 +26,16 @@ class MainProductListAdapter(
             txt.text = name
         }
 
+        fun setPrice(price: Double) {
+            val pri: TextView = view.findViewById(R.id.txt_price_item)
+            pri.text = price.toString()
+        }
+
+        fun setStock(stock: Int) {
+            val sto: TextView = view.findViewById(R.id.txt_stock_item)
+            sto.text = stock.toString()
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -35,6 +45,8 @@ class MainProductListAdapter(
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         holder.setName(productList[position].name)
+        holder.setPrice(productList[position].price)
+        holder.setStock(productList[position].cantStock)
 
 
     }
