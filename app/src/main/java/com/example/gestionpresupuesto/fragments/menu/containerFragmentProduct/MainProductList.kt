@@ -1,4 +1,4 @@
-package com.example.gestionpresupuesto.fragments.menu
+package com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

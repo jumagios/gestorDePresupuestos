@@ -1,4 +1,4 @@
-package com.example.gestionpresupuesto.fragments.menu
+package com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,26 +7,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.gestionpresupuesto.R
-import com.example.gestionpresupuesto.viewmodels.UserViewModel
+import com.example.gestionpresupuesto.viewmodels.ContainerProductViewModel
 
-class User : Fragment() {
+class ContainerProduct : Fragment() {
 
     companion object {
-        fun newInstance() = User()
+        fun newInstance() = ContainerProduct()
     }
 
-    private lateinit var viewModel: UserViewModel
+    private lateinit var viewModel: ContainerProductViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_menu_user, container, false)
+        return inflater.inflate(R.layout.fragment_container_product, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ContainerProductViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

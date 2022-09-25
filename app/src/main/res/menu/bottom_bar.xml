@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/budget"
+        android:id="@+id/containerBudget"
         android:icon="@drawable/ic_baseline_picture_as_pdf_24"
         android:title="PDF" />
 

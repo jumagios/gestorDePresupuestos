@@ -5,18 +5,18 @@
     android:id="@+id/menu_navgraph"
     app:startDestination="@id/mainProductList">
     <fragment
-        android:id="@+id/budget"
-        android:name="com.example.gestionpresupuesto.fragments.menu.Budget"
-        android:label="fragment_menu_budget"
-        tools:layout="@layout/fragment_menu_budget" />
-    <fragment
         android:id="@+id/user"
-        android:name="com.example.gestionpresupuesto.fragments.menu.User"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.User"
         android:label="fragment_menu_user"
         tools:layout="@layout/fragment_menu_user" />
     <fragment
         android:id="@+id/mainProductList"
-        android:name="com.example.gestionpresupuesto.fragments.menu.MainProductList"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.MainProductList"
         android:label="fragment_main_product_list"
         tools:layout="@layout/fragment_main_product_list" />
+    <fragment
+        android:id="@+id/containerBudget"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.ContainerBudget"
+        android:label="fragment_container_budget"
+        tools:layout="@layout/fragment_container_budget" />
 </navigation>
