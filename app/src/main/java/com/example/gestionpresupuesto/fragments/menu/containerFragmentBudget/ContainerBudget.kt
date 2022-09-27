@@ -14,9 +14,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class ContainerBudget : Fragment() {
 
-   lateinit var v: View
-   lateinit var viewPager : ViewPager2
-   lateinit var tabLayout : TabLayout
+   private lateinit var v: View
+   private lateinit var viewPager : ViewPager2
+   private lateinit var tabLayout : TabLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +65,7 @@ class ContainerBudget : Fragment() {
 
         override fun getItemCount(): Int {
             return TAB_COUNT
-            TODO("Not yet implemented")
+
         }
 
         companion object {
