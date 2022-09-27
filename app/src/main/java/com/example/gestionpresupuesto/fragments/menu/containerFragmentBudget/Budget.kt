@@ -56,18 +56,7 @@ class Budget : Fragment() {
 
         super.onStart()
 
-        /*
-        viewModel.createBudget(
-            "", "", "", "", Timestamp.now(), Timestamp.now(), Timestamp.now(), false,
-            Timestamp.now(), "", "", mutableListOf(),
-            100.50,
-            5.0, 0.0, 95.0
-
-        ) // hay que agregar los parametros que vienen desde la vista
-        // tambien hay que pensar bien como se va a armar la parametrizacion, faltan definiciones
-        */
-
-
+        // viewModel.createBudget()
 
         viewModel.getAllBudgets()
 

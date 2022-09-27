@@ -33,6 +33,7 @@ class Login : Fragment() {
         btnLogin = v.findViewById(R.id.btnLogin)
 
         userList.add(User("lucas","lopez"))
+        userList.add(User("",""))
 
         return v
     }
@@ -82,8 +83,4 @@ class Login : Fragment() {
         }
         return exist
     }
-
-
-
-
 }
