@@ -42,22 +42,22 @@ class MainProductList : Fragment() {
         super.onStart()
 
         products.add(Product("AAA01","AAC", "Camera","Security", "",
-            600.7, 5,1664239724,false))
+            600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_631530-MLA49805502511_042022-W.jpg"))
 
         products.add(Product("AAA01","AAC", "Camera","Security", "",
-            600.7, 5,1664239724,false))
+            600.7, 5,1664239724,false,"https://i.ytimg.com/an/IyLE_D7YDxo/11419294179261960037_mq.jpg?v=60e843fb"))
 
         products.add(Product("AAA01","AAC", "Camera","Security", "",
-            600.7, 5,1664239724,false))
+            600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_2X_603025-MLA41441242377_042020-F.webp"))
 
         products.add(Product("AAA01","AAC", "Camera","Security", "",
-            600.7, 5,1664239724,false))
+            600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_803358-MLA48686773748_122021-W.jpg"))
 
         products.add(Product("AAA01","AAC", "Camera","Security", "",
-            600.7, 5,1664239724,false))
+            600.7, 5,1664239724,false,"https://static.casadomo.com/media/2020/04/panasonic-trece-camaras-seguridad-seieu-vigilancia.png"))
 
         products.add(Product("AAA01","AAC", "Camera","Security", "",
-            600.7, 5,1664239724,false))
+            600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_634112-MLA43426622037_092020-O.jpg"))
 
         recProducts.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)

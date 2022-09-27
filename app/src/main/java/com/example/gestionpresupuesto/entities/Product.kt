@@ -6,10 +6,11 @@ data class Product (
     var providerProductCode: String,
     var name: String,
     var description: String,
-    var categori: String,
+    var category: String,
     var price: Double,
     var stock: Int,
     var creationDate: Long,
-    var isErased: Boolean
+    var isErased: Boolean,
+    var imageURL: String
 ){
 }
