@@ -11,11 +11,7 @@ import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
 
 class BudgetCreator : Fragment() {
 
-    companion object {
-        fun newInstance() = BudgetCreator()
-    }
 
-    private lateinit var viewModel: BugdetCreatorViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,10 +20,5 @@ class BudgetCreator : Fragment() {
         return inflater.inflate(R.layout.fragment_bugdet_creator, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BugdetCreatorViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

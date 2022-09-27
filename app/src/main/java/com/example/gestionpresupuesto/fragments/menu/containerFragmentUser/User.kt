@@ -11,11 +11,6 @@ import com.example.gestionpresupuesto.viewmodels.UserViewModel
 
 class User : Fragment() {
 
-    companion object {
-        fun newInstance() = User()
-    }
-
-    private lateinit var viewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,10 +19,5 @@ class User : Fragment() {
         return inflater.inflate(R.layout.fragment_menu_user, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }
