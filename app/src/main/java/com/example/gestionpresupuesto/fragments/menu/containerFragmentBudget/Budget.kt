@@ -105,10 +105,10 @@ class Budget : Fragment() {
             if (it.clientDomicile.lowercase().contains(queryLowerCase)) {
                 temporalBudgetList.add(it)
             }
-                 var auxiliarAdapter = BudgetAdapter(temporalBudgetList, requireContext())
-                     recBudgets.setAdapter(auxiliarAdapter)
+            var auxiliarAdapter = BudgetAdapter(temporalBudgetList, requireContext())
+            recBudgets.setAdapter(auxiliarAdapter)
 
-                 }
+            }
         }
 
     fun onItemClick ( position : Int )  {
@@ -118,6 +118,6 @@ class Budget : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(BudgetViewModel::class.java)
-        // TODO: Use the ViewModel
+
     }
 }
