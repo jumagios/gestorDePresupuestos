@@ -4,12 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gestionpresupuesto.entities.Budget
-import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.repository.BudgetRepository
 import com.google.firebase.Timestamp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.time.LocalDate
 
 class BudgetViewModel : ViewModel() {
 
@@ -17,44 +15,35 @@ class BudgetViewModel : ViewModel() {
     var budgetList = MutableLiveData<MutableList<Budget>>()
 
     fun createBudget(
-        clientName: String,
-        clientDomicile: String,
-        betweenStreets: String,
-        phone: String,
-        budgetDate: Timestamp,
-        expirationDate: Timestamp,
-        creationDate: Timestamp,
-        isDeleted: Boolean,
-        deletedDate: Timestamp,
-        userID: String,
-        userType: String,
-        productsItems: MutableList<Item>,
-        totalPrice: Double,
-        discountPercentage: Double,
-        currency: Double,
-        profitPercentage: Double
+         budgetNumber: String,
+         clientName: String,
+         clientDomicile: String,
+         betweenStreets: String,
+         apartment: String,
+         flat: String,
+         phone : String,
+         alternativePhone : String,
+         budgetDate : Long,
+         expirationDate : Long,
+         productsItems: MutableList<String>
+
     ) {
 
         viewModelScope.launch(Dispatchers.Main) {
 
 
             budgetRepository.createBudget(
+                budgetNumber,
                 clientName,
                 clientDomicile,
                 betweenStreets,
+                apartment,
+                flat,
                 phone,
+                alternativePhone,
                 budgetDate,
                 expirationDate,
-                creationDate,
-                isDeleted,
-                deletedDate,
-                userID,
-                userType,
-                productsItems,
-                totalPrice,
-                discountPercentage,
-                currency,
-                profitPercentage
+                productsItems
             )
         }
     }
