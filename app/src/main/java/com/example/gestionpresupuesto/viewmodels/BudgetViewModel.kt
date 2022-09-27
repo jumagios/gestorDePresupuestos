@@ -14,41 +14,6 @@ class BudgetViewModel : ViewModel() {
     var budgetRepository = BudgetRepository()
     var budgetList = MutableLiveData<MutableList<Budget>>()
 
-    fun createBudget(
-         budgetNumber: String,
-         clientName: String,
-         clientDomicile: String,
-         betweenStreets: String,
-         apartment: String,
-         flat: String,
-         phone : String,
-         alternativePhone : String,
-         budgetDate : Long,
-         expirationDate : Long,
-         productsItems: MutableList<String>
-
-    ) {
-
-        viewModelScope.launch(Dispatchers.Main) {
-
-
-            budgetRepository.createBudget(
-                budgetNumber,
-                clientName,
-                clientDomicile,
-                betweenStreets,
-                apartment,
-                flat,
-                phone,
-                alternativePhone,
-                budgetDate,
-                expirationDate,
-                productsItems
-            )
-        }
-    }
-
-
     fun getAllBudgets() {
 
         viewModelScope.launch(Dispatchers.Main) {

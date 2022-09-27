@@ -1,6 +1,5 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,8 +9,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.gestionpresupuesto.R
-import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.Budget
-import com.example.gestionpresupuesto.viewmodels.ContainerProductViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
