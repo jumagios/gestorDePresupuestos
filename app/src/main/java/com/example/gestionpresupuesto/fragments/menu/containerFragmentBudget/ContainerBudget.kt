@@ -55,9 +55,9 @@ class ContainerBudget : Fragment() {
         override fun createFragment(position: Int) : Fragment {
 
             return when(position){
-                0 -> Budget()
+                0 -> BudgetList()
                 1 -> BudgetCreator()
-                else -> Budget()
+                else -> BudgetList()
             }
         }
 

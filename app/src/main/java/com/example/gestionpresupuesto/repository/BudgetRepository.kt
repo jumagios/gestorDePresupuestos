@@ -14,43 +14,14 @@ class BudgetRepository {
     private val db = Firebase.firestore
     private val auth = Firebase.auth
 
-    fun createBudget(
+    fun createBudget(budgetToCreate: Budget): Budget {
 
-         budgetNumber: String,
-         clientName: String,
-         clientDomicile: String,
-         betweenStreets: String,
-         apartment: String,
-         flat: String,
-         phone : String,
-         alternativePhone : String,
-         budgetDate : Long,
-         expirationDate : Long,
-         productsItems: MutableList<String>
-
-    ): Budget {
-
-        var budgetToCreate = Budget(
-            budgetNumber,
-            clientName,
-            clientDomicile,
-            betweenStreets,
-            apartment,
-            flat,
-            phone,
-            alternativePhone,
-            budgetDate,
-            expirationDate,
-            productsItems,
-        )
-
-        try{
+        try {
             db.collection("budgets").add(budgetToCreate)
 
-        } catch(e : Exception){
+        } catch (e: Exception) {
             Log.d("BudgetRepository", e.message.toString())
         }
-
 
         return budgetToCreate
     }
@@ -65,7 +36,7 @@ class BudgetRepository {
 
             for (document in data) {
 
-                    budgetList.add(document.toObject<Budget>())
+                budgetList.add(document.toObject<Budget>())
             }
 
         } catch (e: Exception) {

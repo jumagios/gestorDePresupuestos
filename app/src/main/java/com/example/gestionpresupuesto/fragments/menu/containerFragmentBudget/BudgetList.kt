@@ -19,10 +19,10 @@ import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 
-class Budget : Fragment() {
+class BudgetList : Fragment() {
 
     companion object {
-        fun newInstance() = Budget()
+        fun newInstance() = BudgetList()
     }
 
     lateinit var v : View
@@ -55,8 +55,6 @@ class Budget : Fragment() {
     override fun onStart() {
 
         super.onStart()
-
-        // viewModel.createBudget()
 
         viewModel.getAllBudgets()
 
