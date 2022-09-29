@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Product
+import com.bumptech.glide.Glide
 
 class MainProductListAdapter(
     var productList: MutableList<Product>,

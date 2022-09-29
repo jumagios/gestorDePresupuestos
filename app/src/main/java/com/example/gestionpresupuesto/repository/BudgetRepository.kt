@@ -48,4 +48,25 @@ class BudgetRepository {
         return budgetList
 
     }
+
+    suspend fun getAccumulator(): Int {
+
+        try {
+
+            var accumulator = db.collection("accumulator").get().await()
+
+            var test = Integer.valueOf(accumulator.toString());
+
+
+               return test
+
+        } catch (e: Exception) {
+
+            Log.d("BudgetRepository", e.message.toString())
+
+        }
+
+        return budgetList
+
+    }
 }

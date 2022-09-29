@@ -32,7 +32,7 @@ class MainProductList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         v = inflater.inflate(R.layout.fragment_main_product_list, container, false)
-        //recProducts = v.findViewById(R.id.rec_products)
+        recProducts = v.findViewById(R.id.rec_products)
 
         return v
     }

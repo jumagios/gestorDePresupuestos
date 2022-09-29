@@ -15,6 +15,7 @@ class BugdetCreatorViewModel : ViewModel() {
     {
         viewModelScope.launch(Dispatchers.Main) {
 
+            budgetRepository.getAccumulator()
             budgetRepository.createBudget(budgetToCreate)
 
         }
