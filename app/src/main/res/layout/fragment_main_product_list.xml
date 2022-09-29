@@ -7,8 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".fragments.menu.containerFragmentProduct.MainProductList" >
 
-    <ListView
-        android:layout_width="0dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_products"
+        android:layout_width="409dp"
         android:layout_height="729dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
