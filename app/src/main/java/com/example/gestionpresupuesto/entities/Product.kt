@@ -13,4 +13,5 @@ data class Product (
     var isErased: Boolean,
     var imageURL: String
 ){
+    constructor() : this ("","","","","",0.0,0,0L,false, "")
 }

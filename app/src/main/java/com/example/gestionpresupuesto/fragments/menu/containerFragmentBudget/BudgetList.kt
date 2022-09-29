@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.adapters.BudgetAdapter
-import com.example.gestionpresupuesto.viewmodels.BudgetViewModel
+import com.example.gestionpresupuesto.viewmodels.BudgetListViewModel
 import com.example.gestionpresupuesto.entities.Budget
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
@@ -27,7 +27,7 @@ class BudgetList : Fragment() {
 
     lateinit var v : View
     lateinit var recBudgets : RecyclerView
-    private lateinit var viewModel: BudgetViewModel
+    private lateinit var viewModel: BudgetListViewModel
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var budgetAdapter : BudgetAdapter
     private lateinit var searchView : SearchView
@@ -48,7 +48,7 @@ class BudgetList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BudgetViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(BudgetListViewModel::class.java)
 
     }
 
@@ -104,7 +104,7 @@ class BudgetList : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BudgetViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(BudgetListViewModel::class.java)
         // TODO: Use the ViewModel
     }
 }

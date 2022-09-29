@@ -27,7 +27,6 @@ class ProductCreator : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProductCreatorViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

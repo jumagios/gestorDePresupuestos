@@ -9,7 +9,7 @@ import com.google.firebase.Timestamp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class BudgetViewModel : ViewModel() {
+class BudgetListViewModel : ViewModel() {
 
     var budgetRepository = BudgetRepository()
     var budgetList = MutableLiveData<MutableList<Budget>>()
