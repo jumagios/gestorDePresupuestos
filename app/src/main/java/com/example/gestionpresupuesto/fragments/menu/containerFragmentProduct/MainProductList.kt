@@ -32,7 +32,7 @@ class MainProductList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         v = inflater.inflate(R.layout.fragment_main_product_list, container, false)
-        recProducts = v.findViewById(R.id.rec_products)
+        //recProducts = v.findViewById(R.id.rec_products)
 
         return v
     }
@@ -41,7 +41,7 @@ class MainProductList : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        products.add(Product("AAA01","AAC", "Camera","Security", "",
+        /**products.add(Product("AAA01","AAC", "Camera","Security", "",
             600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_631530-MLA49805502511_042022-W.jpg"))
 
         products.add(Product("AAA01","AAC", "Camera","Security", "",
@@ -58,7 +58,7 @@ class MainProductList : Fragment() {
 
         products.add(Product("AAA01","AAC", "Camera","Security", "",
             600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_634112-MLA43426622037_092020-O.jpg"))
-
+        */
         recProducts.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
         recProducts.layoutManager = linearLayoutManager

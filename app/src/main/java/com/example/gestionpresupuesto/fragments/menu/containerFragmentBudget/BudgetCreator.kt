@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Budget
-import com.example.gestionpresupuesto.viewmodels.BudgetViewModel
 import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
 
 class BudgetCreator : Fragment() {

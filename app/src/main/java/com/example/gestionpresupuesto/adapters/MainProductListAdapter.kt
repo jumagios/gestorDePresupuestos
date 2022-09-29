@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Product
 
@@ -56,7 +55,7 @@ class MainProductListAdapter(
         holder.setName(productList[position].name)
         holder.setPrice(productList[position].price)
         holder.setStock(productList[position].stock)
-        holder.setImage(productList[position].imageURL)
+        //holder.setImage(productList[position].imageURL)
 
 
     }
