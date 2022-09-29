@@ -41,7 +41,8 @@ class MainProductList : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        /**products.add(Product("AAA01","AAC", "Camera","Security", "",
+
+        products.add(Product("AAA01","AAC", "Camera","Security", "",
             600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_631530-MLA49805502511_042022-W.jpg"))
 
         products.add(Product("AAA01","AAC", "Camera","Security", "",
@@ -58,7 +59,8 @@ class MainProductList : Fragment() {
 
         products.add(Product("AAA01","AAC", "Camera","Security", "",
             600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_634112-MLA43426622037_092020-O.jpg"))
-        */
+
+
         recProducts.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
         recProducts.layoutManager = linearLayoutManager

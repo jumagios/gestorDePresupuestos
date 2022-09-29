@@ -56,7 +56,7 @@ class MainProductListAdapter(
         holder.setName(productList[position].name)
         holder.setPrice(productList[position].price)
         holder.setStock(productList[position].stock)
-        //holder.setImage(productList[position].imageURL)
+        holder.setImage(productList[position].imageURL)
 
 
     }
