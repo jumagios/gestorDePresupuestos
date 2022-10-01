@@ -1,5 +1,6 @@
 package com.example.gestionpresupuesto.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gestionpresupuesto.entities.Budget
@@ -11,22 +12,29 @@ class BugdetCreatorViewModel : ViewModel() {
 
     var budgetRepository = BudgetRepository()
 
-    fun createBudget(budgetToCreate: Budget)
-    {
+    fun createBudget(budgetToCreate: Budget) {
         viewModelScope.launch(Dispatchers.Main) {
 
-            var budgetFound = budgetRepository.findBudgetByID(budgetToCreate.budgetNumber)
+            try {
 
-            if(budgetFound != null) {
+                var budgetListFound = budgetRepository.findBudgetByID(budgetToCreate.budgetNumber)
 
-                budgetRepository.createBudget(budgetToCreate)
+                if (budgetListFound.size == 0) {
 
-            } else{
+                    budgetRepository.createBudget(budgetToCreate)
 
-                throw Exception("Ya exite el presupuesto")
+                } else {
+
+                    throw Exception("Ya exite el presupuesto")
+
+                }
+
+            } catch (e: Exception) {
+
+                Log.d("BugdetCreatorViewModel", e.message.toString())
 
             }
-
         }
     }
 }
+

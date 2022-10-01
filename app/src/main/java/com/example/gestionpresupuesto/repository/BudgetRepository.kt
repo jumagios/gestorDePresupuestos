@@ -17,7 +17,7 @@ class BudgetRepository {
     fun createBudget(budgetToCreate: Budget): Budget {
 
         try {
-            db.collection("budgets").add(budgetToCreate)
+            db.collection("budgets").document(budgetToCreate.budgetNumber).set(budgetToCreate)
 
         } catch (e: Exception) {
             Log.d("BudgetRepository", e.message.toString())
@@ -49,11 +49,9 @@ class BudgetRepository {
 
     }
 
-    suspend fun findBudgetByID(ID : String) : Budget? {
+    suspend fun findBudgetByID(ID : String) : MutableList<Budget> {
 
-        var budget = Budget()
-
-        var ID = "ZTQNeAKIHIfZL1u7BDw0"
+        var budgetList = mutableListOf<Budget>()
 
         try{
 
@@ -63,7 +61,7 @@ class BudgetRepository {
 
             if(budgetFound != null) {
 
-                budget = budgetFound
+                budgetList.add(budgetFound)
 
             }
 
@@ -72,7 +70,7 @@ class BudgetRepository {
             Log.d("BudgetRepository", e.message.toString())
         }
 
-        return budget
+        return budgetList
     }
 }
 

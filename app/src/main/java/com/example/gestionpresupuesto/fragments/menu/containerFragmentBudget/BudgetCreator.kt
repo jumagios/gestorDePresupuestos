@@ -34,7 +34,7 @@ class BudgetCreator : Fragment() {
 
 
         var budgetMock = Budget(
-            "XXXXXXX1", "Groso S.A", "Rivadavia 3456",
+            "XXXXXX50", "Groso S.A", "Rivadavia 3456",
             "Senillosa y Colombia", "2B",  "2",
             "1134567528", "",
             26092022,260112022, mutableListOf()
