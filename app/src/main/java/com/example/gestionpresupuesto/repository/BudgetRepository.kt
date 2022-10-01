@@ -49,4 +49,33 @@ class BudgetRepository {
 
     }
 
+    suspend fun findBudgetByID(ID : String) : Budget? {
+
+        var budget = Budget()
+
+        var ID = "ZTQNeAKIHIfZL1u7BDw0"
+
+        try{
+
+            val data = db.collection("budgets").document(ID).get().await()
+
+            var budgetFound = data.toObject<Budget>()
+
+            if(budgetFound != null) {
+
+                budget = budgetFound
+
+            }
+
+        } catch (e : Exception) {
+
+            Log.d("BudgetRepository", e.message.toString())
+        }
+
+        return budget
+    }
 }
+
+
+
+
