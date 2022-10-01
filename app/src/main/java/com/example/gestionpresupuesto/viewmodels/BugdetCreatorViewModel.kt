@@ -11,16 +11,6 @@ class BugdetCreatorViewModel : ViewModel() {
 
     var budgetRepository = BudgetRepository()
 
-    fun findBudgetByID(budgetToCreate: Budget) {
-
-        viewModelScope.launch(Dispatchers.Main) {
-
-            var test = budgetRepository.getBudgetByID(budgetToCreate.budgetNumber)
-            test.toString()
-
-        }
-    }
-
     fun createBudget(budgetToCreate: Budget)
     {
         viewModelScope.launch(Dispatchers.Main) {
