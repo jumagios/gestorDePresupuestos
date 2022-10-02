@@ -21,11 +21,12 @@ class BugdetCreatorViewModel : ViewModel() {
 
                 if ( budgetListFound.size == 0){
 
+                    budgetToCreate.firestoreID = setFirestoreID(budgetToCreate.budgetNumber)
                     budgetRepository.createBudget(budgetToCreate)
 
                 } else {
 
-                    throw Exception("Ya exite el presupuesto")
+                    throw Exception("Ya existe el presupuesto")
 
                 }
 
@@ -35,6 +36,14 @@ class BugdetCreatorViewModel : ViewModel() {
 
             }
         }
+    }
+
+    private fun setFirestoreID(budgetNumber : String) : String {
+
+        var firestoreID = budgetNumber.replace("\\s".toRegex(), "").uppercase()
+
+        return firestoreID
+
     }
 }
 

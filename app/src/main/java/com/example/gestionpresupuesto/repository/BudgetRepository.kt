@@ -17,10 +17,7 @@ class BudgetRepository {
 
         try {
 
-            budgetToCreate.firestoreID = setFirestoreID(budgetToCreate.budgetNumber)
-
             db.collection("budgets").add(budgetToCreate)
-
 
         } catch (e: Exception) {
             Log.d("BudgetRepository", e.message.toString())
@@ -78,14 +75,6 @@ class BudgetRepository {
         }
 
         return budgetList
-    }
-
-    private fun setFirestoreID(budgetNumber : String) : String {
-
-        var firestoreID = budgetNumber.replace("\\s".toRegex(), "").uppercase()
-
-        return firestoreID
-
     }
 }
 
