@@ -2,7 +2,6 @@ package com.example.gestionpresupuesto.repository
 
 import android.util.Log
 import com.example.gestionpresupuesto.entities.Budget
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -17,7 +16,11 @@ class BudgetRepository {
     fun createBudget(budgetToCreate: Budget): Budget {
 
         try {
-            db.collection("budgets").document(budgetToCreate.budgetNumber).set(budgetToCreate)
+
+            budgetToCreate.firestoreID = setFirestoreID(budgetToCreate.budgetNumber)
+
+            db.collection("budgets").add(budgetToCreate)
+
 
         } catch (e: Exception) {
             Log.d("BudgetRepository", e.message.toString())
@@ -55,13 +58,17 @@ class BudgetRepository {
 
         try{
 
-            val data = db.collection("budgets").document(ID).get().await()
+            val data = db.collection("budgets").whereEqualTo("firestoreID", ID).get().await()
 
-            var budgetFound = data.toObject<Budget>()
+            if(!data.isEmpty) {
 
-            if(budgetFound != null) {
+                for (document in data) {
 
-                budgetList.add(budgetFound)
+                   var budgetFound = document.toObject<Budget>()
+
+                    budgetList.add(budgetFound)
+
+                }
 
             }
 
@@ -71,6 +78,14 @@ class BudgetRepository {
         }
 
         return budgetList
+    }
+
+    private fun setFirestoreID(budgetNumber : String) : String {
+
+        var firestoreID = budgetNumber.replace("\\s".toRegex(), "").uppercase()
+
+        return firestoreID
+
     }
 }
 

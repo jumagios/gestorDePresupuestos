@@ -19,7 +19,7 @@ class BugdetCreatorViewModel : ViewModel() {
 
                 var budgetListFound = budgetRepository.findBudgetByID(budgetToCreate.budgetNumber)
 
-                if (budgetListFound.size == 0) {
+                if ( budgetListFound.size == 0){
 
                     budgetRepository.createBudget(budgetToCreate)
 
