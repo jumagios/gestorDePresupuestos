@@ -13,7 +13,7 @@ class BudgetRepository {
     private val db = Firebase.firestore
     private val auth = Firebase.auth
 
-    fun createBudget(budgetToCreate: Budget): Budget {
+    fun createBudget(budgetToCreate: Budget) {
 
         try {
 
@@ -21,9 +21,9 @@ class BudgetRepository {
 
         } catch (e: Exception) {
             Log.d("BudgetRepository", e.message.toString())
+            throw Exception("Error en la creación del presupuesto")
         }
 
-        return budgetToCreate
     }
 
     suspend fun getAllBudgets(): MutableList<Budget> {
