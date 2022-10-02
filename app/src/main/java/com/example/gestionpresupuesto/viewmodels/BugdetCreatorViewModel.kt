@@ -17,10 +17,11 @@ class BugdetCreatorViewModel : ViewModel() {
 
             try {
 
-                var budgetListFound = budgetRepository.findBudgetByID(budgetToCreate.budgetNumber)
+                var budgetListFound = budgetRepository.findBudgetByID(budgetToCreate.firestoreID)
 
-                if ( budgetListFound.size == 0){
+                if ( budgetListFound.size == 0) {
 
+                    budgetToCreate.budgetNumber = budgetRepository.getAllBudgets().size.toString()
                     budgetToCreate.firestoreID = setFirestoreID(budgetToCreate.budgetNumber)
                     budgetRepository.createBudget(budgetToCreate)
 
