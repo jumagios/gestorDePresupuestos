@@ -19,4 +19,11 @@ class ProductCreatorViewModel : ViewModel() {
 
         }
     }
+
+    fun updateProduct(productMock: Product)
+    {
+        viewModelScope.launch(Dispatchers.Main) {
+            productRepository.updateProduct(productMock)
+        }
+    }
 }
