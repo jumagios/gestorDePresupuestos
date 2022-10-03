@@ -2,7 +2,6 @@ package com.example.gestionpresupuesto.entities
 
 data class Budget(
 
-    var firestoreID : String,
     var budgetNumber: String,
     var clientName: String,
     var clientDomicile: String,
@@ -16,7 +15,7 @@ data class Budget(
     var productsItems: MutableList<String>
     ) {
 
-    constructor() : this("","","","","",
+    constructor() : this("","","","",
         "","", "",
         "", 0,0, mutableListOf())
 }

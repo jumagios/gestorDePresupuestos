@@ -17,19 +17,8 @@ class BugdetCreatorViewModel : ViewModel() {
 
             try {
 
-                var budgetListFound = budgetRepository.findBudgetByID(budgetToCreate.firestoreID)
-
-                if ( budgetListFound.size == 0) {
-
-                    budgetToCreate.budgetNumber = budgetRepository.getAllBudgets().size.toString()
-                    budgetToCreate.firestoreID = setFirestoreID(budgetToCreate.budgetNumber)
+                    budgetToCreate.budgetNumber = setBudgetNumber(budgetRepository.getAllBudgets().size)
                     budgetRepository.createBudget(budgetToCreate)
-
-                } else {
-
-                    throw Exception("Ya existe el presupuesto")
-
-                }
 
             } catch (e: Exception) {
 
@@ -39,11 +28,17 @@ class BugdetCreatorViewModel : ViewModel() {
         }
     }
 
-    private fun setFirestoreID(budgetNumber : String) : String {
+    private fun setBudgetNumber(budgetListSize : Int) : String {
 
-        var firestoreID = budgetNumber.replace("\\s".toRegex(), "").uppercase()
+        val budgetNumberCodeStructure = "00000000"
 
-        return firestoreID
+        var size = budgetListSize.toString().length
+
+        var budgetNumber = budgetNumberCodeStructure.substring(size)
+
+        var finalBudgetNumber = budgetNumber + budgetListSize.toString()
+
+        return finalBudgetNumber
 
     }
 }
