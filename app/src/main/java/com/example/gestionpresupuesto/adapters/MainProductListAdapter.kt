@@ -13,8 +13,7 @@ import com.bumptech.glide.Glide
 
 class MainProductListAdapter(
     var productList: MutableList<Product>,
-    val context: Context,
-    val onItemClick : (Int) -> Unit
+    val context: Context
 ) : RecyclerView.Adapter<MainProductListAdapter.MainHolder>()
 {
     class MainHolder (v: View) : RecyclerView.ViewHolder(v) {

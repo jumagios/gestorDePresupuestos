@@ -1,6 +1,7 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,12 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.adapters.BudgetAdapter
 import com.example.gestionpresupuesto.viewmodels.BudgetListViewModel
 import com.example.gestionpresupuesto.entities.Budget
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
@@ -32,6 +35,7 @@ class BudgetList : Fragment() {
     private lateinit var budgetAdapter : BudgetAdapter
     private lateinit var searchView : SearchView
     private lateinit var temporalBudgetList : MutableList<Budget>
+    private lateinit var buttonAdd : FloatingActionButton
 
 
 
@@ -41,7 +45,8 @@ class BudgetList : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.fragment_main_budget_list, container, false)
         recBudgets = v.findViewById(R.id.rec_budgets)
-        searchView = v.findViewById(R.id.searchView)
+        searchView = v.findViewById(R.id.searchViewBudget)
+        buttonAdd = v.findViewById(R.id.floating_action_button_user)
 
         return v
     }
@@ -81,8 +86,14 @@ class BudgetList : Fragment() {
 
             })
         })
+
+        buttonAdd.setOnClickListener {
+            val action = BudgetListDirections.actionMainBudgetListToProductCreator()
+            v.findNavController().navigate(action)
+        }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun search(budgetList : MutableList<Budget>, query: String?) {
 
         val temporalBudgetList = mutableListOf<Budget>()

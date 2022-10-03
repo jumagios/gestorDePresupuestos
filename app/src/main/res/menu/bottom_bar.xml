@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/containerBudget"
+        android:id="@+id/mainBudgetList"
         android:icon="@drawable/ic_baseline_picture_as_pdf_24"
         android:title="PDF" />
 
     <item
-        android:id="@+id/containerProduct"
+        android:id="@+id/mainProductList"
         android:icon="@drawable/ic_baseline_nest_cam_wired_stand_24"
         android:title="Productos"
         />
     <item
-        android:id="@+id/containerUser"
+        android:id="@+id/mainUser"
         android:icon="@drawable/ic_baseline_people_24"
         android:title="Usuarios" />
 
