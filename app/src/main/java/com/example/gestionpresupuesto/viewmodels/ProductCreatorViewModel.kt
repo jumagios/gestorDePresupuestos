@@ -1,5 +1,6 @@
 package com.example.gestionpresupuesto.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gestionpresupuesto.entities.Product
@@ -11,12 +12,39 @@ class ProductCreatorViewModel : ViewModel() {
 
     var productRepository = ProductRepository()
 
-    fun createProduct(ProductToCreate: Product)
-    {
+    fun createBudget(productToCreate: Product) {
         viewModelScope.launch(Dispatchers.Main) {
 
-            productRepository.createProduct(ProductToCreate)
+            try {
 
+                productToCreate.firestoreID = setFirestoreID(productToCreate.internalProductCode)
+
+                var productListFound = productRepository.findProductByID(productToCreate.firestoreID)
+
+                if ( productListFound.size == 0) {
+
+                    productRepository.createProduct(productToCreate)
+
+                } else {
+
+                    throw Exception("Ya existe el producto")
+
+                }
+
+            } catch (e: Exception) {
+
+                Log.d("ProductCreatorViewModel", e.message.toString())
+
+            }
         }
     }
+
+    private fun setFirestoreID(internalProductCode : String) : String {
+
+        var firestoreID = internalProductCode.replace("\\s".toRegex(), "").uppercase()
+
+        return firestoreID
+
+    }
+
 }

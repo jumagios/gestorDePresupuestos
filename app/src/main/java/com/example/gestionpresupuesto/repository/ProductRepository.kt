@@ -1,61 +1,90 @@
 package com.example.gestionpresupuesto.repository
 
-import android.content.Context
 import android.util.Log
 import com.example.gestionpresupuesto.entities.Product
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import java.util.Locale.Category
+import kotlinx.coroutines.tasks.await
 
 class ProductRepository {
 
     private val db = Firebase.firestore
     private val auth = Firebase.auth
 
-    fun createProduct(createToProduct: Product) {
+    fun createProduct(productToCreate: Product) {
 
-        var product = Product()
         try {
-        db.collection("products").add(product)
+
+            db.collection("products").add(productToCreate)
+
         } catch (e: Exception) {
-        Log.d("ProductRepository", e.message.toString())
-         }
+
+            Log.d("ProductRepository", e.message.toString())
+            throw Exception("Error en la creación del producto")
+
+        }
     }
 
-    /**fun deleteProduct(productToDelete: Product): Product  {
+    suspend fun getAllProducts(): MutableList<Product> {
 
-            db.collection("products").document().delete(productToDelete.internalProductCode)
-            return Product()
-    }*/
-    /**fun updateProduct(productToUpdate: Product): String {
-            db.collection("products").document().update(productToUpdate.internalProductCode)
+        var productList = mutableListOf<Product>()
 
-            return "El producto fue actualizado exitosamente"
-    }*/
+        try {
 
-    /**fun findProductByID(ID: String) : Product {
+            var data = db.collection("products").get().await()
 
-        var product = db.collection("products").document().get(ID)
+            for (document in data) {
 
-        return product
+                productList.add(document.toObject<Product>())
+            }
 
-    }*/
+        } catch (e: Exception) {
 
-    fun getAllProducts() : MutableList<Product> {
+            Log.d("ProductRepository", e.message.toString())
 
-        var products = mutableListOf<Product>()
+        }
 
-        return products
-
-    }
-
-    fun getProductsByCategory(category: String) : MutableList<Product> {
-
-        var products = mutableListOf<Product>()
-
-        return products
+        return productList
 
     }
 
+    suspend fun findProductByID(ID : String) : MutableList<Product> {
+
+        var productList = mutableListOf<Product>()
+
+        return productList
+    }
+
+
+
+    fun deleteProduct(productToDelete: Product) : Boolean{
+
+        var result = false
+
+        try {
+
+            db.collection("products").document().update("isErased", true)
+            result = true
+
+        } catch (e: Exception) {
+
+            Log.d("ProductRepository", e.message.toString())
+
+        }
+
+        return result
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

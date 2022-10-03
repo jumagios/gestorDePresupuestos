@@ -2,6 +2,7 @@ package com.example.gestionpresupuesto.entities
 
 data class Product (
 
+    var firestoreID : String,
     var internalProductCode: String,
     var providerProductCode: String,
     var name: String,
@@ -13,5 +14,5 @@ data class Product (
     var isErased: Boolean,
     var imageURL: String
 ){
-    constructor() : this ("","","","","",0.0,0,0L,false, "")
+    constructor() : this ("","","","","","",0.0,0,0L,false, "")
 }
