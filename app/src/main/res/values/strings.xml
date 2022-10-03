@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GestionPresupuesto</string>
+    <string name="fab_content_desc" />
 </resources>
