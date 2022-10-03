@@ -5,7 +5,9 @@ import android.util.Log
 import com.example.gestionpresupuesto.entities.Product
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.tasks.await
 import java.util.Locale.Category
 
 class ProductRepository {
@@ -42,11 +44,26 @@ class ProductRepository {
 
     }*/
 
-    fun getAllProducts() : MutableList<Product> {
+    suspend fun getAllProducts(): MutableList<Product> {
 
-        var products = mutableListOf<Product>()
+        var productList = mutableListOf<Product>()
 
-        return products
+        try {
+
+            var data = db.collection("products").get().await()
+
+            for (document in data) {
+
+                productList.add(document.toObject<Product>())
+            }
+
+        } catch (e: Exception) {
+
+            Log.d("ProductRepository", e.message.toString())
+
+        }
+
+        return productList
 
     }
 

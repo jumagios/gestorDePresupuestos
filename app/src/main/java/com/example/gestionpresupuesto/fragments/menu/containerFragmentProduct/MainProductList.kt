@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
+import com.example.gestionpresupuesto.adapters.BudgetAdapter
 import com.example.gestionpresupuesto.adapters.MainProductListAdapter
 import com.example.gestionpresupuesto.entities.Product
 import com.example.gestionpresupuesto.viewmodels.BudgetListViewModel
@@ -34,13 +35,7 @@ class MainProductList : Fragment() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var buttonAdd : FloatingActionButton
     private lateinit var searchView : SearchView
-
-
     private lateinit var productListAdapter : MainProductListAdapter
-
-    var products : MutableList<Product> = ArrayList<Product>()
-
-
 
 
 
@@ -66,25 +61,6 @@ class MainProductList : Fragment() {
     override fun onStart() {
         super.onStart()
 
-
-        products.add(Product("AAA01","AAC", "Camera","Security", "",
-            600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_631530-MLA49805502511_042022-W.jpg"))
-
-        products.add(Product("AAA01","AAC", "Camera","Security", "",
-            600.7, 5,1664239724,false,"https://i.ytimg.com/an/IyLE_D7YDxo/11419294179261960037_mq.jpg?v=60e843fb"))
-
-        products.add(Product("AAA01","AAC", "Camera","Security", "",
-            600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_2X_603025-MLA41441242377_042020-F.webp"))
-
-        products.add(Product("AAA01","AAC", "Camera","Security", "",
-            600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_803358-MLA48686773748_122021-W.jpg"))
-
-        products.add(Product("AAA01","AAC", "Camera","Security", "",
-            600.7, 5,1664239724,false,"https://static.casadomo.com/media/2020/04/panasonic-trece-camaras-seguridad-seieu-vigilancia.png"))
-
-        products.add(Product("AAA01","AAC", "Camera","Security", "",
-            600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_634112-MLA43426622037_092020-O.jpg"))
-
         viewModel.getAllProducts()
         
         viewModel.productList.observe(viewLifecycleOwner, Observer { result ->
@@ -94,6 +70,7 @@ class MainProductList : Fragment() {
             recProducts.setHasFixedSize(true)
             linearLayoutManager = LinearLayoutManager(context)
             recProducts.layoutManager = linearLayoutManager
+            productListAdapter = MainProductListAdapter(productList,requireContext())
 
             recProducts.adapter = productListAdapter
 
