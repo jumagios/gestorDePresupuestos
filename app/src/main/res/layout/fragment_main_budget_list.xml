@@ -21,7 +21,7 @@
         <!--Search view for filtering list view-->
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
+            android:id="@+id/searchViewBudget"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
@@ -42,12 +42,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView" />
+            app:layout_constraintTop_toBottomOf="@+id/searchViewBudget" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_button"
+        android:id="@+id/floating_action_button_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
