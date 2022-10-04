@@ -77,20 +77,22 @@ class BudgetRepository {
         return budgetList
     }
 
-    suspend fun updateBudget(budgetToUpdate : Budget) {
+    suspend fun deleteBudget(budgetToDelete : Budget) {
 
         try{
 
-            val data = db.collection("budgets").whereEqualTo("budgetNumber", budgetToUpdate.budgetNumber).get().await()
+            val data = db.collection("budgets").whereEqualTo("budgetNumber", budgetToDelete.budgetNumber).get().await()
 
             if (!data.isEmpty) {
 
                 for (document in data) {
 
+                    var documentID = document.id
+                    val data = db.collection("budgets").document(documentID)
+                        .update("isErased", true)
 
                 }
             }
-
 
         } catch (e : Exception) {
 
