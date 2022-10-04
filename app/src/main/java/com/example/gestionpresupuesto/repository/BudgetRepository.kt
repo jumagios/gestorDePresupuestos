@@ -2,7 +2,6 @@ package com.example.gestionpresupuesto.repository
 
 import android.util.Log
 import com.example.gestionpresupuesto.entities.Budget
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -14,16 +13,17 @@ class BudgetRepository {
     private val db = Firebase.firestore
     private val auth = Firebase.auth
 
-    fun createBudget(budgetToCreate: Budget): Budget {
+    fun createBudget(budgetToCreate: Budget) {
 
         try {
+
             db.collection("budgets").add(budgetToCreate)
 
         } catch (e: Exception) {
             Log.d("BudgetRepository", e.message.toString())
+            throw Exception("Error en la creación del presupuesto")
         }
 
-        return budgetToCreate
     }
 
     suspend fun getAllBudgets(): MutableList<Budget> {
@@ -49,4 +49,59 @@ class BudgetRepository {
 
     }
 
+    suspend fun findBudgetByID(ID : String) : MutableList<Budget> {
+
+        var budgetList = mutableListOf<Budget>()
+
+        try{
+
+            val data = db.collection("budgets").whereEqualTo("budgetNumber", ID).get().await()
+
+            if(!data.isEmpty) {
+
+                for (document in data) {
+
+                   var budgetFound = document.toObject<Budget>()
+
+                    budgetList.add(budgetFound)
+
+                }
+
+            }
+
+        } catch (e : Exception) {
+
+            Log.d("BudgetRepository", e.message.toString())
+        }
+
+        return budgetList
+    }
+
+    suspend fun deleteBudget(budgetToDelete : Budget) {
+
+        try{
+
+            val data = db.collection("budgets").whereEqualTo("budgetNumber", budgetToDelete.budgetNumber).get().await()
+
+            if (!data.isEmpty) {
+
+                for (document in data) {
+
+                    var documentID = document.id
+                    val data = db.collection("budgets").document(documentID)
+                        .update("isErased", true)
+
+                }
+            }
+
+        } catch (e : Exception) {
+
+            Log.d("BudgetRepository", e.message.toString())
+        }
+
+    }
 }
+
+
+
+

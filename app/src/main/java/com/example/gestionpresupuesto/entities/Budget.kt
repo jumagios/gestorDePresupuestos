@@ -1,5 +1,7 @@
 package com.example.gestionpresupuesto.entities
 
+import com.google.firebase.Timestamp
+
 data class Budget(
 
     var budgetNumber: String,
@@ -10,14 +12,15 @@ data class Budget(
     var flat: String,
     var phone : String,
     var alternativePhone : String,
-    var budgetDate : Long,
+    var budgetDate : Timestamp,
     var expirationDate : Long,
+    var isErased: Boolean,
     var productsItems: MutableList<String>
     ) {
 
     constructor() : this("","","","",
         "","", "",
-        "", 0,0, mutableListOf())
+        "", Timestamp.now(),0,false, mutableListOf())
 }
 
 
