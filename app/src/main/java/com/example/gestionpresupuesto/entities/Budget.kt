@@ -12,12 +12,13 @@ data class Budget(
     var alternativePhone : String,
     var budgetDate : Long,
     var expirationDate : Long,
+    var isErased: Boolean,
     var productsItems: MutableList<String>
     ) {
 
     constructor() : this("","","","",
         "","", "",
-        "", 0,0, mutableListOf())
+        "", 0,0,false, mutableListOf())
 }
 
 

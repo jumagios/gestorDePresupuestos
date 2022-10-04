@@ -37,7 +37,7 @@ class BudgetCreator : Fragment() {
             "", "Groso S.A", "Rivadavia 3456",
             "Senillosa y Colombia", "2B",  "2",
             "1134567528", "",
-            26092022,260112022, mutableListOf()
+            26092022,260112022, false, mutableListOf()
         )
 
         viewModel.createBudget(budgetMock)

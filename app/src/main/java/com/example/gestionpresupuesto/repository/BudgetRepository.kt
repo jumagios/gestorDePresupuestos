@@ -55,7 +55,7 @@ class BudgetRepository {
 
         try{
 
-            val data = db.collection("budgets").whereEqualTo("firestoreID", ID).get().await()
+            val data = db.collection("budgets").whereEqualTo("budgetNumber", ID).get().await()
 
             if(!data.isEmpty) {
 
@@ -75,6 +75,28 @@ class BudgetRepository {
         }
 
         return budgetList
+    }
+
+    suspend fun updateBudget(budgetToUpdate : Budget) {
+
+        try{
+
+            val data = db.collection("budgets").whereEqualTo("budgetNumber", budgetToUpdate.budgetNumber).get().await()
+
+            if (!data.isEmpty) {
+
+                for (document in data) {
+
+
+                }
+            }
+
+
+        } catch (e : Exception) {
+
+            Log.d("BudgetRepository", e.message.toString())
+        }
+
     }
 }
 
