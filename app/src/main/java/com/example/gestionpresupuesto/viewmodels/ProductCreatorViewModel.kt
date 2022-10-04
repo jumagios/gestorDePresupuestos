@@ -12,7 +12,7 @@ class ProductCreatorViewModel : ViewModel() {
 
     var productRepository = ProductRepository()
 
-    fun createBudget(productToCreate: Product) {
+    fun createProduct(productToCreate: Product) {
         viewModelScope.launch(Dispatchers.Main) {
 
             try {

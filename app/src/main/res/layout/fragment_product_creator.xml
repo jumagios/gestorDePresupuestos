@@ -105,17 +105,20 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/productPrice"
-        android:layout_width="197dp"
+        android:layout_width="198dp"
         android:layout_height="44dp"
         android:layout_marginTop="10dp"
         android:hint="Precio"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productInternalCode">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
+            android:id="@+id/editTextNumberDecimal2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -129,10 +132,13 @@
         app:layout_constraintStart_toEndOf="@+id/productPrice"
         app:layout_constraintTop_toBottomOf="@+id/productInternalCode">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
+            android:id="@+id/editTextNumber"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -191,6 +197,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,16 +11,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.databinding.FragmentProductCreatorBinding
-import com.example.gestionpresupuesto.fragments.login.LoginDirections
+import com.example.gestionpresupuesto.entities.Product
+import com.example.gestionpresupuesto.repository.ProductRepository
 import com.example.gestionpresupuesto.viewmodels.ProductCreatorViewModel
+import com.google.firebase.Timestamp
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.text.SimpleDateFormat
@@ -34,6 +36,7 @@ class ProductCreator : Fragment() {
     private lateinit var button_accept : Button
     private lateinit var button_cancel : Button
     private lateinit var button_upload : Button
+    private lateinit var repository: ProductRepository
     private lateinit var v : View
 
     companion object {
@@ -70,7 +73,7 @@ class ProductCreator : Fragment() {
 
         button_accept.setOnClickListener {
             uploadImage()
-            createProduct()
+            createProduct(binding)
             goToProductCreate()
         }
 
@@ -135,7 +138,11 @@ class ProductCreator : Fragment() {
         }
     }
 
-    private fun createProduct(){
-
+    private fun createProduct(binding: FragmentProductCreatorBinding) {
+        var product = Product("",binding.productInternalCode.editText.toString(),binding.productProviderCode.editText.toString(),
+            binding.productname.editText.toString(),binding.productdescription.editText.toString(),binding.productcategory.editText.toString(),
+            binding.productPrice.toString().toDouble(),binding.productStock.editText.toString().toInt(),Timestamp.now(),false,
+            binding.firebaseImage.toString())
+        viewModel.createProduct(product)
     }
 }
