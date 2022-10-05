@@ -8,15 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.gestionpresupuesto.R
-import com.example.gestionpresupuesto.entities.Budget
-import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetList
 import com.example.gestionpresupuesto.viewmodels.BudgetWithItemsDetailsViewModel
 
 class BudgetWithItemsDetailsFragment : Fragment() {
 
     lateinit var v : View
     private lateinit var viewModel: BudgetWithItemsDetailsViewModel
-    private lateinit var clientName: TextView
+    private lateinit var budgetNumber: TextView
     private lateinit var budgetDate: TextView
 
     override fun onCreateView(
@@ -39,8 +37,8 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         var budgetDetails = BudgetWithItemsDetailsFragmentArgs.fromBundle(requireArguments()).budgetDetails
 
 
-        clientName = v.findViewById(R.id.budget_details_clienteName)
-        clientName.text = budgetDetails.clientName
+        budgetNumber = v.findViewById(R.id.budget_details_budgetnumber)
+        budgetNumber.text = budgetDetails.budgetNumber
 
         budgetDate = v.findViewById(R.id.budget_details_creation_date)
         budgetDate.text = budgetDetails.budgetDate.toDate().toString()
