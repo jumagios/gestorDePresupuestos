@@ -1,5 +1,7 @@
 package com.example.gestionpresupuesto.entities
 
+import com.google.firebase.Timestamp
+
 data class Product (
 
     var firestoreID : String,
@@ -10,9 +12,9 @@ data class Product (
     var category: String,
     var price: Double,
     var stock: Int,
-    var creationDate: Long,
+    var creationDate: Timestamp,
     var isErased: Boolean,
     var imageURL: String
 ){
-    constructor() : this ("","","","","","",0.0,0,0L,false, "")
+    constructor() : this ("","","","","","",0.0,0,Timestamp.now(),false, "")
 }
