@@ -1,8 +1,12 @@
 package com.example.gestionpresupuesto.entities
 
+import android.os.Parcelable
 import com.google.firebase.Timestamp
+import kotlinx.parcelize.Parcelize
 
-data class Budget(
+
+@Parcelize
+data class Budget (
 
     var budgetNumber: String,
     var clientName: String,
@@ -16,7 +20,7 @@ data class Budget(
     var expirationDate : Long,
     var isErased: Boolean,
     var productsItems: MutableList<String>
-    ) {
+    ) : Parcelable {
 
     constructor() : this("","","","",
         "","", "",

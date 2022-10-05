@@ -10,6 +10,7 @@ buildscript {
 
         def nav_version = "2.5.1"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+
         //
         classpath 'com.google.gms:google-services:4.3.10'
     }
@@ -19,6 +20,7 @@ plugins {
     id 'com.android.application' version '7.2.2' apply false
     id 'com.android.library' version '7.2.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+
 }
 
 task clean(type: Delete) {

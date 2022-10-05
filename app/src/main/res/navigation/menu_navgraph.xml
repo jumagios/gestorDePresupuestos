@@ -11,6 +11,10 @@
         <action
             android:id="@+id/action_mainBudgetList_to_productCreator"
             app:destination="@id/productCreator" />
+        <action
+            android:id="@+id/action_mainBudgetList_to_budgetWithItemsDetailsFragment"
+            app:destination="@id/budgetWithItemsDetailsFragment"
+            app:launchSingleTop="false" />
     </fragment>
     <fragment
         android:id="@+id/mainProductList"
@@ -42,4 +46,12 @@
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.UserCreator"
         android:label="fragment_user_creator"
         tools:layout="@layout/fragment_user_creator" />
+    <fragment
+        android:id="@+id/budgetWithItemsDetailsFragment"
+        android:name="com.example.gestionpresupuesto.fragments.menu.BudgetWithItemsDetailsFragment"
+        android:label="BudgetWithItemsDetailsFragment" >
+        <argument
+            android:name="budgetDetails"
+            app:argType="com.example.gestionpresupuesto.entities.Budget" />
+    </fragment>
 </navigation>
