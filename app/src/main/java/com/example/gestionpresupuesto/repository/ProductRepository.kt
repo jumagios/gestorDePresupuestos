@@ -1,13 +1,12 @@
 package com.example.gestionpresupuesto.repository
 
-import android.content.Context
 import android.util.Log
 import com.example.gestionpresupuesto.entities.Product
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
-import java.util.Locale.Category
 
 class ProductRepository {
 
@@ -47,23 +46,46 @@ class ProductRepository {
 
      */
 
+    suspend fun findProductByID(ID : String) : MutableList<Product> {
 
+        var productList = mutableListOf<Product>()
 
-    /**fun findProductByID(ID: String) : Product {
+        try{
 
-        var product = db.collection("products").document().get(ID)
+            val data = db.collection("products").whereEqualTo("firestoreID", ID).get().await()
 
-        return product
+            for (document in data) {
 
-    }*/
+                var productFound = document.toObject<Product>()
 
-    fun getAllProducts() : MutableList<Product> {
+                if(productFound != null) {
+                    productList.add(productFound)
+                }
 
-        var products = mutableListOf<Product>()
+            }
 
-        return products
+        } catch (e : Exception) {
+            Log.d("ProductRepository", e.message.toString())
+        }
+
+        return productList
 
     }
+}
+
+/**fun findProductByID(ID: String) : Product {
+
+var product = db.collection("products").document().get(ID)
+
+return product
+
+}*/
+
+fun getAllProducts(): MutableList<Product> {
+
+    return mutableListOf()
+
+}
 
     fun getProductsByCategory(category: String) : MutableList<Product> {
 
@@ -72,5 +94,3 @@ class ProductRepository {
         return products
 
     }
-
-}
