@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gestionpresupuesto.R
+import com.example.gestionpresupuesto.adapters.MainProductListAdapter
+import com.example.gestionpresupuesto.entities.Product
 import com.example.gestionpresupuesto.viewmodels.ProductCreatorViewModel
 
 class ProductCreator : Fragment() {
@@ -28,5 +31,10 @@ class ProductCreator : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProductCreatorViewModel::class.java)
     }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
 
 }
