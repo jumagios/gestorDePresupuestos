@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_mainProductList_to_productCreator2"
             app:destination="@id/productCreator2" />
+        <action
+            android:id="@+id/action_mainProductList_to_productDetail"
+            app:destination="@id/productDetail" />
     </fragment>
     <fragment
         android:id="@+id/mainUser"
@@ -53,5 +56,17 @@
         <argument
             android:name="budgetDetails"
             app:argType="com.example.gestionpresupuesto.entities.Budget" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetail"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductDetail"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" >
+        <argument
+            android:name="product"
+            app:argType="com.example.gestionpresupuesto.entities.Product" />
+        <action
+            android:id="@+id/action_productDetail_to_mainProductList"
+            app:destination="@id/mainProductList" />
     </fragment>
 </navigation>

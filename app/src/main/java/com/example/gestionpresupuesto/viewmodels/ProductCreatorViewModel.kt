@@ -39,23 +39,6 @@ class ProductCreatorViewModel : ViewModel() {
             }
         }
     }
-
-    fun updateProduct(productMock: Product) {
-        viewModelScope.launch(Dispatchers.Main) {
-
-            try {
-
-                var productListFound = productRepository.findProductByID(productMock.internalProductCode)
-
-                productRepository.updateProduct(productMock)
-
-            } catch (e: Exception) {
-
-                Log.d("ProductCreatorViewModel", e.message.toString())
-
-            }
-        }
-    }
     }
     private fun setFirestoreID(internalProductCode : String) : String {
 

@@ -34,18 +34,6 @@ class ProductCreator : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
-        /* ORIGINAL
-    var productMock = Product("AAA01","AAC", "Camera","Security", "",
-        600.7, 5,1664239724,false,"https://http2.mlstatic.com/D_NQ_NP_634112-MLA43426622037_092020-O.jpg")
-    */
-
-        //* ACTUALIZADO
-        var productMock = Product("Domo2mpx","CCC", "Camera3","Security", "",
-            700.7, 25,27102022,false,"https://http2.mlstatic.com/D_NQ_NP_634112-MLA43426622037_092020-O.jpg")
-
-        viewModel.updateProduct(productMock)
-
     }
 
 

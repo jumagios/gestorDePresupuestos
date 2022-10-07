@@ -50,22 +50,27 @@ class ProductRepository {
 
     }
 
-    fun deleteProduct(productToDelete: Product): Boolean {
+    suspend fun deleteProduct(productToDelete: Product) {
 
-        var result = false
+        try{
 
-        try {
+            val data = db.collection("products").whereEqualTo("firestoreID", productToDelete.firestoreID).get().await()
 
-            db.collection("products").document().update("isErased", true)
-            result = true
+            if (!data.isEmpty) {
 
-        } catch (e: Exception) {
+                for (document in data) {
 
-            Log.d("ProductRepository", e.message.toString())
+                    var documentID = document.id
+                    db.collection("products").document(documentID)
+                        .update("isErased", true)
+                }
+            }
 
+        } catch (e : Exception) {
+
+            Log.d("BudgetRepository", e.message.toString())
         }
 
-        return result
     }
 
     suspend fun updateProduct(productToUpdate: Product) {
