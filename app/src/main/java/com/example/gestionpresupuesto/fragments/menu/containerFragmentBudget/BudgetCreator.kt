@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
+import com.google.firebase.Timestamp
 
 class BudgetCreator : Fragment() {
 
@@ -34,10 +35,10 @@ class BudgetCreator : Fragment() {
 
 
         var budgetMock = Budget(
-            "XXXXXXX1", "Groso S.A", "Rivadavia 3456",
+            "", "Groso S.A", "Rivadavia 3456",
             "Senillosa y Colombia", "2B",  "2",
             "1134567528", "",
-            26092022,260112022, mutableListOf()
+            Timestamp.now(),260112022, false, mutableListOf()
         )
 
         viewModel.createBudget(budgetMock)

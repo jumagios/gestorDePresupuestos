@@ -13,12 +13,30 @@ class ProductCreatorViewModel : ViewModel() {
 
     var productRepository = ProductRepository()
 
-    fun createProduct(ProductToCreate: Product)
-    {
+    fun createProduct(productToCreate: Product) {
         viewModelScope.launch(Dispatchers.Main) {
 
-            productRepository.createProduct(ProductToCreate)
+            try {
 
+                productToCreate.firestoreID = setFirestoreID(productToCreate.internalProductCode)
+
+                var productListFound = productRepository.findProductByID(productToCreate.firestoreID)
+
+                if ( productListFound.size == 0) {
+
+                    productRepository.createProduct(productToCreate)
+
+                } else {
+
+                    throw Exception("Ya existe el producto")
+
+                }
+
+            } catch (e: Exception) {
+
+                Log.d("ProductCreatorViewModel", e.message.toString())
+
+            }
         }
     }
 
@@ -39,3 +57,12 @@ class ProductCreatorViewModel : ViewModel() {
         }
     }
     }
+    private fun setFirestoreID(internalProductCode : String) : String {
+
+        var firestoreID = internalProductCode.replace("\\s".toRegex(), "").uppercase()
+
+        return firestoreID
+
+    }
+
+

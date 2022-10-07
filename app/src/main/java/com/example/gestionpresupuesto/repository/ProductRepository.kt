@@ -13,44 +13,74 @@ class ProductRepository {
     private val db = Firebase.firestore
     private val auth = Firebase.auth
 
-    fun createProduct(createToProduct: Product) {
+    fun createProduct(productToCreate: Product) {
 
-        var product = Product()
         try {
-        db.collection("products").add(product)
+
+            db.collection("products").add(productToCreate)
+
         } catch (e: Exception) {
-        Log.d("ProductRepository", e.message.toString())
-         }
-    }
 
-    /**fun deleteProduct(productToDelete: Product): Product  {
-
-            db.collection("products").document().delete(productToDelete.internalProductCode)
-            return Product()
-    }*/
-
-
-    suspend fun updateProduct(productToUpdate: Product) {
-
-            var test = db.collection("products").document("beSDhQUETQIpfrSOxs6w")
-
-            test.set(productToUpdate)
+            Log.d("ProductRepository", e.message.toString())
+            throw Exception("Error en la creación del producto")
 
         }
+    }
 
-    /* Esto lo probé con Fer y funciona pero es para un dato en particular y harcodeado
-
-            var test = db.collection("products").document("beSDhQUETQIpfrSOxs6w")
-
-            test.update("name", productToUpdate.name )
-
-     */
-
-    suspend fun findProductByID(ID : String) : MutableList<Product> {
+    suspend fun getAllProducts(): MutableList<Product> {
 
         var productList = mutableListOf<Product>()
 
-        try{
+        try {
+
+            var data = db.collection("products").get().await()
+
+            for (document in data) {
+
+                productList.add(document.toObject<Product>())
+            }
+
+        } catch (e: Exception) {
+
+            Log.d("ProductRepository", e.message.toString())
+
+        }
+
+        return productList
+
+    }
+
+    fun deleteProduct(productToDelete: Product): Boolean {
+
+        var result = false
+
+        try {
+
+            db.collection("products").document().update("isErased", true)
+            result = true
+
+        } catch (e: Exception) {
+
+            Log.d("ProductRepository", e.message.toString())
+
+        }
+
+        return result
+    }
+
+    suspend fun updateProduct(productToUpdate: Product) {
+
+        var test = db.collection("products").document("beSDhQUETQIpfrSOxs6w")
+
+        test.set(productToUpdate)
+
+    }
+
+    suspend fun findProductByID(ID: String): MutableList<Product> {
+
+        var productList = mutableListOf<Product>()
+
+        try {
 
             val data = db.collection("products").whereEqualTo("firestoreID", ID).get().await()
 
@@ -58,39 +88,14 @@ class ProductRepository {
 
                 var productFound = document.toObject<Product>()
 
-                if(productFound != null) {
+                if (productFound != null) {
                     productList.add(productFound)
                 }
 
             }
-
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             Log.d("ProductRepository", e.message.toString())
         }
-
         return productList
-
     }
 }
-
-/**fun findProductByID(ID: String) : Product {
-
-var product = db.collection("products").document().get(ID)
-
-return product
-
-}*/
-
-fun getAllProducts(): MutableList<Product> {
-
-    return mutableListOf()
-
-}
-
-    fun getProductsByCategory(category: String) : MutableList<Product> {
-
-        var products = mutableListOf<Product>()
-
-        return products
-
-    }
