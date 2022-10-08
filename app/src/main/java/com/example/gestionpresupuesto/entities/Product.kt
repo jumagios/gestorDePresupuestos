@@ -1,13 +1,14 @@
 package com.example.gestionpresupuesto.entities
 
-import android.os.Parcelable
+
 import com.google.firebase.Timestamp
+import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Product (
 
-    var firestoreID : String,
+    var firestoreID: String,
     var internalProductCode: String,
     var providerProductCode: String,
     var name: String,
@@ -19,6 +20,5 @@ data class Product (
     var isErased: Boolean,
     var imageURL: String
 ) : Parcelable {
-
     constructor() : this ("","","","","","",0.0,0,Timestamp.now(),false, "")
 }
