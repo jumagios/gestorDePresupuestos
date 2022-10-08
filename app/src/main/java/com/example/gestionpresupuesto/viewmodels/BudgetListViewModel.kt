@@ -18,6 +18,7 @@ class BudgetListViewModel : ViewModel() {
 
         viewModelScope.launch(Dispatchers.Main) {
 
+
             var firestoreBudgetList = budgetRepository.getAllBudgets()
             firestoreBudgetList.reverse() // para mostrar primero ultima agregada
 

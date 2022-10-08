@@ -10,6 +10,7 @@
     app:cardElevation="8dp">>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/product_item_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"

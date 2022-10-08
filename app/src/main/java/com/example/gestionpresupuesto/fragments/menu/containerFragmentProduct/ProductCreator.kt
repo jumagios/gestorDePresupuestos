@@ -21,6 +21,8 @@ import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.databinding.FragmentProductCreatorBinding
 import com.example.gestionpresupuesto.entities.Product
 import com.example.gestionpresupuesto.repository.ProductRepository
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gestionpresupuesto.adapters.MainProductListAdapter
 import com.example.gestionpresupuesto.viewmodels.ProductCreatorViewModel
 import com.google.android.material.dialog.MaterialDialogs
 import com.google.firebase.Timestamp
@@ -65,6 +67,7 @@ class ProductCreator : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
         /**binding.buttonUpload.setOnClickListener{
             selectImage()
         }*/
@@ -143,4 +146,5 @@ class ProductCreator : Fragment() {
             binding.firebaseImage.toString())
         viewModel.createProduct(product)
     }
+
 }

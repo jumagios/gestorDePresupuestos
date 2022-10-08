@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Product
 import com.bumptech.glide.Glide
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.MainProductListDirections
 
 class MainProductListAdapter(
     var productList: MutableList<Product>,
@@ -44,6 +46,11 @@ class MainProductListAdapter(
 
         }
 
+        fun getProductItemDetail(): View {
+            return view.findViewById(R.id.product_item_detail)
+        }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -56,7 +63,12 @@ class MainProductListAdapter(
         holder.setPrice(productList[position].price)
         holder.setStock(productList[position].stock)
         holder.setImage(productList[position].imageURL)
-
+        holder.getProductItemDetail().setOnClickListener{
+            val action = MainProductListDirections.actionMainProductListToProductDetail(productList[position])
+            //Este genera la cción de ir a el detalle del producto
+            holder.itemView.findNavController().navigate(action)
+            //Este ejecuta la acción de ir al action que generé
+        }
 
     }
 
