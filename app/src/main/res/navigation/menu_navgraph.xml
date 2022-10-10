@@ -9,12 +9,11 @@
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetList"
         android:label="fragment_main_budget_list" >
         <action
-            android:id="@+id/action_mainBudgetList_to_productCreator"
-            app:destination="@id/productCreator" />
+            android:id="@+id/action_mainBudgetList_to_budgetCreator2"
+            app:destination="@id/budgetCreator2" />
         <action
             android:id="@+id/action_mainBudgetList_to_budgetWithItemsDetailsFragment"
-            app:destination="@id/budgetWithItemsDetailsFragment"
-            app:launchSingleTop="false" />
+            app:destination="@id/budgetWithItemsDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainProductList"
@@ -23,6 +22,9 @@
         <action
             android:id="@+id/action_mainProductList_to_productCreator2"
             app:destination="@id/productCreator2" />
+        <action
+            android:id="@+id/action_mainProductList_to_productDetail"
+            app:destination="@id/productDetail" />
     </fragment>
     <fragment
         android:id="@+id/mainUser"
@@ -33,11 +35,6 @@
             app:destination="@id/userCreator" />
     </fragment>
     <fragment
-        android:id="@+id/productCreator"
-        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreator"
-        android:label="ProductCreator"
-        tools:layout="@layout/fragment_product_creator" />
-    <fragment
         android:id="@+id/productCreator2"
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductCreator"
         android:label="ProductCreator" />
@@ -46,6 +43,32 @@
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.UserCreator"
         android:label="fragment_user_creator"
         tools:layout="@layout/fragment_user_creator" />
+    <fragment
+        android:id="@+id/productDetail"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductDetail"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" >
+        <argument
+            android:name="product"
+            app:argType="com.example.gestionpresupuesto.entities.Product" />
+        <action
+            android:id="@+id/action_productDetail_to_mainProductList"
+            app:destination="@id/mainProductList" />
+    </fragment>
+    <fragment
+        android:id="@+id/newBudgetFragment"
+        android:name="com.example.gestionpresupuesto.fragments.NewBudgetFragment"
+        android:label="fragment_new_budget"
+        tools:layout="@layout/fragment_new_budget" />
+    <fragment
+        android:id="@+id/budgetCreator2"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreator"
+        android:label="fragment_bugdet_creator"
+        tools:layout="@layout/fragment_bugdet_creator" >
+        <action
+            android:id="@+id/action_budgetCreator2_to_newBudgetFragment"
+            app:destination="@id/newBudgetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/budgetWithItemsDetailsFragment"
         android:name="com.example.gestionpresupuesto.fragments.menu.BudgetWithItemsDetailsFragment"

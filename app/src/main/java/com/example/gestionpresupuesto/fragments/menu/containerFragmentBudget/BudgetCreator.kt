@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.findNavController
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
@@ -14,13 +16,18 @@ import com.google.firebase.Timestamp
 class BudgetCreator : Fragment() {
 
 
+    private lateinit var v: View
     private lateinit var viewModel: BugdetCreatorViewModel
+    private lateinit var nextButton : Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bugdet_creator, container, false)
+
+        v = inflater.inflate(R.layout.fragment_bugdet_creator, container, false)
+        nextButton = v.findViewById(R.id.siguiente_button)
+        return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,15 +40,21 @@ class BudgetCreator : Fragment() {
 
         super.onStart()
 
+        nextButton.setOnClickListener {
 
-        var budgetMock = Budget(
-            "", "Groso S.A", "Rivadavia 3456",
-            "Senillosa y Colombia", "2B",  "2",
-            "1134567528", "",
-            Timestamp.now(),260112022, false, mutableListOf()
-        )
+            try {
 
-        viewModel.createBudget(budgetMock)
+             var action = BudgetCreatorDirections.actionBudgetCreator2ToNewBudgetFragment()
+             v.findNavController().navigate(action)
+
+            } catch (e : Exception) {
+                e.message.toString()
+            }
+
+
+        }
+
+       // viewModel.createBudget(budgetMock)
 
 
     }
