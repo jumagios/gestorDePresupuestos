@@ -30,10 +30,7 @@ class BudgetAdapter(
 
         fun getTxItem(): View {
             return view.findViewById(R.id.budget_item_details)
-
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -47,14 +44,11 @@ class BudgetAdapter(
         holder.getTxItem().setOnClickListener {
              val action = BudgetListDirections.actionMainBudgetListToBudgetWithItemsDetailsFragment(budgetList[position])
              holder.itemView.findNavController().navigate(action)
-
         }
-
-
     }
 
 
-override fun getItemCount(): Int {
-return budgetList.size
-}
-}
+    override fun getItemCount(): Int {
+        return budgetList.size
+        }
+    }
