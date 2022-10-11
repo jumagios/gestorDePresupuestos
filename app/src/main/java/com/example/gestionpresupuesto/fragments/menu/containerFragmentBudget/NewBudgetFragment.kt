@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.adapters.ItemsAdapter
+import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.NewBudgetViewModel
 
@@ -50,12 +51,15 @@ class NewBudgetFragment : Fragment() {
 
                 var productList = result
 
+                var itemList = mutableListOf<Item>()
+
+
             try {
 
                 recyclerView.setHasFixedSize(true)
                 linearLayoutManager = LinearLayoutManager(context)
                 recyclerView.layoutManager = linearLayoutManager
-                productItemsForBudget = ItemsAdapter(productList, requireContext())
+                productItemsForBudget = ItemsAdapter(productList,itemList, requireContext())
 
                 recyclerView.adapter = productItemsForBudget
 
