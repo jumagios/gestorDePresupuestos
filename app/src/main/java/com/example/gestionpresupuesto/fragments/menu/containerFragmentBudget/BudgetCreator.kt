@@ -7,50 +7,58 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.clearFragmentResultListener
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
 import com.google.firebase.Timestamp
+import com.example.gestionpresupuesto.databinding.FragmentBugdetCreatorBinding
+import com.google.android.material.snackbar.Snackbar
 
 class BudgetCreator : Fragment() {
 
 
-    private lateinit var v: View
-    private lateinit var viewModel: BugdetCreatorViewModel
-    private lateinit var nextButton : Button
+    private val viewModel : BugdetCreatorViewModel by viewModels()
+    private var _binding: FragmentBugdetCreatorBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        v = inflater.inflate(R.layout.fragment_bugdet_creator, container, false)
-        nextButton = v.findViewById(R.id.siguiente_button)
-        return v
+        _binding = FragmentBugdetCreatorBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BugdetCreatorViewModel::class.java)
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onStart() {
 
         super.onStart()
 
-        nextButton.setOnClickListener {
+        binding.siguienteButton.setOnClickListener {
 
-            try {
-
-             var action = BudgetCreatorDirections.actionBudgetCreator2ToNewBudgetFragment()
-             v.findNavController().navigate(action)
-
-            } catch (e : Exception) {
-                e.message.toString()
-            }
-
+            if (!binding.inputName.text.isNullOrBlank() && !binding.inputAdress.text.isNullOrBlank() && !binding.inputAdress2.text.isNullOrBlank() && !binding.inputPhone.text.isNullOrBlank() && !binding.inputAlternativePhone.text.isNullOrBlank() && !binding.inputExpirationDate.text.isNullOrBlank()){
+                var action = BudgetCreatorDirections.actionBudgetCreator2ToNewBudgetFragment()
+                binding.root.findNavController().navigate(action)
+            }else { Snackbar.make(binding.budgetCreator, "Todos los campos deben tener valores", Snackbar.LENGTH_LONG).show()
+                }
+            var clientName = binding.inputName.text.toString()
+            var adress =  binding.inputAdress.text.toString()
+            var betweenStreets = binding.inputAdress2.text.toString()
+            var phone = binding.inputPhone.text.toString()
+            var alternativePhone = binding.inputAlternativePhone.text.toString()
+            var dateExpirate = binding.inputExpirationDate.text.toString()
 
         }
 
@@ -61,7 +69,6 @@ class BudgetCreator : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BugdetCreatorViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
