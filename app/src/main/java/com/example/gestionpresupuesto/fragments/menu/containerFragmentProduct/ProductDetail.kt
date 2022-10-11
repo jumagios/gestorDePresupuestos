@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
 import com.example.gestionpresupuesto.R
-import com.example.gestionpresupuesto.fragments.menu.BudgetWithItemsDetailsFragmentArgs
 import com.example.gestionpresupuesto.viewmodels.ProductDetailViewModel
 
 class ProductDetail : Fragment() {

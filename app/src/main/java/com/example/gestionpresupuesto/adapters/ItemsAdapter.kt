@@ -67,6 +67,7 @@ class ItemsAdapter(
         fun decrease ()  {
             val quantity: TextView = view.findViewById(R.id.item_quantity)
             var value = quantity.text.toString().toInt()
+            if(value >= 1)
             value--
             setQuantityInput(value)
 
@@ -97,15 +98,19 @@ class ItemsAdapter(
 
         holder.getCheckBox().setOnClickListener(){
 
-           if(holder.getCheckBox().isChecked){
+            var quantity = holder.getQuantityInput().text.toString().toInt()
 
-               var quantity = holder.getQuantityInput().text.toString().toInt()
+            if(holder.getCheckBox().isChecked && quantity >= 1) {
 
                items.add(Item(productList[position].internalProductCode,productList[position].name,
                    productList[position].description, productList[position].price, quantity
                    ))
 
-           } else {
+           } else if (holder.getCheckBox().isChecked && quantity == 0) {
+
+               // error
+
+            } else {
 
                var itemToRemove = searchOnItemListByProductInternalCode(items, productList[position].internalProductCode)
                items.remove(itemToRemove)
