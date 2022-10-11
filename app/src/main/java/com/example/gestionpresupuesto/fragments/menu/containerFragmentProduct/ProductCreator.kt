@@ -128,7 +128,7 @@ class ProductCreator : Fragment() {
         context?.let {
             val fragmentManager = (context as? AppCompatActivity)?.supportFragmentManager
             fragmentManager?.let {
-                val currentFragment = fragmentManager.findFragmentById(R.id.container)
+                val currentFragment = fragmentManager.findFragmentById(com.google.android.material.R.id.container)
                 currentFragment?.let {
                     val fragmentTransaction = fragmentManager.beginTransaction()
                     fragmentTransaction.detach(it)
