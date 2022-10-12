@@ -28,6 +28,11 @@ class BudgetAdapter(
             txt.text = name
         }
 
+        fun setApartment(apartment: String) {
+            val txt: TextView = view.findViewById(R.id.txt_budget_name_item2)
+            txt.text = apartment
+        }
+
         fun getTxItem(): View {
             return view.findViewById(R.id.budget_item_details)
         }
@@ -40,6 +45,7 @@ class BudgetAdapter(
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         holder.setClientDomicile(budgetList[position].clientDomicile)
+        holder.setApartment(budgetList[position].apartment)
 
         holder.getTxItem().setOnClickListener {
              val action = BudgetListDirections.actionMainBudgetListToBudgetWithItemsDetailsFragment(budgetList[position])
