@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
@@ -14,15 +15,16 @@ import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.entities.Product
 import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.NewBudgetFragment
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
+import com.google.android.gms.common.internal.service.Common
 import com.google.android.material.snackbar.Snackbar
 
 
 class ItemsAdapter(
     var productList: MutableList<Product>,
     var itemList : MutableList<Item>,
-    val newBudgetFragment : NewBudgetFragment,
     val context: Context,
-    val sharedViewModel: SharedViewModel
+    private val sharedViewModel: SharedViewModel,
+    private val switch: Switch
 ) : RecyclerView.Adapter<ItemsAdapter.MainHolder>()
 {
     class MainHolder (v: View) : RecyclerView.ViewHolder(v) {
@@ -30,7 +32,6 @@ class ItemsAdapter(
         init {
             this.view = v
         }
-
 
         fun getCheckBox() : CheckBox {
             val button : CheckBox  = view.findViewById(R.id.checkbox_button)
@@ -96,14 +97,6 @@ class ItemsAdapter(
         holder.getIncreaseButton().setOnClickListener(){
             holder.increase()
 
-            //TEST
-            if(holder.getQuantityInput().text.toString().toInt() == 10) {
-
-                this.sharedViewModel.setItemList(itemList)
-
-            }
-
-
             if(holder.getCheckBox().isChecked) {
                 updateItemQuantity(holder.getQuantityInput().text.toString().toInt(), itemList, productList[position].internalProductCode  )
 
@@ -118,9 +111,6 @@ class ItemsAdapter(
             }
         }
 
-
-
-
         try{
 
             holder.getCheckBox().setOnClickListener(){
@@ -133,11 +123,6 @@ class ItemsAdapter(
                         productList[position].description, productList[position].price, quantity))
 
                     Log.d("items", itemList.toString())
-
-
-                } else if (holder.getCheckBox().isChecked && quantity == 0) {
-
-                    Snackbar.make(holder.itemView, "No puede añadir cero productos", Snackbar.LENGTH_LONG).show()
 
                 } else {
 
@@ -152,6 +137,15 @@ class ItemsAdapter(
             Snackbar.make(holder.itemView, e.message.toString(), Snackbar.LENGTH_LONG).show()
 
             Log.d("RV", e.message.toString())
+        }
+
+        switch.setOnClickListener(){
+
+            if(switch.isChecked) {
+
+                sharedViewModel.itemLiveList.value = itemList
+
+            }
         }
 
     }
