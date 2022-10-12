@@ -1,4 +1,4 @@
-package com.example.gestionpresupuesto.fragments
+package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,17 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.adapters.ItemsAdapter
+import com.example.gestionpresupuesto.entities.Budget
+import com.example.gestionpresupuesto.entities.Item
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductDetailArgs
+import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
 import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.NewBudgetViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.gestionpresupuesto.viewmodels.SharedViewModel
+import com.google.firebase.Timestamp
 
 class NewBudgetFragment : Fragment() {
 
@@ -24,6 +27,10 @@ class NewBudgetFragment : Fragment() {
     lateinit var v : View
     private lateinit var viewModel: NewBudgetViewModel
     private val mainProductListViewModel : MainProductListViewModel by viewModels()
+    private val sharedViewModel : SharedViewModel by viewModels()
+    private val budgetCreatorViewModel : BugdetCreatorViewModel by viewModels()
+
+
     lateinit var recyclerView : RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var productItemsForBudget : ItemsAdapter
@@ -48,24 +55,55 @@ class NewBudgetFragment : Fragment() {
 
         super.onStart()
 
+
+
         mainProductListViewModel.getAllProducts()
         mainProductListViewModel.productList.observe(viewLifecycleOwner, Observer { result ->
 
                 var productList = result
 
-            try {
+                var itemList = mutableListOf<Item>()
 
                 recyclerView.setHasFixedSize(true)
                 linearLayoutManager = LinearLayoutManager(context)
                 recyclerView.layoutManager = linearLayoutManager
-                productItemsForBudget = ItemsAdapter(productList, requireContext())
+                productItemsForBudget = ItemsAdapter(productList,itemList, this, requireContext(), sharedViewModel)
 
                 recyclerView.adapter = productItemsForBudget
+        })
 
-            } catch (e : Exception) {
-                e.message.toString()
-            }
+        sharedViewModel.itemLiveList.observe(viewLifecycleOwner, Observer { itemList ->
+
+            var partialBudget = NewBudgetFragmentArgs.fromBundle(requireArguments()).parcialBudget
+
+
+            var  partialBudget2 = Budget("",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                Timestamp.now(),
+                Timestamp.now().toDate().toString(),
+                false,
+                mutableListOf())
+
+            var itemList = itemList
+
+            partialBudget.productsItems = itemList
+
+            partialBudget.toString()
+
+            partialBudget.productsItems.toString()
+
+            budgetCreatorViewModel.createBudget(partialBudget)
+
+
+
 
         })
+
 }
 }

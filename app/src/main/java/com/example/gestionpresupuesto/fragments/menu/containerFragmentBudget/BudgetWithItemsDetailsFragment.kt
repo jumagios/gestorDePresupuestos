@@ -1,4 +1,4 @@
-package com.example.gestionpresupuesto.fragments.menu
+package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -45,6 +45,10 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
 
 
+
+    }
+
+    fun test() {
 
     }
 

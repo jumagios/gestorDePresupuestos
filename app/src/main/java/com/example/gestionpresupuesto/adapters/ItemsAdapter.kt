@@ -12,11 +12,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.entities.Product
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.NewBudgetFragment
+import com.example.gestionpresupuesto.viewmodels.SharedViewModel
+import com.google.android.material.snackbar.Snackbar
 
 
 class ItemsAdapter(
     var productList: MutableList<Product>,
-    val context: Context
+    var itemList : MutableList<Item>,
+    val newBudgetFragment : NewBudgetFragment,
+    val context: Context,
+    val sharedViewModel: SharedViewModel
 ) : RecyclerView.Adapter<ItemsAdapter.MainHolder>()
 {
     class MainHolder (v: View) : RecyclerView.ViewHolder(v) {
@@ -24,6 +30,7 @@ class ItemsAdapter(
         init {
             this.view = v
         }
+
 
         fun getCheckBox() : CheckBox {
             val button : CheckBox  = view.findViewById(R.id.checkbox_button)
@@ -67,6 +74,7 @@ class ItemsAdapter(
         fun decrease ()  {
             val quantity: TextView = view.findViewById(R.id.item_quantity)
             var value = quantity.text.toString().toInt()
+            if(value > 1)
             value--
             setQuantityInput(value)
 
@@ -82,37 +90,70 @@ class ItemsAdapter(
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
 
-        var items = mutableListOf<Item>()
 
-        holder.setQuantityInput(0);
+        holder.setQuantityInput(1);
 
         holder.getIncreaseButton().setOnClickListener(){
             holder.increase()
+
+            //TEST
+            if(holder.getQuantityInput().text.toString().toInt() == 10) {
+
+                this.sharedViewModel.setItemList(itemList)
+
+            }
+
+
+            if(holder.getCheckBox().isChecked) {
+                updateItemQuantity(holder.getQuantityInput().text.toString().toInt(), itemList, productList[position].internalProductCode  )
+
+            }
         }
 
         holder.getDecreaseButton().setOnClickListener(){
             holder.decrease()
+            if(holder.getCheckBox().isChecked) {
+                updateItemQuantity(holder.getQuantityInput().text.toString().toInt(), itemList, productList[position].internalProductCode  )
+
+            }
         }
 
 
-        holder.getCheckBox().setOnClickListener(){
 
-           if(holder.getCheckBox().isChecked){
 
-               var quantity = holder.getQuantityInput().text.toString().toInt()
+        try{
 
-               items.add(Item(productList[position].internalProductCode,productList[position].name,
-                   productList[position].description, productList[position].price, quantity
-                   ))
+            holder.getCheckBox().setOnClickListener(){
 
-           } else {
+                var quantity = holder.getQuantityInput().text.toString().toInt()
 
-               var itemToRemove = searchOnItemListByProductInternalCode(items, productList[position].internalProductCode)
-               items.remove(itemToRemove)
-               var size = items.size.toString()
+                if(holder.getCheckBox().isChecked && quantity >= 1) {
 
-           }
+                    itemList.add(Item(productList[position].internalProductCode,productList[position].name,
+                        productList[position].description, productList[position].price, quantity))
+
+                    Log.d("items", itemList.toString())
+
+
+                } else if (holder.getCheckBox().isChecked && quantity == 0) {
+
+                    Snackbar.make(holder.itemView, "No puede añadir cero productos", Snackbar.LENGTH_LONG).show()
+
+                } else {
+
+                    var itemToRemove = searchOnItemListByProductInternalCode(itemList, productList[position].internalProductCode)
+                    itemList.remove(itemToRemove)
+                    Log.d("items", itemList.toString())
+
+                }
+            }
+
+        } catch (e : Exception) {
+            Snackbar.make(holder.itemView, e.message.toString(), Snackbar.LENGTH_LONG).show()
+
+            Log.d("RV", e.message.toString())
         }
+
     }
 
     fun searchOnItemListByProductInternalCode(list : MutableList<Item>, internalProductCode : String) : Item {
@@ -124,6 +165,7 @@ class ItemsAdapter(
 
         var item = searchOnItemListByProductInternalCode(list,internalProductCode)
         item.quantity = quantity
+        Log.d("items", itemList.toString())
 
     }
 
