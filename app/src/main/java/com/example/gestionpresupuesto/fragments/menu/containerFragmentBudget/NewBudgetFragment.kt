@@ -14,6 +14,8 @@ import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.adapters.ItemsAdapter
 import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.entities.Item
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductDetailArgs
+import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
 import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.NewBudgetViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
@@ -26,6 +28,7 @@ class NewBudgetFragment : Fragment() {
     private lateinit var viewModel: NewBudgetViewModel
     private val mainProductListViewModel : MainProductListViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by viewModels()
+    private val budgetCreatorViewModel : BugdetCreatorViewModel by viewModels()
 
 
     lateinit var recyclerView : RecyclerView
@@ -52,6 +55,8 @@ class NewBudgetFragment : Fragment() {
 
         super.onStart()
 
+
+
         mainProductListViewModel.getAllProducts()
         mainProductListViewModel.productList.observe(viewLifecycleOwner, Observer { result ->
 
@@ -69,7 +74,10 @@ class NewBudgetFragment : Fragment() {
 
         sharedViewModel.itemLiveList.observe(viewLifecycleOwner, Observer { itemList ->
 
-          var  budgetToCreate = Budget("",
+            var partialBudget = NewBudgetFragmentArgs.fromBundle(requireArguments()).parcialBudget
+
+
+            var  partialBudget2 = Budget("",
                 "",
                 "",
                 "",
@@ -84,21 +92,18 @@ class NewBudgetFragment : Fragment() {
 
             var itemList = itemList
 
-            budgetToCreate.productsItems = itemList
+            partialBudget.productsItems = itemList
 
-            budgetToCreate.toString()
+            partialBudget.toString()
 
-            budgetToCreate.productsItems.toString()
+            partialBudget.productsItems.toString()
 
-            
+            budgetCreatorViewModel.createBudget(partialBudget)
+
+
 
 
         })
-
-    fun getItemListFromRV(items : MutableList<Item>) : MutableList<Item> {
-    return items
-
-    }
 
 }
 }

@@ -59,7 +59,11 @@
         android:id="@+id/newBudgetFragment"
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.NewBudgetFragment"
         android:label="fragment_new_budget"
-        tools:layout="@layout/fragment_new_budget" />
+        tools:layout="@layout/fragment_new_budget" >
+        <argument
+            android:name="parcialBudget"
+            app:argType="com.example.gestionpresupuesto.entities.Budget" />
+    </fragment>
     <fragment
         android:id="@+id/budgetCreator2"
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreator"

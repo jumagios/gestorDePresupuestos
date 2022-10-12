@@ -54,10 +54,20 @@ class BudgetCreator : Fragment() {
 
             if (true) {//!binding.inputName.text.isNullOrBlank() && !binding.inputAdress.text.isNullOrBlank() && !binding.inputAdress2.text.isNullOrBlank() && !binding.inputPhone.text.isNullOrBlank() && !binding.inputAlternativePhone.text.isNullOrBlank() && !binding.inputExpirationDate.text.isNullOrBlank()){
 
+                var  parcialBudget = Budget("",
+                    binding.inputName.text.toString(),
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    Timestamp.now(),
+                    Timestamp.now().toDate().toString(),
+                    false,
+                    mutableListOf())
 
-
-                    var action = BudgetCreatorDirections.actionBudgetCreator2ToNewBudgetFragment()
-
+                    var action = BudgetCreatorDirections.actionBudgetCreator2ToNewBudgetFragment(parcialBudget)
                 binding.root.findNavController().navigate(action)
             }else { Snackbar.make(binding.budgetCreator, "Todos los campos deben tener valores", Snackbar.LENGTH_LONG).show()
                 }
