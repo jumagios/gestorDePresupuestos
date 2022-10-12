@@ -12,13 +12,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.entities.Product
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.NewBudgetFragment
+import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
 
 
 class ItemsAdapter(
     var productList: MutableList<Product>,
     var itemList : MutableList<Item>,
-    val context: Context
+    val newBudgetFragment : NewBudgetFragment,
+    val context: Context,
+    val sharedViewModel: SharedViewModel
 ) : RecyclerView.Adapter<ItemsAdapter.MainHolder>()
 {
     class MainHolder (v: View) : RecyclerView.ViewHolder(v) {
@@ -26,6 +30,7 @@ class ItemsAdapter(
         init {
             this.view = v
         }
+
 
         fun getCheckBox() : CheckBox {
             val button : CheckBox  = view.findViewById(R.id.checkbox_button)
@@ -90,6 +95,15 @@ class ItemsAdapter(
 
         holder.getIncreaseButton().setOnClickListener(){
             holder.increase()
+
+            //TEST
+            if(holder.getQuantityInput().text.toString().toInt() == 10) {
+
+                this.sharedViewModel.setItemList(itemList)
+
+            }
+
+
             if(holder.getCheckBox().isChecked) {
                 updateItemQuantity(holder.getQuantityInput().text.toString().toInt(), itemList, productList[position].internalProductCode  )
 
@@ -103,6 +117,8 @@ class ItemsAdapter(
 
             }
         }
+
+
 
 
         try{
@@ -137,7 +153,6 @@ class ItemsAdapter(
 
             Log.d("RV", e.message.toString())
         }
-
 
     }
 

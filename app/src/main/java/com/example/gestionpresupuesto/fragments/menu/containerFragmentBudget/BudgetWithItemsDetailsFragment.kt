@@ -48,4 +48,8 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
     }
 
+    fun test() {
+
+    }
+
 }

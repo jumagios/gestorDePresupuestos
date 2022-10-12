@@ -1,26 +1,28 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.fragment.app.clearFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
-import com.google.firebase.Timestamp
 import com.example.gestionpresupuesto.databinding.FragmentBugdetCreatorBinding
+import com.example.gestionpresupuesto.entities.Item
+import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.Timestamp
+
 
 class BudgetCreator : Fragment() {
 
 
     private val viewModel : BugdetCreatorViewModel by viewModels()
+    private val sharedViewModel : SharedViewModel by viewModels()
+
     private var _binding: FragmentBugdetCreatorBinding? = null
     private val binding get() = _binding!!
 
@@ -48,8 +50,14 @@ class BudgetCreator : Fragment() {
 
         binding.siguienteButton.setOnClickListener {
 
+            var budgetToCreate = Budget()
+
             if (true) {//!binding.inputName.text.isNullOrBlank() && !binding.inputAdress.text.isNullOrBlank() && !binding.inputAdress2.text.isNullOrBlank() && !binding.inputPhone.text.isNullOrBlank() && !binding.inputAlternativePhone.text.isNullOrBlank() && !binding.inputExpirationDate.text.isNullOrBlank()){
-                var action = BudgetCreatorDirections.actionBudgetCreator2ToNewBudgetFragment()
+
+
+
+                    var action = BudgetCreatorDirections.actionBudgetCreator2ToNewBudgetFragment()
+
                 binding.root.findNavController().navigate(action)
             }else { Snackbar.make(binding.budgetCreator, "Todos los campos deben tener valores", Snackbar.LENGTH_LONG).show()
                 }
@@ -59,6 +67,19 @@ class BudgetCreator : Fragment() {
             var phone = binding.inputPhone.text.toString()
             var alternativePhone = binding.inputAlternativePhone.text.toString()
             var dateExpirate = binding.inputExpirationDate.text.toString()
+
+            sharedViewModel.itemLiveList.observe(viewLifecycleOwner, Observer { itemList ->
+
+                var itemList = itemList
+
+                var budgetToCreate = budgetToCreate
+
+                budgetToCreate.productsItems = itemList
+
+                budgetToCreate.productsItems.toString()
+
+
+            })
 
         }
 
