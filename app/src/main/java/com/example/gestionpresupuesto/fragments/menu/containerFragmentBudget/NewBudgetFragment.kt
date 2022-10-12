@@ -12,24 +12,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.adapters.ItemsAdapter
-import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.entities.Item
-import com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductDetailArgs
 import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
 import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.NewBudgetViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
-import com.google.firebase.Timestamp
 
 class NewBudgetFragment : Fragment() {
-
 
     lateinit var v : View
     private lateinit var viewModel: NewBudgetViewModel
     private val mainProductListViewModel : MainProductListViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by viewModels()
     private val budgetCreatorViewModel : BugdetCreatorViewModel by viewModels()
-
 
     lateinit var recyclerView : RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
@@ -55,13 +50,10 @@ class NewBudgetFragment : Fragment() {
 
         super.onStart()
 
-
-
         mainProductListViewModel.getAllProducts()
         mainProductListViewModel.productList.observe(viewLifecycleOwner, Observer { result ->
 
                 var productList = result
-
                 var itemList = mutableListOf<Item>()
 
                 recyclerView.setHasFixedSize(true)
@@ -76,34 +68,13 @@ class NewBudgetFragment : Fragment() {
 
             var partialBudget = NewBudgetFragmentArgs.fromBundle(requireArguments()).parcialBudget
 
-
-            var  partialBudget2 = Budget("",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                Timestamp.now(),
-                Timestamp.now().toDate().toString(),
-                false,
-                mutableListOf())
-
             var itemList = itemList
 
             partialBudget.productsItems = itemList
 
-            partialBudget.toString()
+            var budgetToCreate = partialBudget
 
-            partialBudget.productsItems.toString()
-
-            budgetCreatorViewModel.createBudget(partialBudget)
-
-
-
-
+            budgetCreatorViewModel.createBudget(budgetToCreate)
         })
-
 }
 }

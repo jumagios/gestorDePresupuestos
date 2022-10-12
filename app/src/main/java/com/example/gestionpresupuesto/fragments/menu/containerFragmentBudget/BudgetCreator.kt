@@ -56,8 +56,8 @@ class BudgetCreator : Fragment() {
 
                 var  parcialBudget = Budget("",
                     binding.inputName.text.toString(),
-                    "",
-                    "",
+                    binding.budgetAdress.text.toString(),
+                    binding.budgetAdress2.text.toString(),
                     "",
                     "",
                     "",
@@ -65,6 +65,7 @@ class BudgetCreator : Fragment() {
                     Timestamp.now(),
                     Timestamp.now().toDate().toString(),
                     false,
+                    0.0,
                     mutableListOf())
 
                     var action = BudgetCreatorDirections.actionBudgetCreator2ToNewBudgetFragment(parcialBudget)

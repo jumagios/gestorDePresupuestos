@@ -19,12 +19,13 @@ data class Budget (
     var budgetDate : Timestamp,
     var expirationDate : String,
     var isErased: Boolean,
+    var totalGross : Double,
     var productsItems: MutableList<Item>
     ) : Parcelable {
 
     constructor() : this("","","","",
         "","", "",
-        "", Timestamp.now(),"",false, mutableListOf())
+        "", Timestamp.now(),"",false,0.0, mutableListOf())
 }
 
 
