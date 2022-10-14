@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
@@ -15,7 +16,8 @@ import com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.Ma
 
 class MainProductListAdapter(
     var productList: MutableList<Product>,
-    val context: Context
+    val context: Context,
+    var onClick : (Int) -> Unit
 ) : RecyclerView.Adapter<MainProductListAdapter.MainHolder>()
 {
     class MainHolder (v: View) : RecyclerView.ViewHolder(v) {
@@ -50,6 +52,9 @@ class MainProductListAdapter(
             return view.findViewById(R.id.product_item_detail)
         }
 
+        fun getCard () : CardView {
+            return view.findViewById(R.id.card)
+        }
 
     }
 
@@ -65,9 +70,12 @@ class MainProductListAdapter(
         holder.setImage(productList[position].imageURL)
         holder.getProductItemDetail().setOnClickListener{
             val action = MainProductListDirections.actionMainProductListToProductDetail(productList[position])
-            //Este genera la cción de ir a el detalle del producto
+            //Este genera la cción de ir a el atp3detalle del producto
             holder.itemView.findNavController().navigate(action)
             //Este ejecuta la acción de ir al action que generé
+        }
+        holder.getCard().setOnClickListener {
+            onClick(position)
         }
 
     }
