@@ -17,14 +17,15 @@ data class Budget (
     var phone : String,
     var alternativePhone : String,
     var budgetDate : Timestamp,
-    var expirationDate : Long,
+    var expirationDate : String,
     var isErased: Boolean,
-    var productsItems: MutableList<String>
+    var totalGross : Double,
+    var productsItems: MutableList<Item>
     ) : Parcelable {
 
     constructor() : this("","","","",
         "","", "",
-        "", Timestamp.now(),0,false, mutableListOf())
+        "", Timestamp.now(),"",false,0.0, mutableListOf())
 }
 
 
