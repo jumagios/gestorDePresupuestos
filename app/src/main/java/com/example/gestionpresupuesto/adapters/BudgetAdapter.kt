@@ -13,19 +13,18 @@ import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.Bud
 
 class BudgetAdapter(
     var budgetList: MutableList<Budget>,
-    val context: Context,
-) : RecyclerView.Adapter<BudgetAdapter.MainHolder>() {
+    val context: Context) : RecyclerView.Adapter<BudgetAdapter.MainHolder>() {
 
     class MainHolder(v: View) : RecyclerView.ViewHolder(v) {
-        private var view: View
 
+        private var view: View
         init {
             this.view = v
         }
 
-        fun setClientDomicile(name: String) {
+        fun setClientDomicile(domicile: String) {
             val txt: TextView = view.findViewById(R.id.txt_budget_name_item)
-            txt.text = name
+            txt.text = domicile
         }
 
         fun setApartment(apartment: String) {
