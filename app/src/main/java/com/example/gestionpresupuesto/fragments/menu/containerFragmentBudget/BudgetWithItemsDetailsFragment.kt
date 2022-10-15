@@ -43,13 +43,6 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         budgetDate = v.findViewById(R.id.budget_details_creation_date)
         budgetDate.text = budgetDetails.budgetDate.toDate().toString()
 
-
-
-
-    }
-
-    fun test() {
-
     }
 
 }

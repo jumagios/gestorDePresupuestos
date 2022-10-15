@@ -11,6 +11,7 @@ data class Item(
     var description: String,
     var price: Double,
     var quantity : Int
+
 ) : Parcelable {
     constructor() : this ("","","",0.0, 0)
 }
