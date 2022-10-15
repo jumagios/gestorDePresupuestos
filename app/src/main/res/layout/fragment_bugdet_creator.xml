@@ -10,8 +10,8 @@
     tools:context=".fragments.menu.containerFragmentBudget.BudgetCreator">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/budgetExpirationDate"
@@ -62,120 +62,131 @@
             app:layout_constraintTop_toBottomOf="@+id/budgetPhone" />
 
         <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/inputAdress2"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="Ingrese Entre Calles"
-        app:layout_constraintBottom_toTopOf="@+id/budgetPhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budgetAdress2" />
+            android:id="@+id/inputAdress2"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:hint="Ingrese Entre Calles"
+            app:layout_constraintBottom_toTopOf="@+id/budgetPhone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/budgetAdress2" />
 
-    <TextView
-        android:id="@+id/budgetAdress2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="Entre Calles"
-        app:layout_constraintBottom_toTopOf="@+id/inputAdress2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputAdress" />
+        <TextView
+            android:id="@+id/budgetAdress2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Entre Calles"
+            app:layout_constraintBottom_toTopOf="@+id/inputAdress2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.047"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputAdress" />
 
-    <TextView
-        android:id="@+id/budgetPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="Teléfono"
-        app:layout_constraintBottom_toTopOf="@+id/inputPhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputAdress2" />
+        <TextView
+            android:id="@+id/budgetPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Teléfono"
+            app:layout_constraintBottom_toTopOf="@+id/inputPhone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputAdress2" />
 
-    <TextView
-        android:id="@+id/budgetPhone2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="Teléfono Alternativo"
-        app:layout_constraintBottom_toTopOf="@+id/inputAlternativePhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPhone"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/budgetPhone2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Teléfono Alternativo"
+            app:layout_constraintBottom_toTopOf="@+id/inputAlternativePhone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.038"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputPhone"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="99dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/cctvlogo"
-        app:layout_constraintBottom_toTopOf="@+id/budgetName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="99dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/cctvlogo"
+            app:layout_constraintBottom_toTopOf="@+id/budgetName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/inputName"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="Ingrese Nombre"
-        app:layout_constraintBottom_toTopOf="@+id/budgetAdress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budgetName" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputName"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:hint="Ingrese Nombre"
+            app:layout_constraintBottom_toTopOf="@+id/budgetAdress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.058"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/budgetName" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/inputAdress"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="Ingrese Domicilio"
-        app:layout_constraintBottom_toTopOf="@+id/budgetAdress2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budgetAdress" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:hint="Ingrese Domicilio"
+            app:layout_constraintBottom_toTopOf="@+id/budgetAdress2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/budgetAdress" />
 
-    <TextView
-        android:id="@+id/budgetName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="4dp"
-        android:text="Nombre y Apellido / Razón Social"
-        app:layout_constraintBottom_toTopOf="@+id/inputName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.078"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputDepto"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:hint="Depto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.644"
+            app:layout_constraintStart_toEndOf="@+id/inputAdress"
+            app:layout_constraintTop_toBottomOf="@+id/apartmentBudget" />
 
-    <TextView
-        android:id="@+id/budgetAdress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="Domicilio Fiscal"
-        app:layout_constraintBottom_toTopOf="@+id/inputAdress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputName" />
+        <TextView
+            android:id="@+id/budgetName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:text="Nombre y Apellido / Razón Social"
+            app:layout_constraintBottom_toTopOf="@+id/inputName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/budgetAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Domicilio Fiscal"
+            app:layout_constraintBottom_toTopOf="@+id/inputAdress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputName" />
 
         <Button
             android:id="@+id/siguiente_button"
@@ -190,6 +201,16 @@
             app:layout_constraintTop_toBottomOf="@+id/inputExpirationDate"
             app:layout_constraintVertical_bias="0.891" />
 
+        <TextView
+            android:id="@+id/apartmentBudget"
+            android:layout_width="86dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="108dp"
+            android:text="Depto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.819"
+            app:layout_constraintStart_toEndOf="@+id/budgetAdress"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
