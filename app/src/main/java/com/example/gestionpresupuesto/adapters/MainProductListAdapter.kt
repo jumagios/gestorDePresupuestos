@@ -37,20 +37,16 @@ class MainProductListAdapter(
         fun setStock(stock: Int) {
             val sto: TextView = view.findViewById(R.id.txt_stock_item)
             sto.text = stock.toString()
-
         }
 
         fun setImage(img: String) {
             var imgURL : ImageView = view.findViewById(R.id.img_item)
             Glide.with(imgURL).load(img).override(200,200).into(imgURL)
-
         }
 
         fun getProductItemDetail(): View {
             return view.findViewById(R.id.product_item_detail)
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -69,7 +65,6 @@ class MainProductListAdapter(
             holder.itemView.findNavController().navigate(action)
             //Este ejecuta la acción de ir al action que generé
         }
-
     }
 
     override fun getItemCount(): Int {

@@ -68,12 +68,12 @@ class ProductCreator : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        /**binding.buttonUpload.setOnClickListener{
+        binding.buttonUpload.setOnClickListener{
             selectImage()
-        }*/
+        }
 
         binding.acceptButton.setOnClickListener {
-           // uploadImage()
+            uploadImage()
             createProduct(binding)
             goToProductCreate()
         }
@@ -104,11 +104,11 @@ class ProductCreator : Fragment() {
         }
     }
     private fun selectImage() {
-        //val intent : Intent
-        //intent.type = "images/*"
-        //intent.action = Intent.ACTION_GET_CONTENT
+        val intent = Intent()
+        intent.type = "images/*"
+        intent.action = Intent.ACTION_GET_CONTENT
 
-        //startActivityForResult(intent, 100)
+        startActivityForResult(intent, 100)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
