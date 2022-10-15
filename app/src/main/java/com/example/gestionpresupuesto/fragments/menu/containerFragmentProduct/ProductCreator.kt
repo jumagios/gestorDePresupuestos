@@ -74,7 +74,7 @@ class ProductCreator : Fragment() {
 
         binding.acceptButton.setOnClickListener {
             uploadImage()
-            createProduct(binding)
+            //createProduct(binding)
             goToProductCreate()
         }
 
@@ -82,6 +82,7 @@ class ProductCreator : Fragment() {
             goToProductCreate()
         }
     }
+
     private fun uploadImage() {
         val progressDialog = ProgressDialog(this.context)
         progressDialog.setMessage("Uploading File ...")
@@ -140,11 +141,11 @@ class ProductCreator : Fragment() {
     }
 
     private fun createProduct(binding: FragmentProductCreatorBinding) {
-        var product = Product("",binding.productInternalCode.editText.toString(),binding.productProviderCode.editText.toString(),
-            binding.productname.editText.toString(),binding.productdescription.editText.toString(),binding.productcategory.editText.toString(),
-            binding.productPrice.editText.toString().toDouble(),binding.productStock.editText.toString().toInt(),Timestamp.now(),false,
+            var product = Product("",binding.productInternalCode.text.toString(),binding.productProviderCode.text.toString(),
+            binding.productname.text.toString(),binding.productdescription.text.toString(),binding.productcategory.text.toString(),
+            binding.productPrice.text.toString().toDouble(),binding.productStock.text.toString().toInt(),Timestamp.now(),false,
             binding.firebaseImage.toString())
-        viewModel.createProduct(product)
+            viewModel.createProduct(product)
     }
 
 }
