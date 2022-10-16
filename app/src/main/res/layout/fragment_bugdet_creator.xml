@@ -10,186 +10,171 @@
     tools:context=".fragments.menu.containerFragmentBudget.BudgetCreator">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/budgetExpirationDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="Fecha de Vencimiento"
-            app:layout_constraintBottom_toTopOf="@+id/inputExpirationDate"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputProvince"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:hint="Province"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.051"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputAlternativePhone" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/inputLocality" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputLocality"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:hint="Localidad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/inputAdress3" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputAlternativePhone"
-            android:layout_width="wrap_content"
+            android:layout_width="175dp"
             android:layout_height="48dp"
-            android:layout_marginTop="4dp"
-            android:hint="Ingrese Teléfono"
-            android:inputType="phone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/budgetPhone2" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputExpirationDate"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginTop="4dp"
-            android:hint="Ingrese Fecha de Vencimiento"
-            android:inputType="date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.067"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/budgetExpirationDate" />
+            android:layout_marginTop="16dp"
+            android:hint="Teléfono Alternativo"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintHorizontal_bias="0.985"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/inputProvince" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputPhone"
-            android:layout_width="wrap_content"
+            android:layout_width="175dp"
             android:layout_height="48dp"
-            android:layout_marginTop="4dp"
-            android:hint="Ingrese Teléfono"
-            android:inputType="phone"
+            android:layout_marginTop="16dp"
+            android:hint="Teléfono"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.059"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/budgetPhone" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/inputProvince" />
 
         <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/inputAdress2"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="Ingrese Entre Calles"
-        app:layout_constraintBottom_toTopOf="@+id/budgetPhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budgetAdress2" />
+            android:id="@+id/inputAdress2"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:hint="Entre Calle 1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/inputAdress" />
 
-    <TextView
-        android:id="@+id/budgetAdress2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="Entre Calles"
-        app:layout_constraintBottom_toTopOf="@+id/inputAdress2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputAdress" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputAdress3"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:hint="Entre Calle 2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/inputAdress2" />
 
-    <TextView
-        android:id="@+id/budgetPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="Teléfono"
-        app:layout_constraintBottom_toTopOf="@+id/inputPhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputAdress2" />
-
-    <TextView
-        android:id="@+id/budgetPhone2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="Teléfono Alternativo"
-        app:layout_constraintBottom_toTopOf="@+id/inputAlternativePhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPhone"
-        app:layout_constraintVertical_bias="0.0" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputExpirationDate"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:hint="Fecha de Vencimiento"
+            android:inputType="date"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/inputPhone" />
 
         <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="99dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/cctvlogo"
-        app:layout_constraintBottom_toTopOf="@+id/budgetName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="99dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/cctvlogo"
+            app:layout_constraintBottom_toTopOf="@+id/clientForm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/inputName"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="Ingrese Nombre"
-        app:layout_constraintBottom_toTopOf="@+id/budgetAdress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budgetName" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputName"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:hint="Apellido y Nombre | Razón Social"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/clientForm" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/inputAdress"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="Ingrese Domicilio"
-        app:layout_constraintBottom_toTopOf="@+id/budgetAdress2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budgetAdress" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputAdress"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:hint="Domicilio Fiscal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/inputName" />
 
-    <TextView
-        android:id="@+id/budgetName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="4dp"
-        android:text="Nombre y Apellido / Razón Social"
-        app:layout_constraintBottom_toTopOf="@+id/inputName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.078"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputDepto"
+            android:layout_width="80dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:hint="Depto"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintStart_toEndOf="@+id/inputAdress"
+            app:layout_constraintTop_toBottomOf="@+id/inputName" />
 
-    <TextView
-        android:id="@+id/budgetAdress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="Domicilio Fiscal"
-        app:layout_constraintBottom_toTopOf="@+id/inputAdress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputName" />
+        <TextView
+            android:id="@+id/clientForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="DATOS DEL CLIENTE"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <Button
             android:id="@+id/siguiente_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:text="SIGUIENTE"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/inputExpirationDate"
-            app:layout_constraintVertical_bias="0.891" />
+            app:layout_constraintVertical_bias="0.642" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="395dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

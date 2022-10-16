@@ -9,26 +9,19 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.gestionpresupuesto.adapters.ItemsAdapter
 import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
 import com.example.gestionpresupuesto.databinding.FragmentBugdetCreatorBinding
-import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
 
-
 class BudgetCreator : Fragment() {
-
 
     private val viewModel : BugdetCreatorViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by activityViewModels()
     private val mainProductListViewModel : MainProductListViewModel by viewModels()
-
-
     private var _binding: FragmentBugdetCreatorBinding? = null
     private val binding get() = _binding!!
 
@@ -67,19 +60,22 @@ class BudgetCreator : Fragment() {
 
                 if (true) {//!binding.inputName.text.isNullOrBlank() && !binding.inputAdress.text.isNullOrBlank() && !binding.inputAdress2.text.isNullOrBlank() && !binding.inputPhone.text.isNullOrBlank() && !binding.inputAlternativePhone.text.isNullOrBlank() && !binding.inputExpirationDate.text.isNullOrBlank()){
 
-                    var  parcialBudget = Budget("",
-                        binding.inputName.text.toString(),
-                        binding.budgetAdress.text.toString(),
-                        binding.budgetAdress2.text.toString(),
-                        "",
-                        "",
-                        "",
-                        "",
-                        Timestamp.now(),
-                        Timestamp.now().toDate().toString(),
-                        false,
-                        0.0,
-                        mutableListOf())
+                var  parcialBudget = Budget("",
+                    binding.inputName.text.toString(),
+                    binding.inputAdress.text.toString(),
+                    binding.inputAdress2.text.toString(),
+                    binding.inputAdress3.text.toString(),
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    Timestamp.now(),
+                    Timestamp.now().toDate().toString(),
+                    false,
+                    0.0,
+                    mutableListOf())
 
                     sharedViewModel.setBudgetToCreate(parcialBudget)
 
