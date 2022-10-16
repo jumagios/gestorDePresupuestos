@@ -39,7 +39,9 @@ class BudgetAdapter(
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        holder.setClientDomicile(budgetList[position].clientDomicile)
+        if (!budgetList[position].isErased) {
+            holder.setClientDomicile(budgetList[position].clientDomicile)
+        }
 
         holder.getTxItem().setOnClickListener {
              val action = BudgetListDirections.actionMainBudgetListToBudgetWithItemsDetailsFragment(budgetList[position])
