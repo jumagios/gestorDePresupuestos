@@ -25,7 +25,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         v = inflater.inflate(R.layout.fragment_budget_with_items_details, container, false)
-        deleteButton = v.findViewById(R.id.budget_delete_button)
+        deleteButton = v.findViewById(R.id.delete_button)
         return v
     }
 
