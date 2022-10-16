@@ -54,7 +54,6 @@ class BudgetWithItemsDetailsFragment : Fragment() {
             v.findNavController().navigate(action)
         }
 
-
     }
 
 }

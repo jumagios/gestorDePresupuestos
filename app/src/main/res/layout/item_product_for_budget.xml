@@ -88,16 +88,6 @@
             app:layout_constraintStart_toStartOf="@+id/product_item_detail_for_budget_guideline3"
             app:layout_constraintTop_toBottomOf="@+id/product_item_detail_for_budget_txt_name_item" />
 
-        <CheckBox
-            android:id="@+id/checkbox_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Añadir"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.833"
-            app:layout_constraintStart_toEndOf="@+id/product_item_detail_for_budget_txt_stock_item" />
-
         <TextView
             android:id="@+id/item_quantity"
             android:layout_width="33dp"
