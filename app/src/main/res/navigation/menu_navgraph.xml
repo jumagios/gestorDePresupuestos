@@ -80,5 +80,8 @@
         <argument
             android:name="budgetDetails"
             app:argType="com.example.gestionpresupuesto.entities.Budget" />
+        <action
+            android:id="@+id/action_budgetWithItemsDetailsFragment_to_mainBudgetList"
+            app:destination="@id/mainBudgetList" />
     </fragment>
 </navigation>
