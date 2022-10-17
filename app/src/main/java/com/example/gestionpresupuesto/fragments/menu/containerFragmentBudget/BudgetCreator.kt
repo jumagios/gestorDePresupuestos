@@ -53,7 +53,6 @@ class BudgetCreator : Fragment() {
 
             sharedViewModel.setProductList(result)
 
-
             binding.siguienteButton.setOnClickListener {
 
                 var budgetToCreate = Budget()

@@ -69,10 +69,7 @@ class NewBudgetFragment : Fragment() {
 
         super.onStart()
 
-
-
         try{
-
 
             var productList = sharedViewModel.getProductList()
 

@@ -127,18 +127,24 @@ class ItemsAdapter(
 
             var quantity = holder.getQuantityInput().text.toString().toInt()
 
-            var state = searchStateByInternalProductCode(productList[position].internalProductCode)
+            if(quantity != 0) {
 
-            if(state != null) {
+                var state = searchStateByInternalProductCode(productList[position].internalProductCode)
 
-                state.quantity = quantity.toString().toInt()
+                if(state != null) {
 
-            } else {
+                    state.quantity = quantity.toString().toInt()
 
-                sharedViewModel.saveState.add(Item(productList[position].internalProductCode, productList[position].name,
-                    productList[position].description, productList[position].price, quantity))
+                } else {
+
+                    sharedViewModel.saveState.add(Item(productList[position].internalProductCode, productList[position].name,
+                        productList[position].description, productList[position].price, quantity))
+
+                }
 
             }
+
+
         }
 
         switch.setOnClickListener() {
