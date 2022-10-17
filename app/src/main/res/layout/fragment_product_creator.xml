@@ -7,209 +7,155 @@
     android:layout_height="match_parent"
     tools:context=".fragments.menu.containerFragmentProduct.ProductCreator">
 
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="149dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginBottom="24dp"
+        android:text="CANCELAR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/accept_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/button_upload"
+        app:layout_constraintVertical_bias="0.523" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/productPrice"
+        android:layout_width="175dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:hint="Precio"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/productStock"
+        app:layout_constraintTop_toBottomOf="@+id/productProviderCode" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/productStock"
+        android:layout_width="175dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:hint="Stock"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/productProviderCode" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/productProviderCode"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:hint="Código Proveedor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/productInternalCode" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/productInternalCode"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:hint="Código Interno del Producto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/productcategory" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/productname"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:hint="Nombre del Producto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/productcategory"
+        android:layout_width="175dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:hint="Categoría"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/productdescription" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/productdescription"
+        android:layout_width="375dp"
+        android:layout_height="123dp"
+        android:layout_marginTop="8dp"
+        android:hint="Descripción del Producto"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/productname" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="99dp"
         android:src="@drawable/cctvlogo"
-        app:layout_constraintBottom_toTopOf="@+id/productname"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/productname"
-        android:layout_width="284dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="127dp"
-        android:layout_marginBottom="10dp"
-        android:hint="Inserte Nombre"
-        app:layout_constraintBottom_toTopOf="@+id/productdescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/productdescription"
-        android:layout_width="409dp"
-        android:layout_height="148dp"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="175dp"
-        android:layout_marginBottom="11dp"
-        android:hint="Inserte la descripción"
-        app:layout_constraintBottom_toTopOf="@+id/productcategory"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productname">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/productcategory"
-        android:layout_width="198dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="11dp"
-        android:hint="Categoría"
-        app:layout_constraintBottom_toTopOf="@+id/productInternalCode"
-        app:layout_constraintEnd_toStartOf="@+id/button_upload"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productdescription">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/productInternalCode"
-        android:layout_width="197dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="14dp"
-        android:hint="Código interno"
-        app:layout_constraintBottom_toTopOf="@+id/productPrice"
-        app:layout_constraintEnd_toStartOf="@+id/productProviderCode"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productcategory">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/productProviderCode"
-        android:layout_width="197dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:hint="Código de proveedor"
-        app:layout_constraintBottom_toTopOf="@+id/productStock"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/productInternalCode"
-        app:layout_constraintTop_toBottomOf="@+id/productcategory">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/productPrice"
-        android:layout_width="198dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="39dp"
-        android:hint="Precio"
-        app:layout_constraintBottom_toTopOf="@+id/cancel_button"
-        app:layout_constraintEnd_toStartOf="@+id/productStock"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productInternalCode">
-
-        <EditText
-            android:id="@+id/editTextNumberDecimal2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="numberDecimal" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/productStock"
-        android:layout_width="197dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="38dp"
-        android:hint="Stock"
-        app:layout_constraintBottom_toTopOf="@+id/accept_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/productPrice"
-        app:layout_constraintTop_toBottomOf="@+id/productInternalCode">
-
-        <EditText
-            android:id="@+id/editTextNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/cancel_button"
-        android:layout_width="149dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="53dp"
-        android:layout_marginBottom="132dp"
-        android:text="CANCELAR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/accept_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productPrice" />
 
     <Button
         android:id="@+id/accept_button"
         android:layout_width="149dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="132dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="24dp"
         android:text="ACEPTAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cancel_button"
-        app:layout_constraintTop_toBottomOf="@+id/productStock" />
+        app:layout_constraintTop_toBottomOf="@+id/button_upload" />
 
     <Button
         android:id="@+id/button_upload"
         android:layout_width="129dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="19dp"
         android:text="IMAGEN"
-        app:layout_constraintBottom_toTopOf="@+id/productProviderCode"
-        app:layout_constraintStart_toEndOf="@+id/productcategory"
-        app:layout_constraintTop_toBottomOf="@+id/productdescription" />
+        app:layout_constraintEnd_toStartOf="@+id/firebaseImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/productStock" />
 
     <ImageView
         android:id="@+id/firebaseImage"
-        android:layout_width="44dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/productProviderCode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_upload"
-        app:layout_constraintTop_toBottomOf="@+id/productdescription"
+        android:layout_width="66dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="156dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/productStock"
         tools:src="@tools:sample/avatars" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="395dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

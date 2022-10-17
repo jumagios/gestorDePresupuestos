@@ -16,8 +16,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.R
+
 import com.example.gestionpresupuesto.databinding.FragmentProductDetailBinding
 import com.example.gestionpresupuesto.entities.Product
+
 import com.example.gestionpresupuesto.viewmodels.ProductDetailViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
