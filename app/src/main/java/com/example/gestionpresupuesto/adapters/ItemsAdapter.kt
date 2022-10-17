@@ -1,61 +1,61 @@
 package com.example.gestionpresupuesto.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
+import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.entities.Product
+import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
+import com.example.gestionpresupuesto.viewmodels.SharedViewModel
+import com.google.android.material.snackbar.Snackbar
 
 
 class ItemsAdapter(
     var productList: MutableList<Product>,
-    val context: Context
-) : RecyclerView.Adapter<ItemsAdapter.MainHolder>()
-{
-    class MainHolder (v: View) : RecyclerView.ViewHolder(v) {
+    val context: Context,
+    private val sharedViewModel: SharedViewModel,
+    private val switch: Switch
+
+) : RecyclerView.Adapter<ItemsAdapter.MainHolder>() {
+    class MainHolder(v: View) : RecyclerView.ViewHolder(v) {
         private var view: View
+
         init {
             this.view = v
         }
 
-        fun getCheckBox() : CheckBox {
-            val button : CheckBox  = view.findViewById(R.id.checkbox_button)
-            return button
 
-        }
-
-        fun getIncreaseButton() : Button{
-            val checkBox  : Button = view.findViewById(R.id.increase_button)
+        fun getIncreaseButton(): Button {
+            val checkBox: Button = view.findViewById(R.id.increase_button)
             return checkBox
 
         }
 
-        fun getDecreaseButton() : Button{
-            val button : Button = view.findViewById(R.id.decrease_button)
+        fun getDecreaseButton(): Button {
+            val button: Button = view.findViewById(R.id.decrease_button)
             return button
 
         }
 
-        fun setQuantityInput (value : Int)  {
+        fun setQuantityInput(value: Int) {
             val quantity: TextView = view.findViewById(R.id.item_quantity)
             quantity.text = value.toString()
 
         }
 
-        fun getQuantityInput () : TextView {
+        fun getQuantityInput(): TextView {
             val quantity: TextView = view.findViewById(R.id.item_quantity)
             return quantity
 
         }
 
-        fun increase ()  {
+        fun increase() {
             val quantity: TextView = view.findViewById(R.id.item_quantity)
             var value = quantity.text.toString().toInt()
             value++
@@ -64,55 +64,107 @@ class ItemsAdapter(
 
         }
 
-        fun decrease ()  {
+        fun decrease() {
+
             val quantity: TextView = view.findViewById(R.id.item_quantity)
             var value = quantity.text.toString().toInt()
-            value--
+            if (value >= 1)
+                value--
             setQuantityInput(value)
 
-
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        val view =  LayoutInflater.from(parent.context).inflate(R.layout.item_product_for_budget,parent,false)
-        return (MainHolder(view))
+
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_product_for_budget, parent, false)
+            return (MainHolder(view))
+
     }
+
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
 
-        var items = mutableListOf<Item>()
+        if(sharedViewModel.getSate().isNotEmpty()){
 
-        holder.setQuantityInput(0);
+           var quantity = searchStateByInternalProductCode(productList[position].internalProductCode)?.quantity
 
-        holder.getIncreaseButton().setOnClickListener(){
+            if (quantity != null) {
+
+                holder.setQuantityInput(quantity.toInt())
+            }
+
+        } else {
+
+            holder.setQuantityInput(0);
+
+        }
+
+        holder.getIncreaseButton().setOnClickListener() {
+
             holder.increase()
+
+            var quantity = holder.getQuantityInput().text.toString().toInt()
+
+            var state = searchStateByInternalProductCode(productList[position].internalProductCode)
+
+            if(state != null) {
+
+                state.quantity = quantity.toString().toInt()
+
+            } else {
+
+                sharedViewModel.saveState.add(Item(productList[position].internalProductCode, productList[position].name,
+                    productList[position].description, productList[position].price, quantity))
+
+            }
         }
 
-        holder.getDecreaseButton().setOnClickListener(){
+
+        holder.getDecreaseButton().setOnClickListener() {
             holder.decrease()
+
+            var quantity = holder.getQuantityInput().text.toString().toInt()
+
+            var state = searchStateByInternalProductCode(productList[position].internalProductCode)
+
+            if(state != null) {
+
+                state.quantity = quantity.toString().toInt()
+
+            } else {
+
+                sharedViewModel.saveState.add(Item(productList[position].internalProductCode, productList[position].name,
+                    productList[position].description, productList[position].price, quantity))
+
+            }
         }
 
+        switch.setOnClickListener() {
 
-        holder.getCheckBox().setOnClickListener(){
+            if (switch.isChecked) {
 
-           if(holder.getCheckBox().isChecked){
+                var stateList = sharedViewModel.getSate()
 
-               var quantity = holder.getQuantityInput().text.toString().toInt()
+                if(stateList.size != 0) {
 
-               items.add(Item(productList[position].internalProductCode,productList[position].name,
-                   productList[position].description, productList[position].price, quantity
-                   ))
+                    for (item in stateList) {
 
-           } else {
+                        if(item.quantity != 0) {
+                            sharedViewModel.getBudgetToCreate().value?.productsItems?.add(item)
+                        }
+                    }
 
-               var itemToRemove = searchOnItemListByProductInternalCode(items, productList[position].internalProductCode)
-               items.remove(itemToRemove)
-               var size = items.size.toString()
+                }
 
-           }
+            }
+
         }
+    }
+
+    override fun getItemCount(): Int {
+        return productList.size
     }
 
     fun searchOnItemListByProductInternalCode(list : MutableList<Item>, internalProductCode : String) : Item {
@@ -120,14 +172,14 @@ class ItemsAdapter(
         return list.first { it.internalProductCode == internalProductCode }
     }
 
-    fun updateItemQuantity(quantity : Int, list : MutableList<Item> , internalProductCode : String){
+    fun searchProductByInternalProductCode(list : MutableList<Product>, internalProductCode : String) : Product {
 
-        var item = searchOnItemListByProductInternalCode(list,internalProductCode)
-        item.quantity = quantity
-
+        return list.first { it.internalProductCode == internalProductCode }
     }
 
-    override fun getItemCount(): Int {
-        return productList.size
+    fun searchStateByInternalProductCode(internalProductCode : String) : Item? {
+
+        return sharedViewModel.getSate().firstOrNull() { it.internalProductCode == internalProductCode }
     }
+
 }
