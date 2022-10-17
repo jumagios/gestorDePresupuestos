@@ -6,10 +6,13 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -22,12 +25,15 @@ import com.example.gestionpresupuesto.databinding.FragmentProductCreatorBinding
 import com.example.gestionpresupuesto.entities.Product
 import com.example.gestionpresupuesto.repository.ProductRepository
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.gestionpresupuesto.adapters.MainProductListAdapter
 import com.example.gestionpresupuesto.viewmodels.ProductCreatorViewModel
 import com.google.android.material.dialog.MaterialDialogs
 import com.google.firebase.Timestamp
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import gun0912.tedimagepicker.builder.TedImagePicker
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -38,6 +44,7 @@ class ProductCreator : Fragment() {
     private lateinit var firebaseImage : ImageView
     private lateinit var repository: ProductRepository
     private lateinit var v : View
+    private var selectedUriList: List<Uri>? = null
 
     companion object {
         fun newInstance() = ProductCreator()
@@ -69,7 +76,7 @@ class ProductCreator : Fragment() {
         super.onStart()
 
         binding.buttonUpload.setOnClickListener{
-            selectImage()
+            //selectImage()
         }
 
         binding.acceptButton.setOnClickListener {
@@ -104,13 +111,34 @@ class ProductCreator : Fragment() {
             Toast.makeText(this.context, "Failed", Toast.LENGTH_SHORT).show()
         }
     }
-    private fun selectImage() {
-        val intent = Intent()
-        intent.type = "images/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-
-        startActivityForResult(intent, 100)
+    //Revisar el método showMultiImage, junto al prueba.xml
+    /**private fun selectImage() {
+        TedImagePicker.with(this.requireContext())
+            .startMultiImage { uriList -> showMultiImage(uriList) }
     }
+
+    private fun showMultiImage(uriList: List<Uri>) {
+        this.selectedUriList = uriList
+        Log.d("ted", "uriList: $uriList")
+        binding.firebaseImage.visibility = View.GONE
+        binding.containerSelectedPhotos.visibility = View.VISIBLE
+
+        binding.containerSelectedPhotos.removeAllViews()
+
+        val viewSize =
+            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100f, resources.displayMetrics)
+                .toInt()
+        uriList.forEach {
+            val itemImageBinding = ItemImageBinding.inflate(LayoutInflater.from(this))
+            Glide.with(this)
+                .load(it)
+                .apply(RequestOptions().fitCenter())
+                .into(itemImageBinding.ivMedia)
+            itemImageBinding.root.layoutParams = FrameLayout.LayoutParams(viewSize, viewSize)
+            binding.containerSelectedPhotos.addView(itemImageBinding.root)
+        }
+
+    }*/
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -122,22 +150,7 @@ class ProductCreator : Fragment() {
         }
     }
     private fun goToProductCreate() {
-        refreshFragment(context)
-    }
-
-    private fun refreshFragment(context: Context?) {
-        context?.let {
-            val fragmentManager = (context as? AppCompatActivity)?.supportFragmentManager
-            fragmentManager?.let {
-                val currentFragment = fragmentManager.findFragmentById(com.google.android.material.R.id.container)
-                currentFragment?.let {
-                    val fragmentTransaction = fragmentManager.beginTransaction()
-                    fragmentTransaction.detach(it)
-                    fragmentTransaction.attach(it)
-                    fragmentTransaction.commit()
-                }
-            }
-        }
+        binding.productCreator.removeAllViews()
     }
 
     private fun createProduct(binding: FragmentProductCreatorBinding) {

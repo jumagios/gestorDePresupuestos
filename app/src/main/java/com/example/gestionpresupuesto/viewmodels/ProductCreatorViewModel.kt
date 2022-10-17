@@ -18,8 +18,6 @@ class ProductCreatorViewModel : ViewModel() {
 
             try {
 
-                productToCreate.firestoreID = setFirestoreID(productToCreate.internalProductCode)
-
                 var productListFound = productRepository.findProductByID(productToCreate.firestoreID)
 
                 if ( productListFound.size == 0) {
@@ -39,13 +37,6 @@ class ProductCreatorViewModel : ViewModel() {
             }
         }
     }
-    }
-    private fun setFirestoreID(internalProductCode : String) : String {
-
-        var firestoreID = internalProductCode.replace("\\s".toRegex(), "").uppercase()
-
-        return firestoreID
-
     }
 
 
