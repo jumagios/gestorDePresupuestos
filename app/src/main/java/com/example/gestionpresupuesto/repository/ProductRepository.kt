@@ -1,23 +1,31 @@
 package com.example.gestionpresupuesto.repository
 
+import android.content.ContentValues
 import android.util.Log
 import com.example.gestionpresupuesto.entities.Product
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.google.type.LatLng
 import kotlinx.coroutines.tasks.await
 
 class ProductRepository {
 
     private val db = Firebase.firestore
     private val auth = Firebase.auth
+    private val ref = db.collection("products").document()
+    private val id = ref.id
 
     fun createProduct(productToCreate: Product) {
 
         try {
 
             db.collection("products").add(productToCreate)
+
+
+
 
         } catch (e: Exception) {
 
@@ -26,6 +34,8 @@ class ProductRepository {
 
         }
     }
+
+
 
     suspend fun getAllProducts(): MutableList<Product> {
 
@@ -74,12 +84,40 @@ class ProductRepository {
     }
 
     suspend fun updateProduct(productToUpdate: Product) {
+        try {
 
-        var test = db.collection("products").document("beSDhQUETQIpfrSOxs6w")
 
-        test.set(productToUpdate)
+            val data = db.collection("products").whereEqualTo("firestoreID", productToUpdate.firestoreID).get().await()
+
+
+
+            if (!data.isEmpty) {
+
+                for (document in data) {
+
+
+                    var documentID = document.id
+                    db.collection("products").document(documentID)
+                        .update("name", productToUpdate.name,
+                                "description", productToUpdate.description,
+                                "category", productToUpdate.category,
+                                "internalPoruductCode", productToUpdate.internalProductCode,
+                                "providerProductCode", productToUpdate.providerProductCode,
+                                "price", productToUpdate.price,
+                                "stock", productToUpdate.stock)
+                }
+            }
+
+        } catch (e : Exception) {
+
+            Log.d("ProductRepository", e.message.toString())
+
+        }
+
 
     }
+
+
 
     suspend fun findProductByID(ID: String): MutableList<Product> {
 
@@ -103,4 +141,6 @@ class ProductRepository {
         }
         return productList
     }
+
+
 }

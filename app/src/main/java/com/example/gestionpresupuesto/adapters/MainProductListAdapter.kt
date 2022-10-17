@@ -13,6 +13,7 @@ import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Product
 import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.MainProductListDirections
+import com.google.firebase.firestore.DocumentSnapshot
 
 class MainProductListAdapter(
     var productList: MutableList<Product>,
@@ -64,13 +65,15 @@ class MainProductListAdapter(
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
+
+
         holder.setName(productList[position].name)
         holder.setPrice(productList[position].price)
         holder.setStock(productList[position].stock)
         holder.setImage(productList[position].imageURL)
         holder.getProductItemDetail().setOnClickListener{
             val action = MainProductListDirections.actionMainProductListToProductDetail(productList[position])
-            //Este genera la cción de ir a el atp3detalle del producto
+            //Este genera la acción de ir a el detalle del producto
             holder.itemView.findNavController().navigate(action)
             //Este ejecuta la acción de ir al action que generé
         }

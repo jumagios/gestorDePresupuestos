@@ -12,9 +12,12 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.R
+import com.example.gestionpresupuesto.databinding.FragmentProductDetailBinding
+import com.example.gestionpresupuesto.entities.Product
 import com.example.gestionpresupuesto.viewmodels.ProductDetailViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
@@ -26,18 +29,10 @@ class ProductDetail : Fragment() {
         fun newInstance() = ProductDetail()
     }
 
-    lateinit var v : View
-    private lateinit var viewModel: ProductDetailViewModel
-    private lateinit var updateButton: Button
-    private lateinit var deleteButton: Button
-    private lateinit var productName : TextInputEditText
-    private lateinit var productDescription : TextInputEditText
-    private lateinit var productCategory : TextInputEditText
-    private lateinit var productInternalCode : TextInputEditText
-    private lateinit var productProviderCode: TextInputEditText
-    private lateinit var productPrice : AppCompatEditText
-    private lateinit var productStock : AppCompatEditText
-    private lateinit var productImg : ImageView
+    private lateinit var binding: FragmentProductDetailBinding
+    private val viewModel: ProductDetailViewModel by viewModels()
+
+
 
 
 
@@ -45,85 +40,81 @@ class ProductDetail : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v = inflater.inflate(R.layout.fragment_product_detail, container, false)
-        updateButton = v.findViewById(R.id.product_update_button)
-        deleteButton = v.findViewById(R.id.product_delete_button)
-        productName = v.findViewById(R.id.txtProductName)
-        productDescription = v.findViewById(R.id.txtProdDescription)
-        productCategory = v.findViewById(R.id.txtProdCategory)
-        productInternalCode = v.findViewById(R.id.txtProdIntCode)
-        productProviderCode = v.findViewById(R.id.txtProdProvCode)
-        productPrice = v.findViewById(R.id.txtProdPrice)
-        productStock = v.findViewById(R.id.txtProdStock)
-        productImg = v.findViewById(R.id.firebaseImage)
-        return v
+        binding = FragmentProductDetailBinding.inflate(inflater, container,false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+   /* override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProductDetailViewModel::class.java)
         // TODO: Use the ViewModel
-    }
+    }*/
 
     override fun onStart() {
         super.onStart()
 
+        //here we set the data of the product we previously click
         var productDetails = ProductDetailArgs.fromBundle(requireArguments()).product
-        productName.setText(productDetails.name)
-        productDescription.setHint(productDetails.description)
-        productCategory.setHint(productDetails.category)
-        productInternalCode.setHint(productDetails.internalProductCode)
-        productProviderCode.setHint(productDetails.providerProductCode)
-        productPrice.setHint(productDetails.price.toString())
-        productStock.setHint(productDetails.stock.toString())
-        Glide.with(productImg).load(productDetails.imageURL).override(100,100).into(productImg)
+        binding.productname.editText?.setText(productDetails.name)
+        binding.productdescription.editText?.setText(productDetails.description)
+        binding.productcategory.editText?.setText(productDetails.category)
+        binding.productInternalCode.editText?.setText(productDetails.internalProductCode)
+        binding.productProviderCode.editText?.setText(productDetails.providerProductCode)
+        binding.productPrice.editText?.setText(productDetails.price.toString())
+        binding.productStock.editText?.setText(productDetails.stock.toString())
+        Glide.with(binding.firebaseImage).load(productDetails.imageURL).override(100,100).into(binding.firebaseImage)
 
 
-        productName.setRawInputType(InputType.TYPE_NULL)
-        productDescription.setRawInputType(InputType.TYPE_NULL)
-        productCategory.setRawInputType(InputType.TYPE_NULL)
-        productInternalCode.setRawInputType(InputType.TYPE_NULL)
-        productProviderCode.setRawInputType(InputType.TYPE_NULL)
-        productPrice.setRawInputType(InputType.TYPE_NULL)
-        productStock.setRawInputType(InputType.TYPE_NULL)
+
+
+        //here we disable the input for every field
+
+
+        binding.txtProductName.setRawInputType(InputType.TYPE_NULL)
+        binding.txtProdDescription.setRawInputType(InputType.TYPE_NULL)
+        binding.txtProdCategory.setRawInputType(InputType.TYPE_NULL)
+        binding.txtProdIntCode.setRawInputType(InputType.TYPE_NULL)
+        binding.txtProdProvCode.setRawInputType(InputType.TYPE_NULL)
+        binding.txtProdPrice.setRawInputType(InputType.TYPE_NULL)
+        binding.txtProdStock.setRawInputType(InputType.TYPE_NULL)
 
         //ACA TENGO QUE MAPEAR LOS DATOS DE productDetails CON EL LOS CAMPOS DEL XML
 
 
-        updateButton.setOnClickListener{
+        //when we click on update the inputs are enabled
+        binding.productUpdateButton.setOnClickListener{
 
-            if(updateButton.text.toString() == "Actualizar"){
+            if(binding.productUpdateButton.text.toString() == viewModel.getUpdatedTxt()){
                 println("Si entre")
                 val builder = AlertDialog.Builder(context)
                 builder.setTitle("Aviso")
                 builder.setMessage("¿Seguro que desea cambiar los datos?")
-
-                builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+                builder.setPositiveButton("Confirmar") { _, _ ->
                     Toast.makeText(context,
-                        android.R.string.yes, Toast.LENGTH_SHORT).show()
+                        "Confirmar", Toast.LENGTH_SHORT).show()
+
+                    viewModel.updateProduct(productDetailsUpdated(productDetails))
                 }
-
-                builder.setNegativeButton(android.R.string.no) { dialog, which ->
+                builder.setNegativeButton("Cancelar") { _, _ ->
                     Toast.makeText(context,
-                        android.R.string.no, Toast.LENGTH_SHORT).show()
+                        "Cancelar", Toast.LENGTH_SHORT).show()
                 }
 
                 builder.show()
 
             }
 
+            binding.txtProductName.setRawInputType(InputType.TYPE_CLASS_TEXT)
+            binding.txtProdDescription.setRawInputType(InputType.TYPE_CLASS_TEXT)
+            binding.txtProdCategory.setRawInputType(InputType.TYPE_CLASS_TEXT)
+            binding.txtProdIntCode.setRawInputType(InputType.TYPE_CLASS_TEXT)
+            binding.txtProdProvCode.setRawInputType(InputType.TYPE_CLASS_TEXT)
+            binding.txtProdPrice.setRawInputType(InputType.TYPE_CLASS_TEXT)
+            binding.txtProdStock.setRawInputType(InputType.TYPE_CLASS_TEXT)
 
-            productName.setRawInputType(InputType.TYPE_CLASS_TEXT)
-            productDescription.setRawInputType(InputType.TYPE_CLASS_TEXT)
-            productCategory.setRawInputType(InputType.TYPE_CLASS_TEXT)
-            productInternalCode.setRawInputType(InputType.TYPE_CLASS_NUMBER)
-            productProviderCode.setRawInputType(InputType.TYPE_CLASS_NUMBER)
-            productPrice.setRawInputType(InputType.TYPE_CLASS_NUMBER)
-            productStock.setRawInputType(InputType.TYPE_CLASS_NUMBER)
+            Snackbar.make(binding.root,viewModel.getSnackbarText(), Snackbar.LENGTH_SHORT).show()
 
-            Snackbar.make(v,"Ahora ya podes editar los campos", Snackbar.LENGTH_SHORT).show()
-
-            updateButton.setText("Actualizar")
+            binding.productUpdateButton.setText(viewModel.getUpdatedTxt())
 
 
         }
@@ -135,16 +126,32 @@ class ProductDetail : Fragment() {
 
 
 
-        deleteButton.setOnClickListener{
+        binding.productDeleteButton.setOnClickListener{
             viewModel.deleteProduct(productDetails)
 
             val action = ProductDetailDirections.actionProductDetailToMainProductList()
-            v.findNavController().navigate(action)
+            binding.root.findNavController().navigate(action)
         }
 
     }
 
+    private fun productDetailsUpdated(productDetails: Product): Product {
+        var productUpdated = Product()
+        productDetails.name = binding.productname.editText?.text.toString()
+        productDetails.description = binding.productdescription.editText?.text.toString()
+        productDetails.providerProductCode = binding.productProviderCode.editText?.text.toString()
+        productDetails.internalProductCode = binding.productProviderCode.editText?.text.toString()
+        productDetails.price = binding.productPrice.editText?.text.toString().toDouble()
+        productDetails.stock = binding.productStock.editText?.text.toString().toInt()
+        productDetails.category = binding.productcategory.editText?.text.toString()
 
+
+
+        productUpdated = productDetails
+
+        return productUpdated
+
+    }
 
 
 }

@@ -10,6 +10,17 @@ import kotlinx.coroutines.launch
 
 class ProductDetailViewModel : ViewModel() {
 
+    var updatedButton : String = "Actualizar"
+    var snackbarTxt : String = "Ahora ya podes editar los campos"
+
+    fun getUpdatedTxt () : String {
+        return updatedButton
+    }
+
+    fun getSnackbarText () : String {
+        return snackbarTxt
+    }
+
     var productRepository = ProductRepository()
 
     fun updateProduct(productToUpdate: Product) {
@@ -17,9 +28,10 @@ class ProductDetailViewModel : ViewModel() {
 
             try {
 
-                var productListFound = productRepository.findProductByID(productToUpdate.internalProductCode)
 
-                productRepository.updateProduct(productToUpdate)
+                    productRepository.updateProduct(productToUpdate)
+
+
 
             } catch (e: Exception) {
 
