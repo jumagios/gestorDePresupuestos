@@ -12,7 +12,7 @@
         android:id="@+id/product_update_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Actualizar"
+        android:text="editar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.822"
@@ -32,11 +32,203 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.961" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/productname"
+        android:layout_width="284dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/productdescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtProductName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="8dp"
+            app:hintEnabled="false"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/productdescription"
+        android:layout_width="409dp"
+        android:layout_height="148dp"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="175dp"
+        android:layout_marginBottom="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/productcategory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productname">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtProdDescription"
+            android:paddingTop="8dp"
+            app:hintEnabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/productcategory"
+        android:layout_width="198dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/productInternalCode"
+        app:layout_constraintEnd_toStartOf="@+id/button_upload"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productdescription">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtProdCategory"
+            android:layout_width="match_parent"
+            android:paddingTop="8dp"
+            app:hintEnabled="false"
+            android:layout_height="match_parent"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/productInternalCode"
+        android:layout_width="197dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/productPrice"
+        app:layout_constraintEnd_toStartOf="@+id/productProviderCode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productcategory">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtProdIntCode"
+            android:layout_width="match_parent"
+            android:paddingTop="8dp"
+            app:hintEnabled="false"
+            android:layout_height="match_parent"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/productProviderCode"
+        android:layout_width="197dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/productStock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/productInternalCode"
+        app:layout_constraintTop_toBottomOf="@+id/productcategory">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtProdProvCode"
+            android:layout_width="match_parent"
+            android:paddingTop="8dp"
+            app:hintEnabled="false"
+            android:layout_height="match_parent"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/productPrice"
+        android:layout_width="198dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/product_delete_button"
+        app:layout_constraintEnd_toStartOf="@+id/productStock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productInternalCode">
+
+        <EditText
+            android:id="@+id/txtProdPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            app:hintEnabled="false"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+            android:autofillHints="" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/productStock"
+        android:layout_width="197dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="149dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/product_update_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/productPrice"
+        app:layout_constraintTop_toBottomOf="@+id/productInternalCode">
+
+        <EditText
+            android:id="@+id/txtProdStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            app:hintEnabled="false"
+            android:ems="10"
+            android:inputType="number"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button_upload"
+        android:layout_width="129dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
+        android:text="IMAGEN"
+        app:layout_constraintBottom_toTopOf="@+id/productProviderCode"
+        app:layout_constraintEnd_toStartOf="@+id/firebaseImage"
+        app:layout_constraintStart_toEndOf="@+id/productcategory"
+        app:layout_constraintTop_toBottomOf="@+id/productdescription"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ImageView
+        android:id="@+id/firebaseImage"
+        android:layout_width="44dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/productProviderCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_upload"
+        app:layout_constraintTop_toBottomOf="@+id/productdescription"
+        app:layout_constraintVertical_bias="0.51"
+        tools:src="@tools:sample/avatars" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="99dp"
+        android:layout_marginBottom="10dp"
         android:src="@drawable/cctvlogo"
+        app:layout_constraintBottom_toTopOf="@+id/productname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

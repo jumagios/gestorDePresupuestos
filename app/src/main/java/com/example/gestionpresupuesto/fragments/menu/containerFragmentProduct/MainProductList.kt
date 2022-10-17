@@ -70,7 +70,9 @@ class MainProductList : Fragment() {
             recProducts.setHasFixedSize(true)
             linearLayoutManager = LinearLayoutManager(context)
             recProducts.layoutManager = linearLayoutManager
-            productListAdapter = MainProductListAdapter(productList,requireContext())
+            productListAdapter = MainProductListAdapter(productList,requireContext()) {
+                onItemClick(it)
+            }
 
             recProducts.adapter = productListAdapter
 
@@ -109,7 +111,9 @@ class MainProductList : Fragment() {
 
             }
 
-            var auxiliarAdapter = MainProductListAdapter(temporalBudgetList, requireContext())
+            var auxiliarAdapter = MainProductListAdapter(temporalBudgetList, requireContext()){
+                onItemClick(it)
+            }
             cont += cont
             recProducts.setAdapter(auxiliarAdapter)
 
