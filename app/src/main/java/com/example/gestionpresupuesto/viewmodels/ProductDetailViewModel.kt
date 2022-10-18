@@ -45,7 +45,4 @@ class ProductDetailViewModel : ViewModel() {
         }
 
     }
-
-
-
 }

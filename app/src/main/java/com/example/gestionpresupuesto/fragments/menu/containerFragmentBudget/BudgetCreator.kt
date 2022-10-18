@@ -77,10 +77,9 @@ class BudgetCreator : Fragment() {
                     mutableListOf())
 
                     sharedViewModel.setBudgetToCreate(parcialBudget)
-
-
                     var action = BudgetCreatorDirections.actionBudgetCreator2ToNewBudgetFragment(parcialBudget)
                     binding.root.findNavController().navigate(action)
+
                 }else { Snackbar.make(binding.budgetCreator, "Todos los campos deben tener valores", Snackbar.LENGTH_LONG).show()
 
                 }

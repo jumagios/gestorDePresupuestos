@@ -75,11 +75,25 @@ class ProductRepository {
 
     suspend fun updateProduct(productToUpdate: Product) {
 
-        var test = db.collection("products").document("beSDhQUETQIpfrSOxs6w")
+            val data = db.collection("products").whereEqualTo("firestoreID", productToUpdate.firestoreID).get().await()
 
-        test.set(productToUpdate)
+            if (!data.isEmpty) {
 
-    }
+                for (document in data) {
+
+
+                    var documentID = document.id
+                    db.collection("products").document(documentID)
+                        .update("name", productToUpdate.name,
+                                "description", productToUpdate.description,
+                                "category", productToUpdate.category,
+                                "internalPoruductCode", productToUpdate.internalProductCode,
+                                "providerProductCode", productToUpdate.providerProductCode,
+                                "price", productToUpdate.price,
+                                "stock", productToUpdate.stock)
+                }
+
+
 
     suspend fun findProductByID(ID: String): MutableList<Product> {
 
