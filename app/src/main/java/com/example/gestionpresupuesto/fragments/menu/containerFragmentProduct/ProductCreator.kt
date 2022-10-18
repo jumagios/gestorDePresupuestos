@@ -43,7 +43,6 @@ class ProductCreator : Fragment() {
     private var mStorageRef: StorageReference? = null
     private lateinit var firebaseImage : ImageView
     private lateinit var repository: ProductRepository
-    private lateinit var v : View
     private var selectedUriList: List<Uri>? = null
 
     companion object {
@@ -59,11 +58,9 @@ class ProductCreator : Fragment() {
 
 
     ): View? {
-        v = inflater.inflate(R.layout.fragment_product_creator, container, false)
         mStorageRef = FirebaseStorage.getInstance().getReference()
         binding = FragmentProductCreatorBinding.inflate(layoutInflater)
-        productCreator = v.findViewById(R.id.productCreator)
-        return v
+        return binding.root
     }
 
 
@@ -81,7 +78,7 @@ class ProductCreator : Fragment() {
 
         binding.acceptButton.setOnClickListener {
             uploadImage()
-            //createProduct(binding)
+            createProduct(binding)
             goToProductCreate()
         }
 
@@ -112,33 +109,17 @@ class ProductCreator : Fragment() {
         }
     }
     //Revisar el método showMultiImage, junto al prueba.xml
-    /**private fun selectImage() {
+    private fun selectImage() {
         TedImagePicker.with(this.requireContext())
-            .startMultiImage { uriList -> showMultiImage(uriList) }
+            .start { uri -> showSingleImage(uri) }
     }
 
-    private fun showMultiImage(uriList: List<Uri>) {
-        this.selectedUriList = uriList
-        Log.d("ted", "uriList: $uriList")
-        binding.firebaseImage.visibility = View.GONE
-        binding.containerSelectedPhotos.visibility = View.VISIBLE
+    private fun showSingleImage(uri: Uri) {
+        binding.firebaseImage.visibility = View.VISIBLE
+        binding.containerSelectedPhotos.visibility = View.GONE
+        Glide.with(this).load(uri).into(binding.firebaseImage)
 
-        binding.containerSelectedPhotos.removeAllViews()
-
-        val viewSize =
-            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100f, resources.displayMetrics)
-                .toInt()
-        uriList.forEach {
-            val itemImageBinding = ItemImageBinding.inflate(LayoutInflater.from(this))
-            Glide.with(this)
-                .load(it)
-                .apply(RequestOptions().fitCenter())
-                .into(itemImageBinding.ivMedia)
-            itemImageBinding.root.layoutParams = FrameLayout.LayoutParams(viewSize, viewSize)
-            binding.containerSelectedPhotos.addView(itemImageBinding.root)
-        }
-
-    }*/
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
