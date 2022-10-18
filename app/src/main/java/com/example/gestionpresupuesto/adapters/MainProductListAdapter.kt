@@ -6,16 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Product
 import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.MainProductListDirections
+import com.google.firebase.firestore.DocumentSnapshot
 
 class MainProductListAdapter(
     var productList: MutableList<Product>,
-    val context: Context
+    val context: Context,
+    var onClick : (Int) -> Unit
 ) : RecyclerView.Adapter<MainProductListAdapter.MainHolder>()
 {
     class MainHolder (v: View) : RecyclerView.ViewHolder(v) {
@@ -47,24 +50,45 @@ class MainProductListAdapter(
         fun getProductItemDetail(): View {
             return view.findViewById(R.id.product_item_detail)
         }
+
+
+        fun getCard () : CardView {
+            return view.findViewById(R.id.card)
+        }
+
+
     }
+
+    //este trae el objeto item
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val view =  LayoutInflater.from(parent.context).inflate(R.layout.item_product,parent,false)
         return (MainHolder(view))
     }
 
+    //es el iterador
+
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        holder.setName(productList[position].name)
-        holder.setPrice(productList[position].price)
-        holder.setStock(productList[position].stock)
-        holder.setImage(productList[position].imageURL)
+
+        if (!productList[position].isErased) {
+            holder.setName(productList[position].name)
+            holder.setPrice(productList[position].price)
+            holder.setStock(productList[position].stock)
+            holder.setImage(productList[position].imageURL)
+        }
+        
         holder.getProductItemDetail().setOnClickListener{
             val action = MainProductListDirections.actionMainProductListToProductDetail(productList[position])
-            //Este genera la cción de ir a el detalle del producto
+            //Este genera la acción de ir a el detalle del producto
             holder.itemView.findNavController().navigate(action)
             //Este ejecuta la acción de ir al action que generé
         }
+
+        holder.getCard().setOnClickListener {
+            onClick(position)
+        }
+
+
     }
 
     override fun getItemCount(): Int {

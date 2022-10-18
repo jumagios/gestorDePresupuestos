@@ -43,9 +43,11 @@ class BudgetAdapter(
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        holder.setClientDomicile(budgetList[position].clientDomicile)
-        holder.setApartment(budgetList[position].apartment)
-
+        if (!budgetList[position].isErased) {
+            holder.setClientDomicile(budgetList[position].clientDomicile)
+            holder.setApartment(budgetList[position].apartment)
+        }
+        
         holder.getTxItem().setOnClickListener {
              val action = BudgetListDirections.actionMainBudgetListToBudgetWithItemsDetailsFragment(budgetList[position])
              holder.itemView.findNavController().navigate(action)
