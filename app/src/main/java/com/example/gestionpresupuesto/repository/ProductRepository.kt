@@ -1,14 +1,11 @@
 package com.example.gestionpresupuesto.repository
 
-import android.content.ContentValues
 import android.util.Log
 import com.example.gestionpresupuesto.entities.Product
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import com.google.type.LatLng
 import kotlinx.coroutines.tasks.await
 
 class ProductRepository {
@@ -86,7 +83,10 @@ class ProductRepository {
     suspend fun updateProduct(productToUpdate: Product) {
         try {
 
+
             val data = db.collection("products").whereEqualTo("firestoreID", productToUpdate.firestoreID).get().await()
+
+
 
             if (!data.isEmpty) {
 
@@ -96,12 +96,12 @@ class ProductRepository {
                     var documentID = document.id
                     db.collection("products").document(documentID)
                         .update("name", productToUpdate.name,
-                                "description", productToUpdate.description,
-                                "category", productToUpdate.category,
-                                "internalPoruductCode", productToUpdate.internalProductCode,
-                                "providerProductCode", productToUpdate.providerProductCode,
-                                "price", productToUpdate.price,
-                                "stock", productToUpdate.stock)
+                            "description", productToUpdate.description,
+                            "category", productToUpdate.category,
+                            "internalPoruductCode", productToUpdate.internalProductCode,
+                            "providerProductCode", productToUpdate.providerProductCode,
+                            "price", productToUpdate.price,
+                            "stock", productToUpdate.stock)
                 }
             }
 
@@ -110,6 +110,11 @@ class ProductRepository {
             Log.d("ProductRepository", e.message.toString())
 
         }
+
+
+    }
+
+
 
     suspend fun findProductByID(ID: String): MutableList<Product> {
 

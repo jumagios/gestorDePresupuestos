@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.entities.Product
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.NewBudgetFragment
 import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
+import com.example.gestionpresupuesto.viewmodels.NewBudgetViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -20,6 +22,7 @@ class ItemsAdapter(
     var productList: MutableList<Product>,
     val context: Context,
     private val sharedViewModel: SharedViewModel,
+    private val budgetCreator: NewBudgetFragment,
     private val switch: Switch
 
 ) : RecyclerView.Adapter<ItemsAdapter.MainHolder>() {
@@ -86,7 +89,7 @@ class ItemsAdapter(
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
 
-        if(sharedViewModel.getSate().isNotEmpty()){
+        if(sharedViewModel.getState().isNotEmpty()){
 
            var quantity = searchStateByInternalProductCode(productList[position].internalProductCode)?.quantity
 
@@ -143,15 +146,13 @@ class ItemsAdapter(
                 }
 
             }
-
-
         }
 
         switch.setOnClickListener() {
 
             if (switch.isChecked) {
 
-                var stateList = sharedViewModel.getSate()
+                var stateList = sharedViewModel.getState()
 
                 if(stateList.size != 0) {
 
@@ -163,6 +164,15 @@ class ItemsAdapter(
                     }
 
                 }
+
+                budgetCreator.saveBudgetToCreate()
+
+
+                } else {
+
+                // no hay items
+
+
 
             }
 
@@ -185,7 +195,7 @@ class ItemsAdapter(
 
     fun searchStateByInternalProductCode(internalProductCode : String) : Item? {
 
-        return sharedViewModel.getSate().firstOrNull() { it.internalProductCode == internalProductCode }
+        return sharedViewModel.getState().firstOrNull() { it.internalProductCode == internalProductCode }
     }
 
 }

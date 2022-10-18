@@ -25,11 +25,8 @@ import java.util.*
 class NewBudgetFragment : Fragment() {
 
     lateinit var v : View
-    private lateinit var viewModel: NewBudgetViewModel
-    private val mainProductListViewModel : MainProductListViewModel by viewModels()
+    private val newBudgetViewModel: NewBudgetViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by activityViewModels()
-    private val budgetCreatorViewModel : BugdetCreatorViewModel by viewModels()
-
     lateinit var recyclerView : RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var productItemsForBudget : ItemsAdapter
@@ -47,22 +44,7 @@ class NewBudgetFragment : Fragment() {
         switch = v.findViewById(R.id.finish_switch)
         searchView = v.findViewById(R.id.searchProductInBudgetCreator)
 
-
-
         return v
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NewBudgetViewModel::class.java)
-
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-
-        super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onStart() {
@@ -78,8 +60,8 @@ class NewBudgetFragment : Fragment() {
                 recyclerView.setHasFixedSize(true)
                 linearLayoutManager = LinearLayoutManager(context)
                 recyclerView.layoutManager = linearLayoutManager
-                productItemsForBudget = ItemsAdapter(productList, requireContext(), sharedViewModel
-                    , switch)
+                productItemsForBudget = ItemsAdapter(productList, requireContext(), sharedViewModel,
+                    this, switch)
 
                 recyclerView.adapter = productItemsForBudget
 
@@ -102,6 +84,14 @@ class NewBudgetFragment : Fragment() {
         }
 }
 
+    fun saveBudgetToCreate() {
+
+        var budgetToCreate = sharedViewModel.getBudgetToCreate()
+
+            newBudgetViewModel.createBudget(budgetToCreate.value!!)
+        }
+
+
     @SuppressLint("SuspiciousIndentation")
     private fun search(productList : MutableList<Product>, query: String?) {
 
@@ -118,8 +108,8 @@ class NewBudgetFragment : Fragment() {
                 }
 
                 var auxiliarAdapter = ItemsAdapter(temporalProductList, requireContext(),
-                    sharedViewModel
-                    , switch)
+                    sharedViewModel ,this, switch)
+
                 recyclerView.setAdapter(auxiliarAdapter)
 
             }
