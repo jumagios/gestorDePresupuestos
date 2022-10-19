@@ -19,7 +19,6 @@ import com.google.firebase.Timestamp
 
 class BudgetCreator : Fragment() {
 
-    private val viewModel : BugdetCreatorViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by activityViewModels()
     private val mainProductListViewModel : MainProductListViewModel by viewModels()
     private var _binding: FragmentBugdetCreatorBinding? = null
@@ -53,7 +52,6 @@ class BudgetCreator : Fragment() {
 
             sharedViewModel.setProductList(result)
 
-
             binding.siguienteButton.setOnClickListener {
 
                 var budgetToCreate = Budget()
@@ -78,10 +76,9 @@ class BudgetCreator : Fragment() {
                     mutableListOf())
 
                     sharedViewModel.setBudgetToCreate(parcialBudget)
-
-
                     var action = BudgetCreatorDirections.actionBudgetCreator2ToNewBudgetFragment(parcialBudget)
                     binding.root.findNavController().navigate(action)
+
                 }else { Snackbar.make(binding.budgetCreator, "Todos los campos deben tener valores", Snackbar.LENGTH_LONG).show()
 
                 }

@@ -76,7 +76,7 @@ class MainProductListAdapter(
             holder.setStock(productList[position].stock)
             holder.setImage(productList[position].imageURL)
         }
-        
+
         holder.getProductItemDetail().setOnClickListener{
             val action = MainProductListDirections.actionMainProductListToProductDetail(productList[position])
             //Este genera la acción de ir a el detalle del producto

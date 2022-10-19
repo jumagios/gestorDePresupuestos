@@ -1,7 +1,6 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,9 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.adapters.ItemsAdapter
+import com.example.gestionpresupuesto.databinding.FragmentNewBudgetBinding
 import com.example.gestionpresupuesto.entities.Product
-import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
-import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.NewBudgetViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import java.util.*
@@ -25,54 +23,36 @@ import java.util.*
 class NewBudgetFragment : Fragment() {
 
     lateinit var v : View
-    private lateinit var viewModel: NewBudgetViewModel
-    private val mainProductListViewModel : MainProductListViewModel by viewModels()
+    private val newBudgetViewModel: NewBudgetViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by activityViewModels()
-    private val budgetCreatorViewModel : BugdetCreatorViewModel by viewModels()
-
     lateinit var recyclerView : RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var productItemsForBudget : ItemsAdapter
-
     private lateinit var searchView : SearchView
-
     private lateinit var switch : Switch
+
+    private var _binding: FragmentNewBudgetBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentNewBudgetBinding.inflate(inflater, container, false)
+
         v = inflater.inflate(R.layout.fragment_new_budget, container, false)
-        recyclerView = v.findViewById(R.id.new_budget_items_recycler_view)
-        switch = v.findViewById(R.id.finish_switch)
-        searchView = v.findViewById(R.id.searchProductInBudgetCreator)
+        recyclerView = binding.newBudgetItemsRecyclerView
+        switch = binding.finishSwitch
+        searchView = binding.searchProductInBudgetCreator
 
-
-
-        return v
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NewBudgetViewModel::class.java)
-
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-
-        super.onCreate(savedInstanceState)
-
-
+        return binding.root
     }
 
     override fun onStart() {
 
         super.onStart()
 
-
-
         try{
-
 
             var productList = sharedViewModel.getProductList()
 
@@ -81,8 +61,8 @@ class NewBudgetFragment : Fragment() {
                 recyclerView.setHasFixedSize(true)
                 linearLayoutManager = LinearLayoutManager(context)
                 recyclerView.layoutManager = linearLayoutManager
-                productItemsForBudget = ItemsAdapter(productList, requireContext(), sharedViewModel
-                    , switch)
+                productItemsForBudget = ItemsAdapter(productList, requireContext(), sharedViewModel,
+                    this, switch)
 
                 recyclerView.adapter = productItemsForBudget
 
@@ -105,6 +85,14 @@ class NewBudgetFragment : Fragment() {
         }
 }
 
+    fun saveBudgetToCreate() {
+
+        var budgetToCreate = sharedViewModel.getBudgetToCreate()
+
+            newBudgetViewModel.createBudget(budgetToCreate.value!!)
+        }
+
+
     @SuppressLint("SuspiciousIndentation")
     private fun search(productList : MutableList<Product>, query: String?) {
 
@@ -121,8 +109,8 @@ class NewBudgetFragment : Fragment() {
                 }
 
                 var auxiliarAdapter = ItemsAdapter(temporalProductList, requireContext(),
-                    sharedViewModel
-                    , switch)
+                    sharedViewModel ,this, switch)
+
                 recyclerView.setAdapter(auxiliarAdapter)
 
             }
