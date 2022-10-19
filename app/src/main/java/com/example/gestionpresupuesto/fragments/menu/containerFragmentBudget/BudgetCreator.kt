@@ -18,6 +18,7 @@ import com.example.gestionpresupuesto.databinding.FragmentProductDetailBinding
 import com.example.gestionpresupuesto.entities.Product
 import com.example.gestionpresupuesto.viewmodels.BudgetCreatorViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class BudgetCreator : Fragment() {
@@ -87,8 +88,14 @@ class BudgetCreator : Fragment() {
 
         var budgetToCreate = sharedViewModel.getBudgetToCreate()
 
-        budgetCreatorViewModel.createBudget(budgetToCreate.value!!)
+        budgetCreatorViewModel.createBudget(budgetToCreate.value!!, this)
         }
+
+    fun showAlert() {
+
+        Snackbar.make(binding.newBudgetItemsRecyclerView, "Presupuesto guardado con exito", Snackbar.LENGTH_LONG).show()
+
+    }
 
 
 

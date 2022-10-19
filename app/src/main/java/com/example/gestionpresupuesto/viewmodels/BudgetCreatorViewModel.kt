@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gestionpresupuesto.entities.Budget
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreator
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreatorDirections
 import com.example.gestionpresupuesto.repository.BudgetRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,13 +14,17 @@ class BudgetCreatorViewModel : ViewModel() {
 
     var budgetRepository = BudgetRepository()
 
-    fun createBudget(budgetToCreate: Budget) {
+    fun createBudget(budgetToCreate: Budget, fragmet: BudgetCreator) {
         viewModelScope.launch(Dispatchers.Main) {
 
             try {
 
                 budgetToCreate.budgetNumber = setBudgetNumber(budgetRepository.getAllBudgets().size)
                 budgetRepository.createBudget(budgetToCreate)
+                fragmet.showAlert()
+                BudgetCreatorDirections.actionBudgetCreator2ToMainBudgetList()
+
+
 
             } catch (e: Exception) {
 

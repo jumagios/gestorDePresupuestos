@@ -1,6 +1,8 @@
 package com.example.gestionpresupuesto.adapters
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.entities.Product
 import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreator
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreatorDirections
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -187,30 +190,39 @@ class ItemsAdapter(
 
         finish_button.setOnClickListener() {
 
+            val dialogBuilder = AlertDialog.Builder(context)
+            dialogBuilder.setMessage("¿Finalizar carga?")
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", DialogInterface.OnClickListener {
+                        dialog, id ->
 
-                var stateList = sharedViewModel.getState()
+                    var stateList = sharedViewModel.getState()
 
-                if (stateList.size != 0) {
+                    if (stateList.size != 0) {
 
-                    for (item in stateList) {
+                        for (item in stateList) {
 
-                        if (item.quantity != 0) {
-                            sharedViewModel.getBudgetToCreate().value?.productsItems?.add(item)
+                            if (item.quantity != 0) {
+                                sharedViewModel.getBudgetToCreate().value?.productsItems?.add(item)
+                            }
                         }
+
+                        budgetCreator.saveBudgetToCreate()
+
+                    }  else  {
+                        Snackbar.make(holder.itemView, "No cargó ningún producto", Snackbar.LENGTH_LONG).show()
                     }
 
-                    budgetCreator.saveBudgetToCreate()
+        })
+                .setNegativeButton("Cancelar", DialogInterface.OnClickListener {
+                        dialog, id -> dialog.cancel()
+                })
 
-                }  else  {
-                    Snackbar.make(holder.itemView, "No cargó ningún producto", Snackbar.LENGTH_LONG).show()
-                }
-
-            }
-
-
-            }
-
-
+            val alert = dialogBuilder.create()
+            alert.setTitle("")
+            alert.show()
+        }
+}
 
     override fun getItemCount(): Int {
         return productList.size
