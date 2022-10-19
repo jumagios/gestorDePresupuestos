@@ -9,26 +9,25 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import com.example.gestionpresupuesto.databinding.FragmentBugdetFormBinding
 import com.example.gestionpresupuesto.entities.Budget
-import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
-import com.example.gestionpresupuesto.databinding.FragmentBugdetCreatorBinding
 import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
 
-class BudgetCreator : Fragment() {
+class BudgetForm : Fragment() {
 
     private val sharedViewModel : SharedViewModel by activityViewModels()
     private val mainProductListViewModel : MainProductListViewModel by viewModels()
-    private var _binding: FragmentBugdetCreatorBinding? = null
+    private var _binding: FragmentBugdetFormBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentBugdetCreatorBinding.inflate(inflater, container, false)
+        _binding = FragmentBugdetFormBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -76,7 +75,7 @@ class BudgetCreator : Fragment() {
                     mutableListOf())
 
                     sharedViewModel.setBudgetToCreate(parcialBudget)
-                    var action = BudgetCreatorDirections.actionBudgetCreator2ToNewBudgetFragment(parcialBudget)
+                    var action = BudgetFormDirections.actionBudgetFormToBudgetCreator()
                     binding.root.findNavController().navigate(action)
 
                 }else { Snackbar.make(binding.budgetCreator, "Todos los campos deben tener valores", Snackbar.LENGTH_LONG).show()

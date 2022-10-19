@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.entities.Product
-import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.NewBudgetFragment
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreator
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -23,7 +23,7 @@ class ItemsAdapter(
     var productList: MutableList<Product>,
     val context: Context,
     private val sharedViewModel: SharedViewModel,
-    private val budgetCreator: NewBudgetFragment,
+    private val budgetCreator: BudgetCreator,
     private val finish_button: Button
 
 ) : RecyclerView.Adapter<ItemsAdapter.MainHolder>() {
@@ -123,6 +123,8 @@ class ItemsAdapter(
         holder.setPrice(productList[position].price)
         holder.setStock(productList[position].stock)
         holder.setImage(productList[position].imageURL)
+
+        holder.setQuantityInput(0);
 
         if(sharedViewModel.getState().isNotEmpty()){
 

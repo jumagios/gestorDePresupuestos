@@ -8,13 +8,13 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.menu.containerFragmentBudget.NewBudgetFragment">
+    tools:context=".fragments.menu.containerFragmentBudget.BudgetCreator">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.menu.containerFragmentProduct.NewBudgetFragment">
+        tools:context=".fragments.menu.containerFragmentProduct.BudgetCreator">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchProductInBudgetCreator"
@@ -50,5 +50,4 @@
             app:layout_constraintTop_toBottomOf="@+id/searchProductInBudgetCreator" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
