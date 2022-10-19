@@ -17,6 +17,7 @@ import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.entities.Product
 import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreator
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreatorDirections
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -189,7 +190,6 @@ class ItemsAdapter(
 
         finish_button.setOnClickListener() {
 
-
             val dialogBuilder = AlertDialog.Builder(context)
             dialogBuilder.setMessage("¿Finalizar carga?")
                 .setCancelable(false)
@@ -213,9 +213,7 @@ class ItemsAdapter(
                         Snackbar.make(holder.itemView, "No cargó ningún producto", Snackbar.LENGTH_LONG).show()
                     }
 
-
         })
-                // negative button text and action
                 .setNegativeButton("Cancelar", DialogInterface.OnClickListener {
                         dialog, id -> dialog.cancel()
                 })
@@ -225,7 +223,6 @@ class ItemsAdapter(
             alert.show()
         }
 }
-
 
     override fun getItemCount(): Int {
         return productList.size
