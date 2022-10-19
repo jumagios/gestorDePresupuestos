@@ -73,7 +73,7 @@ class ProductCreator : Fragment() {
         super.onStart()
 
         binding.buttonUpload.setOnClickListener{
-            //selectImage()
+            selectImage()
         }
 
         binding.acceptButton.setOnClickListener {
@@ -108,7 +108,7 @@ class ProductCreator : Fragment() {
             Toast.makeText(this.context, "Failed", Toast.LENGTH_SHORT).show()
         }
     }
-    //Revisar el método showMultiImage, junto al prueba.xml
+
     private fun selectImage() {
         TedImagePicker.with(this.requireContext())
             .start { uri -> showSingleImage(uri) }
