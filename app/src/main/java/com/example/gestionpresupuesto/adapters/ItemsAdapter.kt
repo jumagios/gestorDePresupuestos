@@ -24,7 +24,7 @@ class ItemsAdapter(
     val context: Context,
     private val sharedViewModel: SharedViewModel,
     private val budgetCreator: NewBudgetFragment,
-    private val switch: Switch
+    private val finish_button: Button
 
 ) : RecyclerView.Adapter<ItemsAdapter.MainHolder>() {
     class MainHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -183,9 +183,8 @@ class ItemsAdapter(
             }
         }
 
-        switch.setOnClickListener() {
+        finish_button.setOnClickListener() {
 
-            if (switch.isChecked) {
 
                 var stateList = sharedViewModel.getState()
 
@@ -209,7 +208,7 @@ class ItemsAdapter(
 
             }
 
-        }
+
 
     override fun getItemCount(): Int {
         return productList.size
