@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Switch
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
@@ -29,7 +30,7 @@ class NewBudgetFragment : Fragment() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var productItemsForBudget : ItemsAdapter
     private lateinit var searchView : SearchView
-    private lateinit var switch : Switch
+    private lateinit var finish_button : Button
 
     private var _binding: FragmentNewBudgetBinding? = null
     private val binding get() = _binding!!
@@ -42,7 +43,7 @@ class NewBudgetFragment : Fragment() {
 
         v = inflater.inflate(R.layout.fragment_new_budget, container, false)
         recyclerView = binding.newBudgetItemsRecyclerView
-        switch = binding.finishSwitch
+        finish_button = binding.finishButton
         searchView = binding.searchProductInBudgetCreator
 
         return binding.root
@@ -62,7 +63,7 @@ class NewBudgetFragment : Fragment() {
                 linearLayoutManager = LinearLayoutManager(context)
                 recyclerView.layoutManager = linearLayoutManager
                 productItemsForBudget = ItemsAdapter(productList, requireContext(), sharedViewModel,
-                    this, switch)
+                    this, finish_button)
 
                 recyclerView.adapter = productItemsForBudget
 
@@ -109,7 +110,7 @@ class NewBudgetFragment : Fragment() {
                 }
 
                 var auxiliarAdapter = ItemsAdapter(temporalProductList, requireContext(),
-                    sharedViewModel ,this, switch)
+                    sharedViewModel ,this, finish_button)
 
                 recyclerView.setAdapter(auxiliarAdapter)
 
