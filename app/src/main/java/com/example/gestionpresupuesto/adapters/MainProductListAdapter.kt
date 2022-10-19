@@ -65,10 +65,16 @@ class MainProductListAdapter(
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        holder.setName(productList[position].name)
-        holder.setPrice(productList[position].price)
-        holder.setStock(productList[position].stock)
-        holder.setImage(productList[position].imageURL)
+
+
+        if (!productList[position].isErased) {
+            holder.setName(productList[position].name)
+            holder.setPrice(productList[position].price)
+            holder.setStock(productList[position].stock)
+            holder.setImage(productList[position].imageURL)
+        }
+
+
         holder.getProductItemDetail().setOnClickListener{
             val action = MainProductListDirections.actionMainProductListToProductDetail(productList[position])
             //Este genera la cción de ir a el detalle del producto

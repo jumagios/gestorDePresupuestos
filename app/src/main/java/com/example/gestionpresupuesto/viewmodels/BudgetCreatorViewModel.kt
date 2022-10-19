@@ -8,7 +8,7 @@ import com.example.gestionpresupuesto.repository.BudgetRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class BugdetCreatorViewModel : ViewModel() {
+class BudgetCreatorViewModel : ViewModel() {
 
     var budgetRepository = BudgetRepository()
 
@@ -17,8 +17,8 @@ class BugdetCreatorViewModel : ViewModel() {
 
             try {
 
-                    budgetToCreate.budgetNumber = setBudgetNumber(budgetRepository.getAllBudgets().size)
-                    budgetRepository.createBudget(budgetToCreate)
+                budgetToCreate.budgetNumber = setBudgetNumber(budgetRepository.getAllBudgets().size)
+                budgetRepository.createBudget(budgetToCreate)
 
             } catch (e: Exception) {
 
@@ -42,4 +42,5 @@ class BugdetCreatorViewModel : ViewModel() {
 
     }
 }
+
 
