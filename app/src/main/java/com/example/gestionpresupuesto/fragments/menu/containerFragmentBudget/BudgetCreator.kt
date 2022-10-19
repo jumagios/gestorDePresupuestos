@@ -7,24 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Switch
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.adapters.ItemsAdapter
-import com.example.gestionpresupuesto.databinding.FragmentNewBudgetBinding
+import com.example.gestionpresupuesto.databinding.FragmentBudgetCreatorBinding
+import com.example.gestionpresupuesto.databinding.FragmentProductDetailBinding
 import com.example.gestionpresupuesto.entities.Product
-import com.example.gestionpresupuesto.viewmodels.NewBudgetViewModel
+import com.example.gestionpresupuesto.viewmodels.BudgetCreatorViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import java.util.*
 
-class NewBudgetFragment : Fragment() {
+class BudgetCreator : Fragment() {
 
     lateinit var v : View
-    private val newBudgetViewModel: NewBudgetViewModel by viewModels()
+    private val budgetCreatorViewModel: BudgetCreatorViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by activityViewModels()
     lateinit var recyclerView : RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
@@ -32,16 +31,14 @@ class NewBudgetFragment : Fragment() {
     private lateinit var searchView : SearchView
     private lateinit var finish_button : Button
 
-    private var _binding: FragmentNewBudgetBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentBudgetCreatorBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentNewBudgetBinding.inflate(inflater, container, false)
-
-        v = inflater.inflate(R.layout.fragment_new_budget, container, false)
+        binding = FragmentBudgetCreatorBinding.inflate(inflater, container, false)
         recyclerView = binding.newBudgetItemsRecyclerView
         finish_button = binding.finishButton
         searchView = binding.searchProductInBudgetCreator
@@ -90,7 +87,7 @@ class NewBudgetFragment : Fragment() {
 
         var budgetToCreate = sharedViewModel.getBudgetToCreate()
 
-            newBudgetViewModel.createBudget(budgetToCreate.value!!)
+        budgetCreatorViewModel.createBudget(budgetToCreate.value!!)
         }
 
 

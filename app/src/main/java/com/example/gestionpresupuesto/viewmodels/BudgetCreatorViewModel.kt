@@ -8,7 +8,7 @@ import com.example.gestionpresupuesto.repository.BudgetRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NewBudgetViewModel : ViewModel() {
+class BudgetCreatorViewModel : ViewModel() {
 
     var budgetRepository = BudgetRepository()
 
