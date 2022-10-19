@@ -91,8 +91,10 @@ class BudgetCreator : Fragment() {
         }
 
 
+
     @SuppressLint("SuspiciousIndentation")
     private fun search(productList : MutableList<Product>, query: String?) {
+
 
         val temporalProductList = mutableListOf<Product>()
 
