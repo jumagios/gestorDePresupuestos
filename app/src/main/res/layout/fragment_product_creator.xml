@@ -8,6 +8,22 @@
     tools:context=".fragments.menu.containerFragmentProduct.ProductCreator">
 
 
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="9dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="32dp"
+        android:text="$"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/firebaseImage"
+        app:layout_constraintEnd_toStartOf="@+id/productPrice"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/productStock"
+        app:layout_constraintTop_toBottomOf="@+id/productProviderCode"
+        app:layout_constraintVertical_bias="1.0" />
+
     <Button
         android:id="@+id/cancel_button"
         android:layout_width="149dp"
