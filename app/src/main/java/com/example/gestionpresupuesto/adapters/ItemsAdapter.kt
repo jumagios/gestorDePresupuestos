@@ -1,6 +1,8 @@
 package com.example.gestionpresupuesto.adapters
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -188,28 +190,41 @@ class ItemsAdapter(
         finish_button.setOnClickListener() {
 
 
-                var stateList = sharedViewModel.getState()
+            val dialogBuilder = AlertDialog.Builder(context)
+            dialogBuilder.setMessage("¿Finalizar carga?")
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", DialogInterface.OnClickListener {
+                        dialog, id ->
 
-                if (stateList.size != 0) {
+                    var stateList = sharedViewModel.getState()
 
-                    for (item in stateList) {
+                    if (stateList.size != 0) {
 
-                        if (item.quantity != 0) {
-                            sharedViewModel.getBudgetToCreate().value?.productsItems?.add(item)
+                        for (item in stateList) {
+
+                            if (item.quantity != 0) {
+                                sharedViewModel.getBudgetToCreate().value?.productsItems?.add(item)
+                            }
                         }
+
+                        budgetCreator.saveBudgetToCreate()
+
+                    }  else  {
+                        Snackbar.make(holder.itemView, "No cargó ningún producto", Snackbar.LENGTH_LONG).show()
                     }
 
-                    budgetCreator.saveBudgetToCreate()
 
-                }  else  {
-                    Snackbar.make(holder.itemView, "No cargó ningún producto", Snackbar.LENGTH_LONG).show()
-                }
+        })
+                // negative button text and action
+                .setNegativeButton("Cancelar", DialogInterface.OnClickListener {
+                        dialog, id -> dialog.cancel()
+                })
 
-            }
-
-
-            }
-
+            val alert = dialogBuilder.create()
+            alert.setTitle("")
+            alert.show()
+        }
+}
 
 
     override fun getItemCount(): Int {
