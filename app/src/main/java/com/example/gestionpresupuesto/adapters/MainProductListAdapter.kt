@@ -28,22 +28,22 @@ class MainProductListAdapter(
         }
 
         fun setName(name: String) {
-            val txt: TextView = view.findViewById(R.id.txt_name_item)
+            val txt: TextView = view.findViewById(R.id.product_item_detail_for_budget_txt_name_item)
             txt.text = name
         }
 
         fun setPrice(price: Double) {
-            val pri: TextView = view.findViewById(R.id.txt_price_item)
+            val pri: TextView = view.findViewById(R.id.product_item_detail_for_budget_txt_price_item)
             pri.text = price.toString()
         }
 
         fun setStock(stock: Int) {
-            val sto: TextView = view.findViewById(R.id.txt_stock_item)
+            val sto: TextView = view.findViewById(R.id.product_item_detail_for_budget_txt_stock_item)
             sto.text = stock.toString()
         }
 
         fun setImage(img: String) {
-            var imgURL : ImageView = view.findViewById(R.id.img_item)
+            var imgURL : ImageView = view.findViewById(R.id.product_item_detail_for_budget_img_item)
             Glide.with(imgURL).load(img).override(200,200).into(imgURL)
         }
 

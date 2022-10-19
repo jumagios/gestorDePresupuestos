@@ -19,7 +19,6 @@ import com.google.firebase.Timestamp
 
 class BudgetCreator : Fragment() {
 
-    private val viewModel : BugdetCreatorViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by activityViewModels()
     private val mainProductListViewModel : MainProductListViewModel by viewModels()
     private var _binding: FragmentBugdetCreatorBinding? = null

@@ -1,7 +1,6 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,9 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.adapters.ItemsAdapter
+import com.example.gestionpresupuesto.databinding.FragmentNewBudgetBinding
 import com.example.gestionpresupuesto.entities.Product
-import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
-import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.NewBudgetViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import java.util.*
@@ -30,21 +28,24 @@ class NewBudgetFragment : Fragment() {
     lateinit var recyclerView : RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var productItemsForBudget : ItemsAdapter
-
     private lateinit var searchView : SearchView
-
     private lateinit var switch : Switch
+
+    private var _binding: FragmentNewBudgetBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v = inflater.inflate(R.layout.fragment_new_budget, container, false)
-        recyclerView = v.findViewById(R.id.new_budget_items_recycler_view)
-        switch = v.findViewById(R.id.finish_switch)
-        searchView = v.findViewById(R.id.searchProductInBudgetCreator)
+        _binding = FragmentNewBudgetBinding.inflate(inflater, container, false)
 
-        return v
+        v = inflater.inflate(R.layout.fragment_new_budget, container, false)
+        recyclerView = binding.newBudgetItemsRecyclerView
+        switch = binding.finishSwitch
+        searchView = binding.searchProductInBudgetCreator
+
+        return binding.root
     }
 
     override fun onStart() {
