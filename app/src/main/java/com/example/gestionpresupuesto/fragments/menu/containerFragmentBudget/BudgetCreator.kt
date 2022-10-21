@@ -87,12 +87,11 @@ class BudgetCreator : Fragment() {
     fun saveBudgetToCreate() {
 
         var budgetToCreate = sharedViewModel.getBudgetToCreate()
-
         budgetCreatorViewModel.createBudget(budgetToCreate.value!!, this)
         }
 
     fun showAlert() {
-
+        sharedViewModel.clearState()
         Snackbar.make(binding.newBudgetItemsRecyclerView, "Presupuesto guardado con exito", Snackbar.LENGTH_LONG).show()
 
     }
