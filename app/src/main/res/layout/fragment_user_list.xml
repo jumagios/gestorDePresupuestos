@@ -8,20 +8,17 @@
     android:id="@+id/user_frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.menu.containerFragmentProduct.MainProductList" >
-
-    <!--Search view for filtering list view-->
-
+    tools:context=".fragments.menu.containerFragmentUser.UserList" >
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frameLayout5"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.menu.containerFragmentProduct.MainProductList" >
+        tools:context=".fragments.menu.containerFragmentUser.UserList" >
 
-        <!--Search view for filtering list view-->
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchViewBudget"
+    <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchViewUser"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
@@ -32,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rec_budgets"
+            android:id="@+id/rec_users"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -42,20 +39,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchViewBudget" />
+            app:layout_constraintTop_toBottomOf="@+id/searchViewUser" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_button_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/fab_content_desc"
-        app:backgroundTint="@color/teal_200"
-        app:rippleColor="@color/teal_200"
-        app:srcCompat="@drawable/ic_baseline_add_circle_24" />
-
-
+ </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

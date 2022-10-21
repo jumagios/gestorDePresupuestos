@@ -12,7 +12,7 @@
         android:title="Productos"
         />
     <item
-        android:id="@+id/mainUser"
+        android:id="@+id/userList"
         android:icon="@drawable/ic_baseline_people_24"
         android:title="Usuarios" />
 
