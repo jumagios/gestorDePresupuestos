@@ -32,23 +32,6 @@ class BudgetCreatorViewModel : ViewModel() {
             }
         }
 
-    fun createBudget2(budgetToCreate: Budget, fragmet: BudgetCreator) {
-        viewModelScope.launch(Dispatchers.Main) {
-
-            try {
-
-                budgetToCreate.budgetNumber = setBudgetNumber()
-                budgetRepository.createBudget(budgetToCreate)
-                fragmet.showAlert()
-
-            } catch (e: Exception) {
-
-                Log.d("BugdetCreatorViewModel", e.message.toString())
-
-            }
-        }
-    }
-
      suspend fun setBudgetNumber(): String {
         var finalBudgetNumber = ""
 
@@ -78,16 +61,7 @@ class BudgetCreatorViewModel : ViewModel() {
 
         }
 
-
         return finalBudgetNumber
-
 
     }
 }
-
-
-
-
-
-
-
