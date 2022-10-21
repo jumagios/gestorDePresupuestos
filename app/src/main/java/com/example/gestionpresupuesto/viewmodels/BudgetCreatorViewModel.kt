@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gestionpresupuesto.entities.Budget
+import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreator
 import com.example.gestionpresupuesto.repository.BudgetRepository
 import kotlinx.coroutines.Dispatchers
@@ -12,15 +13,15 @@ import kotlinx.coroutines.launch
 class BudgetCreatorViewModel : ViewModel() {
 
     var budgetRepository = BudgetRepository()
-    var sharedViewModel = SharedViewModel()
 
     fun createBudget (budgetToCreate: Budget, fragmet: BudgetCreator) {
 
         viewModelScope.launch(Dispatchers.Main) {
 
             try {
-                budgetToCreate.budgetNumber = setBudgetNumber()
 
+                budgetToCreate.budgetNumber = setBudgetNumber()
+                budgetToCreate.totalGross = calculateTotalGross(budgetToCreate.productsItems)
                 budgetRepository.createBudget(budgetToCreate)
                 fragmet.showAlert()
 
@@ -64,6 +65,16 @@ class BudgetCreatorViewModel : ViewModel() {
         }
 
         return finalBudgetNumber
+
+    }
+
+    private fun calculateTotalGross(itemList : MutableList<Item>) : Double {
+
+        var totalGross = 0.0;
+
+        itemList.forEach {totalGross += (it.quantity * it.price)}
+
+        return totalGross
 
     }
 }
