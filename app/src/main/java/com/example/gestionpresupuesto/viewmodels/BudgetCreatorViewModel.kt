@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 class BudgetCreatorViewModel : ViewModel() {
 
     var budgetRepository = BudgetRepository()
+    var sharedViewModel = SharedViewModel()
 
     fun createBudget (budgetToCreate: Budget, fragmet: BudgetCreator) {
 
@@ -22,6 +23,7 @@ class BudgetCreatorViewModel : ViewModel() {
 
                 budgetRepository.createBudget(budgetToCreate)
                 fragmet.showAlert()
+
 
             } catch (e: Exception) {
 

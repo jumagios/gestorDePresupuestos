@@ -86,25 +86,30 @@ class BudgetCreator : Fragment() {
 
     fun saveBudgetToCreate() {
 
-        var budgetToCreate = sharedViewModel.getBudgetToCreate()
+        try {
 
-        budgetCreatorViewModel.createBudget(budgetToCreate.value!!, this)
+            var budgetToCreate = sharedViewModel.getBudgetToCreate()
+            budgetCreatorViewModel.createBudget(budgetToCreate.value!!, this)
+
+        } catch (e : Exception) {
+
+            e.message.toString()
+            Snackbar.make(binding.newBudgetItemsRecyclerView, "Error inesperado de sistema", Snackbar.LENGTH_LONG).show()
+
         }
+     }
 
     fun showAlert() {
-
+        sharedViewModel.clearState()
         Snackbar.make(binding.newBudgetItemsRecyclerView, "Presupuesto guardado con exito", Snackbar.LENGTH_LONG).show()
 
     }
-
-
 
     @SuppressLint("SuspiciousIndentation")
     private fun search(productList : MutableList<Product>, query: String?) {
 
 
         val temporalProductList = mutableListOf<Product>()
-
 
         val queryLowerCase = query!!.lowercase(Locale.getDefault())
 
