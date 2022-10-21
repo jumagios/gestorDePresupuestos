@@ -2,6 +2,7 @@ package com.example.gestionpresupuesto.repository
 
 import android.util.Log
 import com.example.gestionpresupuesto.entities.Budget
+import com.example.gestionpresupuesto.entities.Counter
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -13,7 +14,7 @@ class BudgetRepository {
     private val db = Firebase.firestore
     private val auth = Firebase.auth
 
-    fun createBudget(budgetToCreate: Budget) {
+     fun createBudget(budgetToCreate: Budget) {
 
         try {
 
@@ -61,7 +62,7 @@ class BudgetRepository {
 
                 for (document in data) {
 
-                   var budgetFound = document.toObject<Budget>()
+                    var budgetFound = document.toObject<Budget>()
 
                     budgetList.add(budgetFound)
 
@@ -98,10 +99,37 @@ class BudgetRepository {
 
             Log.d("BudgetRepository", e.message.toString())
         }
-
     }
+
+         suspend fun getBudgetCounter() : Counter {
+
+            try {
+
+                var counter = db.collection("budgetCounter")
+                    .document("counter").get().await()
+
+                var budgetCounter = counter.toObject<Counter>()!!
+
+                return budgetCounter
+
+            } catch (e: Exception) {
+                Log.d("BudgetRepository", e.message.toString())
+                throw Exception("Error obteniendo el contador de presupuestos")
+            }
+        }
+
+      fun increaseBudgetCounter(newCounterValue : Int) {
+
+        try {
+
+            val counter = db.collection("budgetCounter").document("counter")
+            counter.update("counter", newCounterValue)
+
+        } catch (e: Exception) {
+            Log.d("BudgetRepository", e.message.toString())
+            throw Exception("Error incrementando el contador de presupuestos")
+        }
+
+        }
 }
-
-
-
 
