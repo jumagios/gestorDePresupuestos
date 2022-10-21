@@ -1,5 +1,13 @@
 package com.example.gestionpresupuesto.entities
 
-class User (var user: String, var password: String) {
+data class User (
 
+    var name: String,
+    var dni : String,
+    var email : String,
+    var admin: Boolean
+
+)  {
+
+    constructor() : this ("","","", false)
 }

@@ -27,22 +27,9 @@
             app:destination="@id/productDetail" />
     </fragment>
     <fragment
-        android:id="@+id/mainUser"
-        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.User"
-        tools:layout="@layout/fragment_menu_user" >
-        <action
-            android:id="@+id/action_mainUser_to_userCreator"
-            app:destination="@id/userCreator" />
-    </fragment>
-    <fragment
         android:id="@+id/productCreator2"
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductCreator"
         android:label="ProductCreator" />
-    <fragment
-        android:id="@+id/userCreator"
-        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.UserCreator"
-        android:label="fragment_user_creator"
-        tools:layout="@layout/fragment_user_creator" />
     <fragment
         android:id="@+id/productDetail"
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductDetail"
@@ -78,9 +65,18 @@
         android:id="@+id/budgetCreator2"
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreator"
         android:label="fragment_budget_creator"
+
         tools:layout="@layout/fragment_budget_creator" >
         <action
             android:id="@+id/action_budgetCreator2_to_mainBudgetList"
             app:destination="@id/mainBudgetList" />
     </fragment>
+
+        tools:layout="@layout/fragment_budget_creator" />
+    <fragment
+        android:id="@+id/userList"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.UserList"
+        android:label="fragment_user_list"
+        tools:layout="@layout/fragment_user_list" />
+
 </navigation>

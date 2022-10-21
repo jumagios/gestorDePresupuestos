@@ -43,4 +43,11 @@ class SharedViewModel : ViewModel() {
 
     }
 
+    fun clearState()  {
+
+        this.budgetToCreate.value = null
+        this.saveState.clear()
+
+    }
+
  }
