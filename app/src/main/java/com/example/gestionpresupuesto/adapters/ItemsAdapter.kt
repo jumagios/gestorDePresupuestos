@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.R
@@ -208,12 +207,6 @@ class ItemsAdapter(
                                 sharedViewModel.getBudgetToCreate().value?.productsItems?.add(item)
                             }
                         }
-
-                        val action = BudgetCreatorDirections.actionBudgetCreator2ToMainBudgetList()
-                        holder.itemView.findNavController().navigate(action)
-
-
-
 
                         budgetCreator.saveBudgetToCreate()
 

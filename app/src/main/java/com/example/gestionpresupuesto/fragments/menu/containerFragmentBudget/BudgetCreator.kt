@@ -2,6 +2,8 @@ package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +12,8 @@ import android.widget.Button
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.adapters.ItemsAdapter
@@ -91,6 +95,7 @@ class BudgetCreator : Fragment() {
             var budgetToCreate = sharedViewModel.getBudgetToCreate()
             budgetCreatorViewModel.createBudget(budgetToCreate.value!!, this)
 
+
         } catch (e : Exception) {
 
             e.message.toString()
@@ -101,7 +106,19 @@ class BudgetCreator : Fragment() {
 
     fun showAlert() {
         sharedViewModel.clearState()
-        Snackbar.make(binding.newBudgetItemsRecyclerView, "Presupuesto guardado con exito", Snackbar.LENGTH_LONG).show()
+
+        val oSnackbar = Snackbar.make(requireView(), "Presupuesto guardado con exito", Snackbar.LENGTH_LONG)
+        oSnackbar.duration = 9999000
+        oSnackbar.show()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+
+            val action = BudgetCreatorDirections.actionBudgetCreator2ToMainBudgetList()
+            this.findNavController().navigate(action)
+
+        }, 1700)
+
+
 
     }
 

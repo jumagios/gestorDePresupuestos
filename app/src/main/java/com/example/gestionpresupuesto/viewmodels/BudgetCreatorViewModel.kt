@@ -3,9 +3,11 @@ package com.example.gestionpresupuesto.viewmodels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreator
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreatorDirections
 import com.example.gestionpresupuesto.repository.BudgetRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,6 +26,7 @@ class BudgetCreatorViewModel : ViewModel() {
                 budgetToCreate.totalGross = calculateTotalGross(budgetToCreate.productsItems)
                 budgetRepository.createBudget(budgetToCreate)
                 fragmet.showAlert()
+
 
 
             } catch (e: Exception) {
