@@ -72,7 +72,7 @@
             app:destination="@id/mainBudgetList" />
     </fragment>
 
-        tools:layout="@layout/fragment_budget_creator" />
+
     <fragment
         android:id="@+id/userList"
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.UserList"
