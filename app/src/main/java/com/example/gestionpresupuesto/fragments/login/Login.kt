@@ -21,7 +21,6 @@ class Login : Fragment() {
     lateinit var txtUser : TextView
     lateinit var txtPass : TextView
     lateinit var btnLogin : Button
-    var userList : MutableList<User> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,9 +30,6 @@ class Login : Fragment() {
         txtUser = v.findViewById(R.id.loginUser)
         txtPass = v.findViewById(R.id.loginPass)
         btnLogin = v.findViewById(R.id.btnLogin)
-
-        userList.add(User("lucas","lopez"))
-        userList.add(User("",""))
 
         return v
     }
@@ -62,25 +58,12 @@ class Login : Fragment() {
     }
 
     private fun existUser (user: String) : Boolean {
-        var exist = false
 
-        userList.forEach {
-            if (it.user == user) {
-                exist = true
-            }
-        }
-
-        return exist
+        return true
     }
 
     private fun existPass (pass: String) : Boolean {
-        var exist = false
 
-        userList.forEach {
-            if (it.password == pass) {
-                exist = true
-            }
-        }
-        return exist
+        return true
     }
 }
