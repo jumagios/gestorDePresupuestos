@@ -20,6 +20,8 @@ class Login : Fragment() {
     lateinit var v : View
     lateinit var txtUser : TextView
     lateinit var txtPass : TextView
+    lateinit var txtRequestNewPassword : TextView
+
     lateinit var btnLogin : Button
 
     override fun onCreateView(
@@ -30,6 +32,8 @@ class Login : Fragment() {
         txtUser = v.findViewById(R.id.loginUser)
         txtPass = v.findViewById(R.id.loginPass)
         btnLogin = v.findViewById(R.id.btnLogin)
+        txtRequestNewPassword = v.findViewById(R.id.reset_password)
+
 
         return v
     }
@@ -55,6 +59,13 @@ class Login : Fragment() {
             }
 
         }
+
+        txtRequestNewPassword.setOnClickListener {
+
+            v.findNavController().navigate(LoginDirections.actionLoginToResetPasswordFragment())
+
+        }
+
     }
 
     private fun existUser (user: String) : Boolean {
