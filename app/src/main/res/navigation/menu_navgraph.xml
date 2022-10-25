@@ -29,7 +29,11 @@
     <fragment
         android:id="@+id/productCreator2"
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductCreator"
-        android:label="ProductCreator" />
+        android:label="ProductCreator" >
+        <action
+            android:id="@+id/action_productCreator2_to_mainProductList"
+            app:destination="@id/mainProductList" />
+    </fragment>
     <fragment
         android:id="@+id/productDetail"
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductDetail"

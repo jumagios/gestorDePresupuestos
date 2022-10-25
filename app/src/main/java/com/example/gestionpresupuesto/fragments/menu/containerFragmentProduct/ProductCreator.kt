@@ -1,10 +1,14 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct
 
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +17,12 @@ import android.widget.Toast
 import androidx.compose.material.Snackbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.gestionpresupuesto.databinding.FragmentProductCreatorBinding
 import com.example.gestionpresupuesto.entities.Product
 import com.bumptech.glide.Glide
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreatorDirections
 import com.example.gestionpresupuesto.viewmodels.ProductCreatorViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.storage.FirebaseStorage
@@ -71,6 +78,8 @@ import java.util.*
 
             } else {
 
+
+
                 uploadImage()
 
 
@@ -80,9 +89,28 @@ import java.util.*
         }
 
         binding.cancelButton.setOnClickListener {
-            goToProductCreate()
+
+            val dialogBuilder = AlertDialog.Builder(context)
+            dialogBuilder.setMessage("¿Desea cancelar la creacion del producto?")
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", DialogInterface.OnClickListener {
+                        dialog, id ->
+
+                        var action = ProductCreatorDirections.actionProductCreator2ToMainProductList()
+                        binding.root.findNavController().navigate(action)
+
+
+                })
+                .setNegativeButton("Cancelar", DialogInterface.OnClickListener {
+                        dialog, id -> dialog.cancel()
+                })
+
+            val alert = dialogBuilder.create()
+            alert.setTitle("")
+            alert.show()
         }
     }
+
 
     private fun uploadImage() {
         val progressDialog = ProgressDialog(this.context)
@@ -103,7 +131,6 @@ import java.util.*
             imagen = storageReference.downloadUrl.toString()
 
             createProduct(binding)
-            goToProductCreate()
 
         }.addOnFailureListener {
             if (progressDialog.isShowing) progressDialog.dismiss()
@@ -132,16 +159,30 @@ import java.util.*
 
         }
     }
-    private fun goToProductCreate() {
-        binding.productCreator.removeAllViews()
-    }
 
     private fun createProduct(binding: FragmentProductCreatorBinding) {
             var product = Product("",binding.productInternalCode.text.toString(),binding.productProviderCode.text.toString(),
             binding.productname.text.toString(),binding.productdescription.text.toString(),binding.productcategory.text.toString(),
             binding.productPrice.text.toString().toDouble(),binding.productStock.text.toString().toInt(),Timestamp.now(),false,
             imagen)
-            viewModel.createProduct(product)
+            viewModel.createProduct(product, this)
     }
+
+     fun showAlert(){
+
+         com.google.android.material.snackbar.
+         Snackbar.make(requireView(), "Producto creado con exito",
+             com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
+                  .show()
+
+         Handler(Looper.getMainLooper()).postDelayed({
+
+             var action = ProductCreatorDirections.actionProductCreator2ToMainProductList()
+             binding.root.findNavController().navigate(action)
+
+         }, 1700)
+
+
+     }
 
 }
