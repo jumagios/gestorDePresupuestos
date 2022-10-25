@@ -10,19 +10,16 @@
 
     <TextView
         android:id="@+id/textView16"
-        android:layout_width="9dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="5dp"
+        android:inputType="number"
         android:text="$"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/firebaseImage"
         app:layout_constraintEnd_toStartOf="@+id/productPrice"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/productStock"
-        app:layout_constraintTop_toBottomOf="@+id/productProviderCode"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/productStock" />
 
     <Button
         android:id="@+id/cancel_button"
@@ -44,6 +41,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:hint="Precio"
+        android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/productStock"
@@ -55,6 +53,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:hint="Stock"
+        android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
