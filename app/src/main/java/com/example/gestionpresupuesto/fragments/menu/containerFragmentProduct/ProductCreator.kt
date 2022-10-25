@@ -23,7 +23,7 @@ import gun0912.tedimagepicker.builder.TedImagePicker
 import java.text.SimpleDateFormat
 import java.util.*
 
-abstract class ProductCreator : Fragment() {
+ class ProductCreator : Fragment() {
     private lateinit var binding: FragmentProductCreatorBinding
     private lateinit var ImageUri : Uri
     private var mStorageRef: StorageReference? = null
@@ -31,6 +31,9 @@ abstract class ProductCreator : Fragment() {
     private lateinit var viewModel: ProductCreatorViewModel
     private var imagen : String = ""
 
+    companion object {
+        fun newInstance() = ProductCreator()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -98,7 +101,7 @@ abstract class ProductCreator : Fragment() {
         binding.firebaseImage.visibility = View.VISIBLE
         binding.containerSelectedPhotos.visibility = View.GONE
         Glide.with(this).load(uri).into(binding.firebaseImage)
-
+        ImageUri = uri
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
