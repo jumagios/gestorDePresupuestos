@@ -21,9 +21,6 @@ class ProductRepository {
 
             db.collection("products").add(productToCreate)
 
-
-
-
         } catch (e: Exception) {
 
             Log.d("ProductRepository", e.message.toString())

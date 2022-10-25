@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.compose.material.Snackbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.gestionpresupuesto.databinding.FragmentProductCreatorBinding
@@ -59,9 +60,23 @@ import java.util.*
         }
 
         binding.acceptButton.setOnClickListener {
-            uploadImage()
-            createProduct(binding)
-            goToProductCreate()
+
+
+            if( binding.productInternalCode.text.toString().isNullOrBlank() && binding.productProviderCode.text.toString().isNullOrBlank() &&
+                binding.productname.text.toString().isNullOrBlank() && binding.productdescription.text.toString().isNullOrBlank() &&
+                binding.productcategory.text.toString().isNullOrBlank() && binding.productPrice.text.toString().isNullOrBlank() &&
+                binding.productStock.text.toString().isNullOrBlank()) {
+
+                com.google.android.material.snackbar.Snackbar.make(binding.productCreator, "Todos los campos deben tener valores", com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show()
+
+            } else {
+
+                uploadImage()
+
+
+
+            }
+
         }
 
         binding.cancelButton.setOnClickListener {
@@ -80,12 +95,16 @@ import java.util.*
         val fileName = formatter.format(now)
         val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
 
-        val addOnFailureListener = storageReference.putFile(ImageUri).addOnSuccessListener {
+        storageReference.putFile(ImageUri).addOnSuccessListener {
 
-            firebaseImage.setImageURI(null)
+           // firebaseImage.setImageURI(null)
             Toast.makeText(this.context, "Successfuly uploaded", Toast.LENGTH_SHORT).show()
             if (progressDialog.isShowing) progressDialog.dismiss()
             imagen = storageReference.downloadUrl.toString()
+
+            createProduct(binding)
+            goToProductCreate()
+
         }.addOnFailureListener {
             if (progressDialog.isShowing) progressDialog.dismiss()
             Toast.makeText(this.context, "Failed", Toast.LENGTH_SHORT).show()
