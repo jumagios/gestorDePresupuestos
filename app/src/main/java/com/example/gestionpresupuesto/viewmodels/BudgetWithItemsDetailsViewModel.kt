@@ -74,11 +74,15 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
 
         titulo.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
         titulo.textSize = 20f
-        canvas.drawText(tituloText, 10f, 150f, titulo)
-        canvas.drawText(date, 10f, 150f, fecha)
+
+        fecha.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
+        fecha.textSize = 20f
+        canvas.drawText(date, 18f, 150f, fecha)
+
 
         descripcion.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL))
         descripcion.textSize = 14f
+
 
         var arrDescripcion = descripcionText.split("\n")
 
