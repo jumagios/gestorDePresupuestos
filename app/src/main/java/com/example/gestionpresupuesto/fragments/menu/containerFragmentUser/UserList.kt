@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.compose.material.Snackbar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.adapters.UsersAdapter
@@ -66,8 +67,8 @@ class UserList : Fragment() {
             buttonAdd.setOnClickListener() {
 
                 if(true) {
-
-
+                    var action = UserListDirections.actionUserListToUserCreator()
+                    binding.root.findNavController().navigate(action)
                 } else {
 
                     com.google.android.material.snackbar.Snackbar.make(binding.userFrameLayout, "ACCESO DENEGADO: Disponible solo para usuarios ADMINISTRADORES",
