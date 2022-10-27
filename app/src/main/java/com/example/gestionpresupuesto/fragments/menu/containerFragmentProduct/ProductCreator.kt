@@ -59,6 +59,7 @@ class ProductCreator : Fragment() {
         return v
     }
 
+    //seguir de aca
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
