@@ -53,23 +53,6 @@ class BudgetList : Fragment()  {
     private lateinit var temporalBudgetList : MutableList<Budget>
     private lateinit var buttonAdd : FloatingActionButton
 
-    private var activityResultLauncher: ActivityResultLauncher<Array<String>>
-    init{
-        this.activityResultLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions()) { result ->
-            var allAreGranted = true
-            for(b in result.values) {
-                allAreGranted = allAreGranted && b
-            }
-
-            if(allAreGranted) {
-                //capturePhoto()
-            }
-        }
-    }
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -91,7 +74,6 @@ class BudgetList : Fragment()  {
     override fun onStart() {
 
         super.onStart()
-        createPDF()
 
         viewModel.getAllBudgets()
 
@@ -151,72 +133,7 @@ class BudgetList : Fragment()  {
         // TODO: Use the ViewModel
     }
 
-
-    private fun createFile(pickerInitialUri: Uri) {
-        val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
-            addCategory(Intent.CATEGORY_OPENABLE)
-            type = "application/pdf"
-            putExtra(Intent.EXTRA_TITLE, "invoice.pdf")
-        }
-    }
-
-    fun createPDF() {
-
-                var tituloText = "Presupuesto"
-                var descripcionText =  "Presupuesto";
-
-                var pageHeight = 1120
-                var pageWidth = 792
-
-
-                var pdfDocument = PdfDocument()
-                var paint = Paint()
-                var titulo = TextPaint()
-                var descripcion = TextPaint()
-
-                var paginaInfo = PdfDocument.PageInfo.Builder(816, 1054, 1).create()
-                var pagina1 = pdfDocument.startPage(paginaInfo)
-
-                var canvas = pagina1.canvas
-
-                var bitmap = BitmapFactory.decodeResource(resources, R.drawable.cctvlogo)
-                var bitmapEscala = Bitmap.createScaledBitmap(bitmap, 80,80, false)
-                canvas.drawBitmap(bitmapEscala, 368f, 20f, paint)
-
-                titulo.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
-                titulo.textSize = 20f
-                canvas.drawText(tituloText, 10f, 150f, titulo)
-
-                descripcion.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL))
-                descripcion.textSize = 14f
-
-                var arrDescripcion = descripcionText.split("\n")
-
-                var y = 200f
-                for (item in arrDescripcion) {
-                    canvas.drawText(item, 10f, y, descripcion)
-                    y += 15
-                }
-
-                pdfDocument.finishPage(pagina1)
-
-                pdfDocument.toString()
-
-                val file = File(
-                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
-                    "test_presupuesto.pdf")
-
-                try {
-                    pdfDocument.writeTo(FileOutputStream(file))
-                    Toast.makeText(requireContext(), "Se creo el PDF correctamente", Toast.LENGTH_LONG).show()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
-                pdfDocument.close()
-
-            }
-    }
+}
 
 
 
