@@ -88,7 +88,7 @@ class BudgetList : Fragment() {
         })
 
         buttonAdd.setOnClickListener {
-            val action = BudgetListDirections.actionMainBudgetListToBudgetCreator2()
+            val action = BudgetListDirections.actionMainBudgetListToBudgetForm()
             v.findNavController().navigate(action)
         }
     }

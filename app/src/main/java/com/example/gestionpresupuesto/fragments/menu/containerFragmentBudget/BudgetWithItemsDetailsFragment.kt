@@ -18,6 +18,17 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     private lateinit var viewModel: BudgetWithItemsDetailsViewModel
     private lateinit var budgetNumber: TextView
     private lateinit var budgetDate: TextView
+    private lateinit var budgetExpirationDate: TextView
+    private lateinit var clientName: TextView
+    private lateinit var clientDomicile: TextView
+    private lateinit var clientBetweenStreet1: TextView
+    private lateinit var clientBetweenStreet2: TextView
+    private lateinit var clientApartment: TextView
+    private lateinit var clientProvince: TextView
+    private lateinit var clientPhone: TextView
+    private lateinit var budgetTotalGross: TextView
+    private lateinit var clientAlternativePhone: TextView
+
     private lateinit var deleteButton: Button
 
     override fun onCreateView(
@@ -25,7 +36,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         v = inflater.inflate(R.layout.fragment_budget_with_items_details, container, false)
-        deleteButton = v.findViewById(R.id.budget_delete_button)
+        deleteButton = v.findViewById(R.id.delete_button)
         return v
     }
 
@@ -38,7 +49,8 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        var budgetDetails = BudgetWithItemsDetailsFragmentArgs.fromBundle(requireArguments()).budgetDetails
+        var budgetDetails =
+            BudgetWithItemsDetailsFragmentArgs.fromBundle(requireArguments()).budgetDetails
 
 
         budgetNumber = v.findViewById(R.id.budget_details_budgetnumber)
@@ -46,6 +58,36 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
         budgetDate = v.findViewById(R.id.budget_details_creation_date)
         budgetDate.text = budgetDetails.budgetDate.toDate().toString()
+
+        clientName = v.findViewById(R.id.budget_clientName)
+        clientName.text = budgetDetails.clientName
+
+        clientDomicile = v.findViewById(R.id.budget_clientDomicile)
+        clientDomicile.text = budgetDetails.clientDomicile
+
+        clientBetweenStreet1 = v.findViewById(R.id.budget_betweenStreet1)
+        clientBetweenStreet1.text = budgetDetails.betweenStreet1
+
+        clientBetweenStreet2 = v.findViewById(R.id.budget_betweenStreet2)
+        clientBetweenStreet2.text = budgetDetails.betweenStreet2
+
+        clientApartment = v.findViewById(R.id.budget_apartment)
+        clientApartment.text = budgetDetails.apartment
+
+        clientProvince = v.findViewById(R.id.budget_province)
+        clientProvince.text = budgetDetails.province
+
+        clientPhone = v.findViewById(R.id.budget_phone)
+        clientPhone.text = budgetDetails.phone
+
+        clientAlternativePhone = v.findViewById(R.id.budget_alternativePhone)
+        clientAlternativePhone.text = budgetDetails.alternativePhone
+
+        budgetExpirationDate = v.findViewById(R.id.budget_expirationDate)
+        budgetExpirationDate.text = budgetDetails.expirationDate
+
+        budgetTotalGross = v.findViewById(R.id.budget_totalGross)
+        budgetTotalGross.text = budgetDetails.totalGross.toString()
 
         deleteButton.setOnClickListener{
             viewModel.deleteBudget(budgetDetails)

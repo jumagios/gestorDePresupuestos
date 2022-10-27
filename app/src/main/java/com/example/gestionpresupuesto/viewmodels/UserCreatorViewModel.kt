@@ -1,6 +1,7 @@
 package com.example.gestionpresupuesto.viewmodels
 
 import android.content.Context
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.gestionpresupuesto.entities.User
 import com.example.gestionpresupuesto.repository.UserRepository
@@ -11,19 +12,13 @@ private var userToCreate = User()
 
 class UserCreatorViewModel : ViewModel() {
         var userRepository = UserRepository()
-        var userToInsert = User()
-        {
-                if (!userToCreate.userEmail.isNullOrEmpty() && !userToCreate.dni.isNullOrEmpty() &&
-                        !userToCreate.name.isNullOrEmpty() && !userToCreate.password.isNullOrEmpty()) {
-                  FirebaseAuth.getInstance().createUserWithEmailAndPassword(userToCreate.userEmail, userToCreate.password)
-                          .addOnSuccessListener {
-                                  val id = FirebaseAuth.getInstance().currentUser?.email.toString()
-                                  val account = userRepository.createUser(userToCreate, )
-                                  val accountId = userID
-                                  userRepository.createUser(userToCreate, success)
-                          }
+        var success: MutableLiveData<String> = MutableLiveData()
+        fun registerUser(user: User){
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.email, user.password)
+                        .addOnSuccessListener {
+                                userRepository.createUser(user, success)
 
-                }
-
-                }
+                        }
+                        .addOnFailureListener { exception -> success.postValue(exception.message) }
+        }
 }

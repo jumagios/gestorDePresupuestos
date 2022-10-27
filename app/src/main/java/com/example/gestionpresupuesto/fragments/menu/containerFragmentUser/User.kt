@@ -26,7 +26,7 @@ class User : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v = inflater.inflate(R.layout.fragment_menu_user, container, false)
+        v = inflater.inflate(R.layout.fragment_user_list, container, false)
         buttonAdd = v.findViewById(R.id.floating_action_button_user)
         return v
     }
@@ -41,8 +41,8 @@ class User : Fragment() {
         super.onStart()
 
         buttonAdd.setOnClickListener{
-            val action = UserDirections.actionMainUserToUserCreator()
-            v.findNavController().navigate(action)
+            //val action = UserDirections.actionMainUserToUserCreator()
+            //v.findNavController().navigate(action)
         }
     }
 

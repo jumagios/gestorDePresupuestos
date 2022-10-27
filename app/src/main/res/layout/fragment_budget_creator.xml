@@ -5,17 +5,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/user_frameLayout"
+    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.menu.containerFragmentProduct.MainProductList" >
+    tools:context=".fragments.menu.containerFragmentBudget.BudgetCreator">
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.menu.containerFragmentProduct.MainProductList" >
+        tools:context=".fragments.menu.containerFragmentProduct.BudgetCreator">
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchViewProduct"
+            android:id="@+id/searchProductInBudgetCreator"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
@@ -26,30 +28,26 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rec_products"
+
+            android:id="@+id/new_budget_items_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchViewProduct"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/finish_button" />
+
+        <Button
+            android:id="@+id/finish_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Finalizar carga"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchProductInBudgetCreator" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_button_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/fab_content_desc"
-        app:backgroundTint="@color/teal_200"
-        app:rippleColor="@color/teal_200"
-        app:srcCompat="@drawable/ic_baseline_add_circle_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

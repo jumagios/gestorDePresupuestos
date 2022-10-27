@@ -1,62 +1,56 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct
 
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
 import android.app.ProgressDialog
-import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.get
+import androidx.compose.material.Snackbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.gestionpresupuesto.R
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.gestionpresupuesto.databinding.FragmentProductCreatorBinding
 import com.example.gestionpresupuesto.entities.Product
-import com.example.gestionpresupuesto.repository.ProductRepository
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.gestionpresupuesto.adapters.MainProductListAdapter
+import com.bumptech.glide.Glide
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreatorDirections
 import com.example.gestionpresupuesto.viewmodels.ProductCreatorViewModel
-import com.google.android.material.dialog.MaterialDialogs
 import com.google.firebase.Timestamp
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import gun0912.tedimagepicker.builder.TedImagePicker
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ProductCreator : Fragment() {
+ class ProductCreator : Fragment() {
     private lateinit var binding: FragmentProductCreatorBinding
     private lateinit var ImageUri : Uri
     private var mStorageRef: StorageReference? = null
     private lateinit var firebaseImage : ImageView
-    private lateinit var repository: ProductRepository
-    private lateinit var v : View
+    private lateinit var viewModel: ProductCreatorViewModel
+    private var imagen : String = ""
 
     companion object {
         fun newInstance() = ProductCreator()
     }
-
-    private lateinit var viewModel: ProductCreatorViewModel
-    private lateinit var productCreator: ConstraintLayout
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
 
 
     ): View? {
-        v = inflater.inflate(R.layout.fragment_product_creator, container, false)
         mStorageRef = FirebaseStorage.getInstance().getReference()
         binding = FragmentProductCreatorBinding.inflate(layoutInflater)
-        productCreator = v.findViewById(R.id.productCreator)
-        return v
+        return binding.root
     }
 
     //seguir de aca
@@ -74,15 +68,50 @@ class ProductCreator : Fragment() {
         }
 
         binding.acceptButton.setOnClickListener {
-            uploadImage()
-            //createProduct(binding)
-            goToProductCreate()
+
+
+            if( binding.productInternalCode.text.toString().isNullOrBlank() && binding.productProviderCode.text.toString().isNullOrBlank() &&
+                binding.productname.text.toString().isNullOrBlank() && binding.productdescription.text.toString().isNullOrBlank() &&
+                binding.productcategory.text.toString().isNullOrBlank() && binding.productPrice.text.toString().isNullOrBlank() &&
+                binding.productStock.text.toString().isNullOrBlank()) {
+
+                com.google.android.material.snackbar.Snackbar.make(binding.productCreator, "Todos los campos deben tener valores", com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show()
+
+            } else {
+
+
+
+                uploadImage()
+
+
+
+            }
+
         }
 
         binding.cancelButton.setOnClickListener {
-            goToProductCreate()
+
+            val dialogBuilder = AlertDialog.Builder(context)
+            dialogBuilder.setMessage("¿Desea cancelar la creacion del producto?")
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", DialogInterface.OnClickListener {
+                        dialog, id ->
+
+                        var action = ProductCreatorDirections.actionProductCreator2ToMainProductList()
+                        binding.root.findNavController().navigate(action)
+
+
+                })
+                .setNegativeButton("Cancelar", DialogInterface.OnClickListener {
+                        dialog, id -> dialog.cancel()
+                })
+
+            val alert = dialogBuilder.create()
+            alert.setTitle("")
+            alert.show()
         }
     }
+
 
     private fun uploadImage() {
         val progressDialog = ProgressDialog(this.context)
@@ -97,20 +126,29 @@ class ProductCreator : Fragment() {
 
         storageReference.putFile(ImageUri).addOnSuccessListener {
 
-            firebaseImage.setImageURI(null)
+           // firebaseImage.setImageURI(null)
             Toast.makeText(this.context, "Successfuly uploaded", Toast.LENGTH_SHORT).show()
             if (progressDialog.isShowing) progressDialog.dismiss()
-        }.addOnFailureListener{
-            if(progressDialog.isShowing) progressDialog.dismiss()
+            imagen = storageReference.downloadUrl.toString()
+
+            createProduct(binding)
+
+        }.addOnFailureListener {
+            if (progressDialog.isShowing) progressDialog.dismiss()
             Toast.makeText(this.context, "Failed", Toast.LENGTH_SHORT).show()
         }
     }
-    private fun selectImage() {
-        val intent = Intent()
-        intent.type = "images/*"
-        intent.action = Intent.ACTION_GET_CONTENT
 
-        startActivityForResult(intent, 100)
+    private fun selectImage() {
+        TedImagePicker.with(this.requireContext())
+            .start { uri -> showSingleImage(uri) }
+    }
+
+    private fun showSingleImage(uri: Uri) {
+        binding.firebaseImage.visibility = View.VISIBLE
+        binding.containerSelectedPhotos.visibility = View.GONE
+        Glide.with(this).load(uri).into(binding.firebaseImage)
+        ImageUri = uri
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -122,31 +160,30 @@ class ProductCreator : Fragment() {
 
         }
     }
-    private fun goToProductCreate() {
-        refreshFragment(context)
-    }
-
-    private fun refreshFragment(context: Context?) {
-        context?.let {
-            val fragmentManager = (context as? AppCompatActivity)?.supportFragmentManager
-            fragmentManager?.let {
-                val currentFragment = fragmentManager.findFragmentById(com.google.android.material.R.id.container)
-                currentFragment?.let {
-                    val fragmentTransaction = fragmentManager.beginTransaction()
-                    fragmentTransaction.detach(it)
-                    fragmentTransaction.attach(it)
-                    fragmentTransaction.commit()
-                }
-            }
-        }
-    }
 
     private fun createProduct(binding: FragmentProductCreatorBinding) {
             var product = Product("",binding.productInternalCode.text.toString(),binding.productProviderCode.text.toString(),
             binding.productname.text.toString(),binding.productdescription.text.toString(),binding.productcategory.text.toString(),
             binding.productPrice.text.toString().toDouble(),binding.productStock.text.toString().toInt(),Timestamp.now(),false,
-            binding.firebaseImage.toString())
-            viewModel.createProduct(product)
+            imagen)
+            viewModel.createProduct(product, this)
     }
+
+     fun showAlert(){
+
+         com.google.android.material.snackbar.
+         Snackbar.make(requireView(), "Producto creado con exito",
+             com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
+                  .show()
+
+         Handler(Looper.getMainLooper()).postDelayed({
+
+             var action = ProductCreatorDirections.actionProductCreator2ToMainProductList()
+             binding.root.findNavController().navigate(action)
+
+         }, 1700)
+
+
+     }
 
 }

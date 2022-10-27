@@ -1,45 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/product_detail"
+    android:id="@+id/budgetCreator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".fragments.menu.containerFragmentProduct.ProductDetail">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/productCreator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.menu.containerFragmentProduct.ProductDetail">
+
+        <Button
+            android:id="@+id/productDeleteButton"
+            android:layout_width="149dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="61dp"
+            android:layout_marginBottom="24dp"
+            android:text="ELIMINAR"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/updateButton"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button_upload_image" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/productPrice"
+            android:layout_width="175dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:digits="0123456789."
+            android:inputType="number"
+            android:hint="Precio"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/productStock"
+            app:layout_constraintTop_toBottomOf="@+id/productProviderCode" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/productStock"
+            android:layout_width="175dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:digits="0123456789."
+            android:inputType="number"
+            android:hint="Stock"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/productProviderCode" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/productProviderCode"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:hint="Código Proveedor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/productInternalCode" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/productInternalCode"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:hint="Código Interno del Producto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/productcategory" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/productname"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:hint="Nombre del Producto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/productcategory"
+            android:layout_width="175dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:hint="Categoría"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/productdescription" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/productdescription"
+            android:layout_width="375dp"
+            android:layout_height="123dp"
+            android:layout_marginTop="8dp"
+            android:hint="Descripción del Producto"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/productname" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="99dp"
+            android:src="@drawable/cctvlogo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/updateButton"
+            android:layout_width="149dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="73dp"
+            android:layout_marginTop="141dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="24dp"
+            android:text="EDITAR"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/productDeleteButton"
+            app:layout_constraintTop_toBottomOf="@+id/productPrice" />
+
+        <Button
+            android:id="@+id/button_upload_image"
+            android:layout_width="129dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="19dp"
+            android:text="IMAGEN"
+            app:layout_constraintBottom_toTopOf="@+id/productDeleteButton"
+            app:layout_constraintEnd_toStartOf="@+id/firebaseImage"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/productStock" />
+
+        <ImageView
+            android:id="@+id/firebaseImage"
+            android:layout_width="66dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="156dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintTop_toBottomOf="@+id/productStock"
+            tools:src="@tools:sample/avatars" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="395dp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="9dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="32dp"
+            android:text="$"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/firebaseImage"
+            app:layout_constraintEnd_toStartOf="@+id/productPrice"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/productStock"
+            app:layout_constraintTop_toBottomOf="@+id/productProviderCode"
+            app:layout_constraintVertical_bias="1.0" />
 
 
-    <Button
-        android:id="@+id/product_update_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Actualizar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.822"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.961" />
-
-    <Button
-        android:id="@+id/product_delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Eliminar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.177"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.961" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="99dp"
-        android:src="@drawable/cctvlogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/productCreator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".fragments.menu.containerFragmentProduct.ProductCreator">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="5dp"
+        android:inputType="number"
+        android:text="$"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/firebaseImage"
+        app:layout_constraintEnd_toStartOf="@+id/productPrice"
+        app:layout_constraintStart_toEndOf="@+id/productStock" />
 
     <Button
         android:id="@+id/cancel_button"
@@ -28,6 +46,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:hint="Precio"
+        android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/productStock"
@@ -39,6 +58,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:hint="Stock"
+        android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -157,5 +177,23 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="395dp" />
 
+    <HorizontalScrollView
+        android:id="@+id/hsv_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:id="@+id/container_selected_photos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:animateLayoutChanges="true"
+            android:gravity="start"
+            android:orientation="horizontal"
+            android:visibility="visible" />
+    </HorizontalScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

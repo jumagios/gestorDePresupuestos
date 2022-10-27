@@ -24,7 +24,7 @@ data class Budget (
     var isErased: Boolean,
     var totalGross : Double,
     var productsItems: MutableList<Item>
-    ) : Parcelable {
+) : Parcelable {
 
     constructor() : this("","","","",
         "","", "","","","",

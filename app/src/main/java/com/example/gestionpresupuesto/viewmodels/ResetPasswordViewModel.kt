@@ -2,6 +2,6 @@ package com.example.gestionpresupuesto.viewmodels
 
 import androidx.lifecycle.ViewModel
 
-class ContainerUserViewModel : ViewModel() {
+class ResetPasswordViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

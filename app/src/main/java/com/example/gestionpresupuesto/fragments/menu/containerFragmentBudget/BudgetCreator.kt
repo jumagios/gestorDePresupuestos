@@ -1,91 +1,149 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.example.gestionpresupuesto.entities.Budget
-import com.example.gestionpresupuesto.viewmodels.BugdetCreatorViewModel
-import com.example.gestionpresupuesto.databinding.FragmentBugdetCreatorBinding
-import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.gestionpresupuesto.adapters.ItemsAdapter
+import com.example.gestionpresupuesto.databinding.FragmentBudgetCreatorBinding
+import com.example.gestionpresupuesto.databinding.FragmentProductDetailBinding
+import com.example.gestionpresupuesto.entities.Product
+import com.example.gestionpresupuesto.viewmodels.BudgetCreatorViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.Timestamp
+import java.util.*
 
 class BudgetCreator : Fragment() {
 
-    private val viewModel : BugdetCreatorViewModel by viewModels()
+    lateinit var v : View
+    private val budgetCreatorViewModel: BudgetCreatorViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by activityViewModels()
-    private val mainProductListViewModel : MainProductListViewModel by viewModels()
-    private var _binding: FragmentBugdetCreatorBinding? = null
-    private val binding get() = _binding!!
+    lateinit var recyclerView : RecyclerView
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var productItemsForBudget : ItemsAdapter
+    private lateinit var searchView : SearchView
+    private lateinit var finish_button : Button
+
+    private lateinit var binding: FragmentBudgetCreatorBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentBugdetCreatorBinding.inflate(inflater, container, false)
+        binding = FragmentBudgetCreatorBinding.inflate(inflater, container, false)
+        recyclerView = binding.newBudgetItemsRecyclerView
+        finish_button = binding.finishButton
+        searchView = binding.searchProductInBudgetCreator
+
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun onStart() {
 
         super.onStart()
 
-        mainProductListViewModel.getAllProducts()
+        try{
 
-        mainProductListViewModel.productList.observe(viewLifecycleOwner, Observer { result ->
+            var productList = sharedViewModel.getProductList()
 
-            sharedViewModel.setProductList(result)
+            if(productList != null) {
 
+                recyclerView.setHasFixedSize(true)
+                linearLayoutManager = LinearLayoutManager(context)
+                recyclerView.layoutManager = linearLayoutManager
+                productItemsForBudget = ItemsAdapter(productList, requireContext(), sharedViewModel,
+                    this, finish_button)
 
-            binding.siguienteButton.setOnClickListener {
+                recyclerView.adapter = productItemsForBudget
 
-                var budgetToCreate = Budget()
+                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        return false
+                    }
 
-                if (true) {//!binding.inputName.text.isNullOrBlank() && !binding.inputAdress.text.isNullOrBlank() && !binding.inputAdress2.text.isNullOrBlank() && !binding.inputPhone.text.isNullOrBlank() && !binding.inputAlternativePhone.text.isNullOrBlank() && !binding.inputExpirationDate.text.isNullOrBlank()){
-
-                var  parcialBudget = Budget("",
-                    binding.inputName.text.toString(),
-                    binding.inputAdress.text.toString(),
-                    binding.inputAdress2.text.toString(),
-                    binding.inputAdress3.text.toString(),
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    Timestamp.now(),
-                    Timestamp.now().toDate().toString(),
-                    false,
-                    0.0,
-                    mutableListOf())
-
-                    sharedViewModel.setBudgetToCreate(parcialBudget)
-
-
-                    var action = BudgetCreatorDirections.actionBudgetCreator2ToNewBudgetFragment(parcialBudget)
-                    binding.root.findNavController().navigate(action)
-                }else { Snackbar.make(binding.budgetCreator, "Todos los campos deben tener valores", Snackbar.LENGTH_LONG).show()
-
-                }
+                    override fun onQueryTextChange(query: String?): Boolean {
+                        search(productList, query)
+                        return true
+                    }
+                })
             }
-        })
+
+        } catch (e : Exception){
+
+            var debug =  e.message.toString()
+
+        }
+}
+
+    fun saveBudgetToCreate() {
+
+        try {
+
+            var budgetToCreate = sharedViewModel.getBudgetToCreate()
+            budgetCreatorViewModel.createBudget(budgetToCreate.value!!, this)
+
+
+        } catch (e : Exception) {
+
+            e.message.toString()
+            Snackbar.make(binding.newBudgetItemsRecyclerView, "Error inesperado de sistema", Snackbar.LENGTH_LONG).show()
+
+        }
+     }
+
+    fun showAlert() {
+        sharedViewModel.clearState()
+
+        val oSnackbar = Snackbar.make(requireView(), "Presupuesto guardado con exito", Snackbar.LENGTH_LONG)
+        oSnackbar.duration = 9999000
+        oSnackbar.show()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+
+            val action = BudgetCreatorDirections.actionBudgetCreator2ToMainBudgetList()
+            this.findNavController().navigate(action)
+
+        }, 1700)
+
+
+
+    }
+
+    @SuppressLint("SuspiciousIndentation")
+    private fun search(productList : MutableList<Product>, query: String?) {
+
+
+        val temporalProductList = mutableListOf<Product>()
+
+        val queryLowerCase = query!!.lowercase(Locale.getDefault())
+
+        if(temporalProductList != null) {
+
+            productList.forEach {
+                if (it.name.lowercase().contains(queryLowerCase)) {
+                    temporalProductList.add(it)
+                }
+
+                var auxiliarAdapter = ItemsAdapter(temporalProductList, requireContext(),
+                    sharedViewModel ,this, finish_button)
+
+                recyclerView.setAdapter(auxiliarAdapter)
+
+            }
+
+        }
     }
 }

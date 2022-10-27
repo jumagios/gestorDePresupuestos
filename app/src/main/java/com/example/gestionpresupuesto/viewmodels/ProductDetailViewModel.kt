@@ -10,6 +10,23 @@ import kotlinx.coroutines.launch
 
 class ProductDetailViewModel : ViewModel() {
 
+    var updatedButton : String = "Actualizar"
+    var editableTxt : String = "Ahora ya podes editar los campos"
+    var nullOrBlankText : String = "Ningun campo puede quedar en blanco"
+
+    fun getUpdatedTxt () : String {
+        return updatedButton
+    }
+
+    fun getEditableText () : String {
+        return editableTxt
+    }
+
+
+    fun getNullOrBlankTxt(): String {
+        return nullOrBlankText
+    }
+
     var productRepository = ProductRepository()
 
     fun updateProduct(productToUpdate: Product) {
@@ -17,9 +34,10 @@ class ProductDetailViewModel : ViewModel() {
 
             try {
 
-                var productListFound = productRepository.findProductByID(productToUpdate.internalProductCode)
 
-                productRepository.updateProduct(productToUpdate)
+                    productRepository.updateProduct(productToUpdate)
+
+
 
             } catch (e: Exception) {
 
@@ -45,7 +63,4 @@ class ProductDetailViewModel : ViewModel() {
         }
 
     }
-
-
-
 }
