@@ -8,12 +8,12 @@
     tools:context=".fragments.login.Login">
 
     <EditText
-        android:id="@+id/loginUser"
+        android:id="@+id/login_user_mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint ="Ingrese su nombre"
-        android:inputType="textPersonName"
+        android:hint ="Ingrese su email"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
@@ -26,7 +26,7 @@
         app:layout_constraintGuide_percent="0.3" />
 
     <EditText
-        android:id="@+id/loginPass"
+        android:id="@+id/login_user_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -35,7 +35,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginUser" />
+        app:layout_constraintTop_toBottomOf="@+id/login_user_mail" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -45,7 +45,7 @@
         android:text="login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPass" />
+        app:layout_constraintTop_toBottomOf="@+id/login_user_password" />
 
     <TextView
         android:id="@+id/reset_password"
