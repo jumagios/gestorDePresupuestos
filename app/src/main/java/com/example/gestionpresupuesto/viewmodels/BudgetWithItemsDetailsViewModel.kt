@@ -10,17 +10,21 @@ import android.os.Environment
 import android.text.TextPaint
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.Budget
-import com.example.gestionpresupuesto.entities.Item
 import com.example.gestionpresupuesto.repository.BudgetRepository
+import com.google.firebase.Timestamp.now
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
+import java.time.Instant.now
+import java.time.LocalDate.now
 import java.time.LocalDateTime
+import java.time.LocalTime.now
 import java.util.*
 
 class BudgetWithItemsDetailsViewModel : ViewModel() {
@@ -45,39 +49,22 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
 
     fun createPDF(context : Context) {
 
-
-        //MOCK LIST
-
-        var itemList = mutableListOf<Item>()
-
-        itemList.add(Item("TEST_01","TEST_NAME_01",
-            "TEST_CAMERA_60MP_01", 9900.0,7 ))
-
-        itemList.add(Item("TEST_02","TEST_NAME_02",
-            "TEST_CAMERA_60MP_02", 1156500.0,52 ))
-
-
-        var size = itemList.size
-
-    //    itemList.takeIf { size == 1 }?.get(0)?.name?:itemList.joinToString(separator = "\r\n", postfix = "\n"){it.name}
-
-     //  itemList.toString()
-
-
-        var pdfDocument = PdfDocument()
-
+        var tituloText = "Presupuesto"
+        var descripcionText =  "Presupuesto";
+        var date = LocalDateTime.now().toString()
 
         var pageHeight = 1120
         var pageWidth = 792
 
+
+        var pdfDocument = PdfDocument()
         var paint = Paint()
         var titulo = TextPaint()
+        var descripcion = TextPaint()
         var fecha = TextPaint()
-        var items = TextPaint()
 
         var paginaInfo = PdfDocument.PageInfo.Builder(816, 1054, 1).create()
         var pagina1 = pdfDocument.startPage(paginaInfo)
-
 
         var canvas = pagina1.canvas
 
@@ -85,33 +72,20 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
         var bitmapEscala = Bitmap.createScaledBitmap(bitmap, 300,300, false)
         canvas.drawBitmap(bitmapEscala, 368f, 20f, paint)
 
-        var alto : Float = 350f
-        var derecha : Float = 100f
-
-        var tituloText = "Presupuesto"
-        var date = LocalDateTime.now().toString()
-
         titulo.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
         titulo.textSize = 20f
+        canvas.drawText(tituloText, 10f, 150f, titulo)
+        canvas.drawText(date, 10f, 150f, fecha)
 
+        descripcion.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL))
+        descripcion.textSize = 14f
 
-        canvas.drawText(tituloText, derecha, alto, titulo)
+        var arrDescripcion = descripcionText.split("\n")
 
-
-
-          //derecha = 380f
-          alto  = 400f
-
-
-        for (item in itemList) {
-
-
-            var descripcionText =  "Producto : " +  item.name + " Cantidad : " + item.quantity
-
-            canvas.drawText(descripcionText, derecha, alto, items)
-
-            alto += 35f
-
+        var y = 200f
+        for (item in arrDescripcion) {
+            canvas.drawText(item, 10f, y, descripcion)
+            y += 15
         }
 
         pdfDocument.finishPage(pagina1)
