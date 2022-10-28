@@ -57,6 +57,7 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
         var paint = Paint()
         var titulo = TextPaint()
         var fecha = TextPaint()
+        var nombre_cliente = TextPaint()
         var total = TextPaint()
         var items = TextPaint()
 
@@ -75,6 +76,7 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
 
         var tituloText = "Presupuesto"
         var date = budgetDetails.budgetDate.toDate().toString()
+        var clienteName = budgetDetails.clientName.toString()
         var totalGross = "TOTAL: " + budgetDetails.totalGross
         var PdfName = budgetDetails.budgetNumber.toString() + ".pdf"
 

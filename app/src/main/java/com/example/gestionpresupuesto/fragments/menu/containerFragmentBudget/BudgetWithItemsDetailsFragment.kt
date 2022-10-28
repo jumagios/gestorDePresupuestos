@@ -115,9 +115,5 @@ class BudgetWithItemsDetailsFragment : Fragment() {
             viewModel.createPDF(this.requireContext(), budgetDetails)
 
         }
-
-
     }
-
-
 }
