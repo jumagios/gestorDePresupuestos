@@ -57,6 +57,7 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
         var paint = Paint()
         var titulo = TextPaint()
         var fecha = TextPaint()
+        var total = TextPaint()
         var items = TextPaint()
 
         var paginaInfo = PdfDocument.PageInfo.Builder(816, 1054, 1).create()
@@ -74,6 +75,8 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
 
         var tituloText = "Presupuesto"
         var date = LocalDateTime.now().toString()
+        var totalGross = "TOTAL: " + budgetDetails.totalGross
+        var PdfName = budgetDetails.budgetNumber.toString() + ".pdf"
 
         titulo.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
         titulo.textSize = 20f
@@ -97,13 +100,17 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
 
         }
 
+        alto += 35f
+        canvas.drawText(totalGross.toString(), derecha, alto , total)
+
+
         pdfDocument.finishPage(pagina1)
 
-        pdfDocument.toString()
+
 
         val file = File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
-            "presupuesto.pdf")
+            PdfName)
 
         try {
             pdfDocument.writeTo(FileOutputStream(file))
