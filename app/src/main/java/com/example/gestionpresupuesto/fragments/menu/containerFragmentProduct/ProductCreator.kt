@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.net.toFile
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.gestionpresupuesto.databinding.FragmentProductCreatorBinding
@@ -29,7 +30,6 @@ import java.util.*
     private var mStorageRef: StorageReference? = null
     private lateinit var firebaseImage : ImageView
     private lateinit var viewModel: ProductCreatorViewModel
-    private var imagen : String = ""
 
     companion object {
         fun newInstance() = ProductCreator()
@@ -81,11 +81,9 @@ import java.util.*
         val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
 
         val addOnFailureListener = storageReference.putFile(ImageUri).addOnSuccessListener {
-
             firebaseImage.setImageURI(null)
             Toast.makeText(this.context, "Successfuly uploaded", Toast.LENGTH_SHORT).show()
             if (progressDialog.isShowing) progressDialog.dismiss()
-            imagen = storageReference.downloadUrl.toString()
         }.addOnFailureListener {
             if (progressDialog.isShowing) progressDialog.dismiss()
             Toast.makeText(this.context, "Failed", Toast.LENGTH_SHORT).show()
@@ -121,7 +119,7 @@ import java.util.*
             var product = Product("",binding.productInternalCode.text.toString(),binding.productProviderCode.text.toString(),
             binding.productname.text.toString(),binding.productdescription.text.toString(),binding.productcategory.text.toString(),
             binding.productPrice.text.toString().toDouble(),binding.productStock.text.toString().toInt(),Timestamp.now(),false,
-            imagen)
+            ImageUri.toString())
             viewModel.createProduct(product)
     }
 
