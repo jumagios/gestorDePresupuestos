@@ -112,7 +112,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
         createPDFButton.setOnClickListener() {
 
-            viewModel.createPDF(this.requireContext())
+            viewModel.createPDF(this.requireContext(), budgetDetails)
 
         }
 
