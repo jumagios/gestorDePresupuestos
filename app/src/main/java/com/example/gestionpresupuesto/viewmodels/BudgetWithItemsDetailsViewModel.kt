@@ -70,24 +70,23 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
         var bitmapEscala = Bitmap.createScaledBitmap(bitmap, 300,300, false)
         canvas.drawBitmap(bitmapEscala, 368f, 20f, paint)
 
-        var alto : Float = 350f
+        var alto : Float = 360f
         var derecha : Float = 100f
 
         var tituloText = "Presupuesto"
-        var date = LocalDateTime.now().toString()
+        var date = budgetDetails.budgetDate.toDate().toString()
         var totalGross = "TOTAL: " + budgetDetails.totalGross
         var PdfName = budgetDetails.budgetNumber.toString() + ".pdf"
 
         titulo.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
         titulo.textSize = 20f
 
+        canvas.drawText(date, 480f, 335f, fecha)
 
         canvas.drawText(tituloText, derecha, alto, titulo)
 
-
-
         //derecha = 380f
-        alto  = 400f
+        alto  = 420f
 
 
         for (item in itemList) {
