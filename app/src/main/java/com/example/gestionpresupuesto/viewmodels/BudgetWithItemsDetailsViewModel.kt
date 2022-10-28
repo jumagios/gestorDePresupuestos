@@ -47,68 +47,8 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
 
     }
 
-    fun createPDF(context : Context) {
 
-        var tituloText = "Presupuesto"
-        var descripcionText =  "Presupuesto";
-        var date = LocalDateTime.now().toString()
-
-        var pageHeight = 1120
-        var pageWidth = 792
-
-
-        var pdfDocument = PdfDocument()
-        var paint = Paint()
-        var titulo = TextPaint()
-        var descripcion = TextPaint()
-        var fecha = TextPaint()
-
-        var paginaInfo = PdfDocument.PageInfo.Builder(816, 1054, 1).create()
-        var pagina1 = pdfDocument.startPage(paginaInfo)
-
-        var canvas = pagina1.canvas
-
-        var bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.cctvlogo)
-        var bitmapEscala = Bitmap.createScaledBitmap(bitmap, 300,300, false)
-        canvas.drawBitmap(bitmapEscala, 368f, 20f, paint)
-
-        titulo.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
-        titulo.textSize = 20f
-
-        fecha.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
-        fecha.textSize = 20f
-        canvas.drawText(date, 18f, 150f, fecha)
-
-
-        descripcion.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL))
-        descripcion.textSize = 14f
-
-
-        var arrDescripcion = descripcionText.split("\n")
-
-        var y = 200f
-        for (item in arrDescripcion) {
-            canvas.drawText(item, 10f, y, descripcion)
-            y += 15
-        }
-
-        pdfDocument.finishPage(pagina1)
-
-        pdfDocument.toString()
-
-        val file = File(
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
-            "presupuesto.pdf")
-
-        try {
-            pdfDocument.writeTo(FileOutputStream(file))
-            Toast.makeText(context, "Se creo el PDF correctamente", Toast.LENGTH_LONG).show()
-        } catch (e: Exception) {
-            e.printStackTrace()
-
-
-        pdfDocument.close()
+    fun createPDF(context : Context, budgetDetails : Budget) {
 
     }
-}
 }
