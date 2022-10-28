@@ -76,6 +76,7 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
         var tituloText = "Presupuesto"
         var date = LocalDateTime.now().toString()
         var totalGross = "TOTAL: " + budgetDetails.totalGross
+        var PdfName = budgetDetails.budgetNumber.toString() + ".pdf"
 
         titulo.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
         titulo.textSize = 20f
@@ -105,11 +106,11 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
 
         pdfDocument.finishPage(pagina1)
 
-        pdfDocument.toString()
+
 
         val file = File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
-            "presupuesto.pdf")
+            PdfName)
 
         try {
             pdfDocument.writeTo(FileOutputStream(file))
