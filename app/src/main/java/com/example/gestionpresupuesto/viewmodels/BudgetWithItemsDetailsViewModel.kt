@@ -83,8 +83,8 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
 
 
 
-          //derecha = 380f
-          alto  = 400f
+        //derecha = 380f
+        alto  = 400f
 
 
         for (item in itemList) {
@@ -112,7 +112,7 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
             e.printStackTrace()
 
 
-        pdfDocument.close()
+            pdfDocument.close()
 
         }
     }
