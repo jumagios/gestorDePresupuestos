@@ -57,6 +57,7 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
         var paint = Paint()
         var titulo = TextPaint()
         var fecha = TextPaint()
+        var total = TextPaint()
         var items = TextPaint()
 
         var paginaInfo = PdfDocument.PageInfo.Builder(816, 1054, 1).create()
@@ -74,6 +75,7 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
 
         var tituloText = "Presupuesto"
         var date = LocalDateTime.now().toString()
+        var totalGross = "TOTAL: " + budgetDetails.totalGross
 
         titulo.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
         titulo.textSize = 20f
@@ -96,6 +98,10 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
             alto += 35f
 
         }
+
+        alto += 35f
+        canvas.drawText(totalGross.toString(), derecha, alto , total)
+
 
         pdfDocument.finishPage(pagina1)
 
