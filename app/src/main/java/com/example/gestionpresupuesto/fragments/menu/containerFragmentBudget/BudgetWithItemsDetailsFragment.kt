@@ -36,6 +36,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     private lateinit var clientBetweenStreet2: TextView
     private lateinit var clientApartment: TextView
     private lateinit var clientProvince: TextView
+    private lateinit var clientLocality: TextView
     private lateinit var clientPhone: TextView
     private lateinit var budgetTotalGross: TextView
     private lateinit var clientAlternativePhone: TextView
@@ -91,11 +92,14 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         clientProvince = v.findViewById(R.id.budget_province)
         clientProvince.text = budgetDetails.province
 
+        clientLocality = v.findViewById(R.id.budget_locality)
+        clientLocality.text = budgetDetails.locality
+
         clientPhone = v.findViewById(R.id.budget_phone)
-        clientPhone.text = budgetDetails.phone
+        clientPhone.setText(budgetDetails.phone)
 
         clientAlternativePhone = v.findViewById(R.id.budget_alternativePhone)
-        clientAlternativePhone.text = budgetDetails.alternativePhone
+        clientAlternativePhone.setText(budgetDetails.alternativePhone)
 
         budgetExpirationDate = v.findViewById(R.id.budget_expirationDate)
         budgetExpirationDate.text = budgetDetails.expirationDate
