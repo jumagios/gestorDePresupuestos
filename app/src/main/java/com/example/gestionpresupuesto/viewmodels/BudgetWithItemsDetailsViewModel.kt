@@ -58,37 +58,48 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
         var titulo = TextPaint()
         var fecha = TextPaint()
         var nombre_cliente = TextPaint()
+        var cliente_domicilio = TextPaint()
         var total = TextPaint()
         var items = TextPaint()
 
-        var paginaInfo = PdfDocument.PageInfo.Builder(816, 1054, 1).create()
+        var paginaInfo = PdfDocument.PageInfo.Builder(595,  842, 1).create()
         var pagina1 = pdfDocument.startPage(paginaInfo)
 
 
         var canvas = pagina1.canvas
 
         var bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.cctvlogo)
-        var bitmapEscala = Bitmap.createScaledBitmap(bitmap, 300,300, false)
-        canvas.drawBitmap(bitmapEscala, 368f, 20f, paint)
+        var bitmapEscala = Bitmap.createScaledBitmap(bitmap, 280,280, false)
+        canvas.drawBitmap(bitmapEscala, 165f, 12f, paint)
 
-        var alto : Float = 360f
+        var alto : Float = 394f
         var derecha : Float = 100f
 
-        var tituloText = "Presupuesto"
+        var budgetNumber = "Presupuesto Nro:  " + budgetDetails.budgetNumber
         var date = budgetDetails.budgetDate.toDate().toString()
-        var clienteName = budgetDetails.clientName.toString()
+        var clientName = "Cliente: " + budgetDetails.clientName
+        var cliente_domicile = "Domicilio: " + budgetDetails.clientDomicile
         var totalGross = "TOTAL: " + budgetDetails.totalGross
         var PdfName = budgetDetails.budgetNumber.toString() + ".pdf"
 
         titulo.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
-        titulo.textSize = 20f
+        titulo.textSize = 16f
 
-        canvas.drawText(date, 480f, 335f, fecha)
+        nombre_cliente.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
+        nombre_cliente.textSize = 10f
 
-        canvas.drawText(tituloText, derecha, alto, titulo)
+        cliente_domicilio.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
+        cliente_domicilio.textSize = 10f
 
-        //derecha = 380f
-        alto  = 420f
+        canvas.drawText(date, 380f, 333f, fecha)
+
+        canvas.drawText(budgetNumber, derecha, 360f, titulo)
+
+        canvas.drawText(clientName, derecha, 385f, nombre_cliente)
+
+        canvas.drawText(cliente_domicile, derecha, 405f, cliente_domicilio)
+
+        alto  = 440f
 
 
         for (item in itemList) {
@@ -97,7 +108,7 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
 
             canvas.drawText(descripcionText, derecha, alto, items)
 
-            alto += 35f
+            alto += 20f
 
         }
 
