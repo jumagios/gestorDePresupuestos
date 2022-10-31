@@ -29,7 +29,6 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
-import java.util.*
 
 class ProductCreator : Fragment() {
 
@@ -148,15 +147,6 @@ class ProductCreator : Fragment() {
                     com.google.android.material.snackbar.Snackbar.LENGTH_LONG
                 ).show()
 
-            } else if (viewModel.imagenURL.value == null) {
-
-                com.google.android.material.snackbar.Snackbar.make(
-                    binding.productCreator,
-                    "Elija una imagen para continuar",
-                    com.google.android.material.snackbar.Snackbar.LENGTH_LONG
-                ).show()
-
-
             } else {
 
                 createProduct()
@@ -204,8 +194,6 @@ class ProductCreator : Fragment() {
 
     private fun createProduct() {
 
-        var imagenURL = viewModel.imagenURL.value
-
         var product = Product(
             "",
             binding.productInternalCode.text.toString(),
@@ -217,10 +205,26 @@ class ProductCreator : Fragment() {
             binding.productStock.text.toString().toInt(),
             Timestamp.now(),
             false,
-            imagenURL.toString()
+            setImagenURL()
         )
 
         viewModel.createProduct(product, this)
+
+    }
+
+    private fun setImagenURL(): String {
+
+        var imageURL = ""
+        var defaultURL =
+            "https://firebasestorage.googleapis.com/v0/b/gestion-de-presupuesto.appspot.com/o/images%2FProductImageNotFound.jpg?alt=media&token=d412003a-5dba-404e-b611-ed7f18dd839f"
+
+        if (viewModel.imagenURL.value == null) {
+            imageURL = defaultURL
+        } else {
+            imageURL = viewModel.imagenURL.value.toString()
+        }
+
+        return imageURL
 
     }
 
