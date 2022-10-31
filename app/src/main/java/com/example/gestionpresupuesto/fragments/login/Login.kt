@@ -34,14 +34,16 @@ class Login : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        /*
         binding.btnLogin.setOnClickListener {
 
             binding.root.findNavController().navigate(
                 LoginDirections.actionLoginToMenuActivity())
 
         }
+        */
 
-        /* //comentado para no tener que loguearse siempre
+
         binding.btnLogin.setOnClickListener {
             val email = binding.loginUserMail.text.toString()
             var password = binding.loginUserPassword.text.toString()
@@ -63,7 +65,7 @@ class Login : Fragment() {
                                 binding.root.findNavController().navigate(
                                     LoginDirections.actionLoginToMenuActivity())
 
-                            }, 800)
+                            }, 200)
 
 
                         } else {
@@ -84,8 +86,6 @@ class Login : Fragment() {
                     .show()
             }
         }
-
-        */
 
         binding.resetPassword.setOnClickListener() {
 

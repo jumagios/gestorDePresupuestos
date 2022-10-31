@@ -34,7 +34,6 @@ class ProductCreator : Fragment() {
 
     private lateinit var binding: FragmentProductCreatorBinding
     private var mStorageRef: StorageReference? = null
-    private lateinit var firebaseImage: ImageView
     private val viewModel: ProductCreatorViewModel by viewModels()
 
     var storageRef = Firebase.storage.reference;
