@@ -14,7 +14,6 @@ data class Budget (
     var betweenStreet1: String,
     var betweenStreet2: String,
     var apartment: String,
-    var flat: String,
     var locality: String,
     var province: String,
     var phone : String,
@@ -28,7 +27,7 @@ data class Budget (
 
     constructor() : this("","","","",
         "","", "","","","",
-        "", Timestamp.now(),"",false,0.0, mutableListOf())
+         Timestamp.now(),"",false,0.0, mutableListOf())
 }
 
 
