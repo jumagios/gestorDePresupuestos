@@ -70,7 +70,8 @@ class UserList : Fragment() {
 
                 } else {
 
-                    com.google.android.material.snackbar.Snackbar.make(binding.userFrameLayout, "ACCESO DENEGADO: Disponible solo para usuarios ADMINISTRADORES",
+                    com.google.android.material.snackbar.Snackbar.make(binding.userFrameLayout,
+                        "ACCESO DENEGADO: Disponible solo para usuarios ADMINISTRADORES",
                         com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show()
 
                 }
