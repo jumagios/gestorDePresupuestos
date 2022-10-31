@@ -18,8 +18,8 @@ import com.google.firebase.Timestamp
 
 class BudgetForm : Fragment() {
 
-    private val sharedViewModel : SharedViewModel by activityViewModels()
-    private val mainProductListViewModel : MainProductListViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val mainProductListViewModel: MainProductListViewModel by viewModels()
     private var _binding: FragmentBugdetFormBinding? = null
     private val binding get() = _binding!!
 
@@ -57,28 +57,34 @@ class BudgetForm : Fragment() {
 
                 if (true) {//!binding.inputName.text.isNullOrBlank() && !binding.inputAdress.text.isNullOrBlank() && !binding.inputAdress2.text.isNullOrBlank() && !binding.inputPhone.text.isNullOrBlank() && !binding.inputAlternativePhone.text.isNullOrBlank() && !binding.inputExpirationDate.text.isNullOrBlank()){
 
-                var  parcialBudget = Budget("",
-                    binding.inputName.text.toString(),
-                    binding.inputAdress.text.toString(),
-                    binding.inputAdress2.text.toString(),
-                    binding.inputAdress3.text.toString(),
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    Timestamp.now(),
-                    Timestamp.now().toDate().toString(),
-                    false,
-                    0.0,
-                    mutableListOf())
+                    var parcialBudget = Budget(
+                        "",
+                        binding.inputName.text.toString(),
+                        binding.inputAdress.text.toString(),
+                        binding.inputAdress2.text.toString(),
+                        binding.inputAdress3.text.toString(),
+                        binding.inputDepto.text.toString(),
+                        binding.inputLocality.text.toString(),
+                        binding.inputProvince.text.toString(),
+                        binding.inputPhone.text.toString(),
+                        binding.inputAlternativePhone.text.toString(),
+                        Timestamp.now(),
+                        Timestamp.now().toDate().toString(),
+                        false,
+                        0.0,
+                        mutableListOf()
+                    )
 
                     sharedViewModel.setBudgetToCreate(parcialBudget)
                     var action = BudgetFormDirections.actionBudgetFormToBudgetCreator()
                     binding.root.findNavController().navigate(action)
 
-                }else { Snackbar.make(binding.budgetCreator, "Todos los campos deben tener valores", Snackbar.LENGTH_LONG).show()
+                } else {
+                    Snackbar.make(
+                        binding.budgetCreator,
+                        "Todos los campos deben tener valores",
+                        Snackbar.LENGTH_LONG
+                    ).show()
 
                 }
             }

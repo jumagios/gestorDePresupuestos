@@ -2,27 +2,43 @@ package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModelProvider
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Paint
+import android.graphics.Typeface
+import android.graphics.pdf.PdfDocument
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Environment
+import android.text.TextPaint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat.startActivityForResult
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.adapters.BudgetAdapter
-import com.example.gestionpresupuesto.viewmodels.BudgetListViewModel
 import com.example.gestionpresupuesto.entities.Budget
+import com.example.gestionpresupuesto.viewmodels.BudgetListViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import java.io.File
+import java.io.FileOutputStream
 import java.util.*
 
 
-class BudgetList : Fragment() {
+class BudgetList : Fragment()  {
 
     companion object {
         fun newInstance() = BudgetList()
@@ -36,8 +52,6 @@ class BudgetList : Fragment() {
     private lateinit var searchView : SearchView
     private lateinit var temporalBudgetList : MutableList<Budget>
     private lateinit var buttonAdd : FloatingActionButton
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -118,4 +132,15 @@ class BudgetList : Fragment() {
         viewModel = ViewModelProvider(this).get(BudgetListViewModel::class.java)
         // TODO: Use the ViewModel
     }
+
 }
+
+
+
+
+
+
+
+
+
+
