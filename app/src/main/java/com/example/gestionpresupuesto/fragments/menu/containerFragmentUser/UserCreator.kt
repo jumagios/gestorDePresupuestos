@@ -3,33 +3,38 @@ package com.example.gestionpresupuesto.fragments.menu.containerFragmentUser
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.gestionpresupuesto.databinding.FragmentUserCreatorBinding
+import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.repository.UserRepository
 import com.example.gestionpresupuesto.viewmodels.UserCreatorViewModel
 import com.example.gestionpresupuesto.entities.User
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreatorDirections
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetFormDirections
 import com.example.gestionpresupuesto.viewmodels.BudgetCreatorViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.Timestamp
 
 class UserCreator : Fragment() {
     private lateinit var binding: FragmentUserCreatorBinding
-    private lateinit var repository: UserRepository
-    private lateinit var v : View
 
     companion object {
         fun newInstance() = UserCreator()
     }
 
-//    private lateinit var viewModel: UserCreatorViewModel
     private val viewModel: UserCreatorViewModel by viewModels()
-    private lateinit var userCreator: ConstraintLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,11 +44,28 @@ class UserCreator : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.success.observe(viewLifecycleOwner) {
+            if (it.toString() == "success") {
+                Snackbar.make(binding.frameLayout6, "Usaurio creado con exito", Snackbar.LENGTH_SHORT)
+                    .show()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    var action = UserCreatorDirections.actionUserCreatorToUserList()
+                    binding.root.findNavController().navigate(action)
+                }, 450)
+
+            } else Snackbar.make(binding.frameLayout6, it, Snackbar.LENGTH_SHORT)
+                .show()
+        }
+    }
+
     override fun onStart() {
         super.onStart()
 
+
         binding.userAcceptButton.setOnClickListener {
-            var user = User
             if (!binding.Useremail.text.toString()
                     .isNullOrBlank() && !binding.userdni.text.toString().isNullOrBlank() &&
                 !binding.userName.text.toString().isNullOrBlank() && !binding.userPassword.text.toString().isNullOrBlank()
@@ -56,11 +78,6 @@ class UserCreator : Fragment() {
                     )
 
                 )
-                Snackbar.make(
-                    binding.frameLayout6,
-                    "Usuario grabado con Exito!",
-                    Snackbar.LENGTH_LONG
-                ).show()
 
             }
                 else {
@@ -71,6 +88,9 @@ class UserCreator : Fragment() {
                     ).show()
                 }
             }
+
+
+
 
         binding.userCancelButton.setOnClickListener {
 
@@ -94,5 +114,4 @@ class UserCreator : Fragment() {
             alert.show()
         }
     }
-
 }

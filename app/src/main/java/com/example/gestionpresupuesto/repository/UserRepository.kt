@@ -1,18 +1,15 @@
 package com.example.gestionpresupuesto.repository
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.gestionpresupuesto.databinding.FragmentUserCreatorBinding
 import com.example.gestionpresupuesto.entities.User
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 
-private lateinit var binding: FragmentUserCreatorBinding
+
 class UserRepository {
     private val db = Firebase.firestore
     private val auth = Firebase.auth
