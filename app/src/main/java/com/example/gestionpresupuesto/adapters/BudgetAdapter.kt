@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -43,19 +45,19 @@ class BudgetAdapter(
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
+
         if (!budgetList[position].isErased) {
             holder.setClientDomicile(budgetList[position].clientDomicile)
             holder.setApartment(budgetList[position].apartment)
         }
-        
+
+
         holder.getTxItem().setOnClickListener {
              val action = BudgetListDirections.actionMainBudgetListToBudgetWithItemsDetailsFragment(budgetList[position])
              holder.itemView.findNavController().navigate(action)
         }
     }
-
-
-    override fun getItemCount(): Int {
+        override fun getItemCount(): Int {
         return budgetList.size
         }
     }

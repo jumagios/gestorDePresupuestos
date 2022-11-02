@@ -72,6 +72,7 @@ class BudgetForm : Fragment() {
                         Timestamp.now().toDate().toString(),
                         false,
                         0.0,
+                        "pending",
                         mutableListOf()
                     )
 

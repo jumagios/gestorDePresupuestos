@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.adapters.UsersAdapter
 import com.example.gestionpresupuesto.databinding.FragmentUserListBinding
+import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.UserListViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
@@ -29,6 +30,8 @@ class UserList : Fragment() {
 
 
     private val userListViewModel: UserListViewModel by viewModels()
+    private val viewModel: MainProductListViewModel by viewModels()
+
     private lateinit var binding: FragmentUserListBinding
 
 
@@ -40,6 +43,8 @@ class UserList : Fragment() {
         searchView = binding.searchViewUser
         recUsers = binding.recUsers
         buttonAdd = binding.floatingButtonUserList
+        buttonAdd.hide()
+
 
         return binding.root
     }
@@ -48,6 +53,16 @@ class UserList : Fragment() {
     override fun onStart() {
 
         super.onStart()
+
+        viewModel.getIsAdmin()
+
+        viewModel.isAdmin.observe(viewLifecycleOwner, Observer { isAdmin ->
+
+            if(viewModel.isAdmin.value == true) {
+
+               buttonAdd.show()
+
+            }
 
         userListViewModel.getAllUsers()
 
@@ -65,19 +80,8 @@ class UserList : Fragment() {
 
             buttonAdd.setOnClickListener() {
 
-                if(true) {
-
-
-                } else {
-
-                    com.google.android.material.snackbar.Snackbar.make(binding.userFrameLayout,
-                        "ACCESO DENEGADO: Disponible solo para usuarios ADMINISTRADORES",
-                        com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show()
-
-                }
 
             }
-
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -88,6 +92,7 @@ class UserList : Fragment() {
                     search(userList,query)
                     return true
                 }
+            })
 
             })
         })

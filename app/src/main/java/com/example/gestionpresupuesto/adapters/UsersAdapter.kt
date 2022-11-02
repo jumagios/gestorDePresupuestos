@@ -50,7 +50,7 @@ class UsersAdapter(
             if(boolean) {
                 isAdmin.text = "Usuario ADMINISTRADOR"
             } else {
-                isAdmin.text = "Usuario INVITADO"
+                isAdmin.text = "Usuario VENDEDOR"
 
             }
 

@@ -38,6 +38,35 @@ class UserRepository {
 
     }
 
+    suspend fun isAdmin(): Boolean {
+
+        var isAdmin = false
+
+        try {
+
+            var actualUserEmail = auth.currentUser?.email.toString()
+
+            if (actualUserEmail != null) {
+
+                var data = db.collection("users").document(actualUserEmail).get().await()
+
+                var actualUser = data.toObject<User>()
+
+                if (actualUser != null) {
+
+                    isAdmin = actualUser.admin
+                    return isAdmin
+                }
+            }
 
 
+        } catch (e: Exception) {
+
+            Log.d("UserRepository", e.message.toString())
+
+        }
+
+        return isAdmin
+
+    }
 }

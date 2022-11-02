@@ -34,30 +34,21 @@ class ProductCreator : Fragment() {
 
     private lateinit var binding: FragmentProductCreatorBinding
     private var mStorageRef: StorageReference? = null
-    private lateinit var firebaseImage: ImageView
     private val viewModel: ProductCreatorViewModel by viewModels()
 
     var storageRef = Firebase.storage.reference;
 
     var imagePickerActivityResult: ActivityResultLauncher<Intent> =
-    // lambda expression to receive a result back, here we
-        // receive single item(photo) on selection
 
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result != null) {
-                // getting URI of selected Image
                 val imageUri: Uri? = result.data?.data
 
                 val fileName = imageUri?.pathSegments?.last()
 
-                // extract the file name with extension
                 val sd = getFileName(this.requireContext(), imageUri!!)
 
-                // Upload Task with upload to directory 'file'
-                // and name of the file remains same
                 val uploadTask = storageRef.child("images/$sd").putFile(imageUri)
-
-                // On success, download the file URL and display it
 
                 val progressDialog = ProgressDialog(this.context)
                 progressDialog.setMessage("Uploading File ...")
@@ -65,7 +56,6 @@ class ProductCreator : Fragment() {
                 progressDialog.show()
 
                 uploadTask.addOnSuccessListener {
-                    // using glide library to display the image
                     storageRef.child("images/$sd").downloadUrl.addOnSuccessListener {
 
                         Glide.with(this).load(it).into(binding.firebaseImage)
@@ -77,7 +67,6 @@ class ProductCreator : Fragment() {
                             "Imagen cargada con exito",
                             com.google.android.material.snackbar.Snackbar.LENGTH_LONG
                         ).show()
-
 
                         Log.e("Firebase", "download passed")
                     }.addOnFailureListener {
