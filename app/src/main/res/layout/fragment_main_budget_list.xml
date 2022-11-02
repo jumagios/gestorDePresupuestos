@@ -16,7 +16,9 @@
         android:id="@+id/frameLayout5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.menu.containerFragmentProduct.MainProductList" >
+        app:layout_anchor="@+id/frameLayout5"
+        app:layout_anchorGravity="center">
+
 
         <!--Search view for filtering list view-->
 
@@ -36,13 +38,48 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_pending" />
+
+        <Button
+            android:id="@+id/button_approved"
+            android:layout_width="180dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:text="Aprobados"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchViewBudget" />
+
+        <Button
+            android:id="@+id/button_pending"
+            android:layout_width="180dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            android:text="Pendientes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_approved" />
+
+        <Button
+            android:id="@+id/button_rejected"
+            android:layout_width="180dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:text="Rechazados"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchViewBudget" />
+
+        <Button
+            android:id="@+id/button_all"
+            android:layout_width="180dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            android:text="Todos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_rejected" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

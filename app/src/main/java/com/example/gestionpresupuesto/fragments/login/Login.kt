@@ -34,15 +34,15 @@ class Login : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        /*
+
         binding.btnLogin.setOnClickListener {
 
             binding.root.findNavController().navigate(
                 LoginDirections.actionLoginToMenuActivity())
 
         }
-        */
 
+        /*
 
         binding.btnLogin.setOnClickListener {
             val email = binding.loginUserMail.text.toString()
@@ -86,6 +86,8 @@ class Login : Fragment() {
                     .show()
             }
         }
+
+         */
 
         binding.resetPassword.setOnClickListener() {
 
