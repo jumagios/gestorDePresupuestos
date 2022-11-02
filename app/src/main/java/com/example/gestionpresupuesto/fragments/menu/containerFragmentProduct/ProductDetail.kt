@@ -126,13 +126,6 @@ class ProductDetail : Fragment() {
 
         }
 
-
-
-
-
-
-
-
         binding.productDeleteButton.setOnClickListener{
             viewModel.deleteProduct(productDetails)
 

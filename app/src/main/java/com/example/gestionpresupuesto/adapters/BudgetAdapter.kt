@@ -51,7 +51,6 @@ class BudgetAdapter(
 
         }
 
-
         holder.getTxItem().setOnClickListener {
              val action = BudgetListDirections.actionMainBudgetListToBudgetWithItemsDetailsFragment(budgetList[position])
              holder.itemView.findNavController().navigate(action)
