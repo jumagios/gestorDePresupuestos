@@ -29,10 +29,6 @@ class BudgetAdapter(
             txt.text = domicile
         }
 
-        fun setApartment(apartment: String) {
-            val txt: TextView = view.findViewById(R.id.txt_budget_name_item2)
-            txt.text = apartment
-        }
 
         fun getTxItem(): View {
             return view.findViewById(R.id.budget_item_details)
@@ -47,8 +43,12 @@ class BudgetAdapter(
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
 
         if (!budgetList[position].isErased) {
-            holder.setClientDomicile(budgetList[position].clientDomicile)
-            holder.setApartment(budgetList[position].apartment)
+            if(!budgetList[position].apartment.isNullOrBlank()) {
+                holder.setClientDomicile(budgetList[position].clientDomicile + " Dpto: " + budgetList[position].apartment)
+            } else {
+                holder.setClientDomicile(budgetList[position].clientDomicile)
+            }
+
         }
 
 
