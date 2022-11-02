@@ -75,16 +75,9 @@ class UserList : Fragment() {
             recUsers.adapter = userAdapter
 
 
-                if(true) {
-                    var action = UserListDirections.actionUserListToUserCreator()
-                    binding.root.findNavController().navigate(action)
-                } else {
+            binding.floatingButtonUserList.setOnClickListener {
 
-                    com.google.android.material.snackbar.Snackbar.make(binding.userFrameLayout, "ACCESO DENEGADO: Disponible solo para usuarios ADMINISTRADORES",
-                        com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show()
-
-                }
-            binding.floatingButtonUserList.setOnClickListener() {
+                binding.root.findNavController().navigate(UserListDirections.actionUserListToUserCreator())
 
             }
 
