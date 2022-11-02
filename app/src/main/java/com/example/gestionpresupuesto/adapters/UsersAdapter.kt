@@ -3,8 +3,10 @@ package com.example.gestionpresupuesto.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.User
 
@@ -36,13 +38,19 @@ class UsersAdapter(
 
         }
 
+        fun setImage() {
+            var imgURL : ImageView = view.findViewById(R.id.img_user)
+            Glide.with(imgURL).load("https://firebasestorage.googleapis.com/v0/b/gestion-de-presupuesto.appspot.com/o/images%2Fuser.webp?alt=media&token=7de2722d-6e41-4c25-a5b5-5ff4f4205126").override(200,200).into(imgURL)
+        }
+
+
         fun setIsAdmin(boolean : Boolean) {
             val isAdmin: TextView = view.findViewById(R.id.user_isAdmin)
 
             if(boolean) {
                 isAdmin.text = "Usuario ADMINISTRADOR"
             } else {
-                isAdmin.text = "Usuario INVITADO"
+                isAdmin.text = "Usuario VENDEDOR"
 
             }
 
@@ -61,6 +69,7 @@ class UsersAdapter(
         holder.setUserEmail(userList[position].email)
         holder.setUserDNI(userList[position].dni)
         holder.setIsAdmin(userList[position].admin)
+        holder.setImage()
     }
 
     override fun getItemCount(): Int {

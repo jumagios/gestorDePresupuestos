@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -27,10 +29,6 @@ class BudgetAdapter(
             txt.text = domicile
         }
 
-        fun setApartment(apartment: String) {
-            val txt: TextView = view.findViewById(R.id.txt_budget_name_item2)
-            txt.text = apartment
-        }
 
         fun getTxItem(): View {
             return view.findViewById(R.id.budget_item_details)
@@ -43,9 +41,14 @@ class BudgetAdapter(
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
+
         if (!budgetList[position].isErased) {
-            holder.setClientDomicile(budgetList[position].clientDomicile)
-            holder.setApartment(budgetList[position].apartment)
+            if(!budgetList[position].apartment.isNullOrBlank()) {
+                holder.setClientDomicile(budgetList[position].clientDomicile + " Dpto: " + budgetList[position].apartment)
+            } else {
+                holder.setClientDomicile(budgetList[position].clientDomicile)
+            }
+
         }
 
         holder.getTxItem().setOnClickListener {
@@ -53,9 +56,7 @@ class BudgetAdapter(
              holder.itemView.findNavController().navigate(action)
         }
     }
-
-
-    override fun getItemCount(): Int {
+        override fun getItemCount(): Int {
         return budgetList.size
         }
     }

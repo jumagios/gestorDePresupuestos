@@ -14,7 +14,6 @@ data class Budget (
     var betweenStreet1: String,
     var betweenStreet2: String,
     var apartment: String,
-    var flat: String,
     var locality: String,
     var province: String,
     var phone : String,
@@ -23,12 +22,13 @@ data class Budget (
     var expirationDate : String,
     var isErased: Boolean,
     var totalGross : Double,
+    var state : String,
     var productsItems: MutableList<Item>
 ) : Parcelable {
 
     constructor() : this("","","","",
         "","", "","","","",
-        "", Timestamp.now(),"",false,0.0, mutableListOf())
+         Timestamp.now(),"",false,0.0,"pending", mutableListOf())
 }
 
 
