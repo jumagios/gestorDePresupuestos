@@ -2,23 +2,23 @@ package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.adapters.BudgetAdapter
-import com.example.gestionpresupuesto.viewmodels.BudgetListViewModel
 import com.example.gestionpresupuesto.entities.Budget
+import com.example.gestionpresupuesto.viewmodels.BudgetListViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 
@@ -28,16 +28,17 @@ class BudgetList : Fragment() {
         fun newInstance() = BudgetList()
     }
 
-    lateinit var v : View
-    lateinit var recBudgets : RecyclerView
-    private lateinit var viewModel: BudgetListViewModel
+    lateinit var v: View
+    private lateinit var button_approved: Button
+    private lateinit var button_rejected: Button
+    private lateinit var button_all: Button
+    private lateinit var button_pending: Button
+    lateinit var recBudgets: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var budgetAdapter : BudgetAdapter
-    private lateinit var searchView : SearchView
-    private lateinit var temporalBudgetList : MutableList<Budget>
-    private lateinit var buttonAdd : FloatingActionButton
-
-
+    private lateinit var budgetAdapter: BudgetAdapter
+    private lateinit var searchView: SearchView
+    private lateinit var buttonAdd: FloatingActionButton
+    private val viewModel: BudgetListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,17 +48,18 @@ class BudgetList : Fragment() {
         recBudgets = v.findViewById(R.id.rec_budgets)
         searchView = v.findViewById(R.id.searchViewBudget)
         buttonAdd = v.findViewById(R.id.floating_action_button_user)
+        button_approved = v.findViewById(R.id.button_approved)
+        button_rejected = v.findViewById(R.id.button_rejected)
+        button_all = v.findViewById(R.id.button_all)
+        button_pending = v.findViewById(R.id.button_pending)
 
         return v
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BudgetListViewModel::class.java)
-
-    }
 
     override fun onStart() {
+
+        var actualState = "all"
 
         super.onStart()
 
@@ -74,15 +76,74 @@ class BudgetList : Fragment() {
 
             recBudgets.adapter = budgetAdapter
 
+
+            button_all.setOnClickListener {
+                actualState = "all"
+                budgetAdapter = BudgetAdapter(budgetList, requireContext())
+                recBudgets.adapter = budgetAdapter
+            }
+
+            button_approved.setOnClickListener {
+                actualState = "approved"
+                viewModel.budgetFilter.value =
+                    budgetList.filter { it.state == "approved" }.toMutableList()
+                budgetAdapter =
+                    BudgetAdapter(viewModel.budgetFilter.value!!, requireContext())
+                recBudgets.adapter = budgetAdapter
+            }
+
+
+            button_rejected.setOnClickListener {
+                actualState = "rejected"
+                viewModel.budgetFilter.value =
+                    budgetList.filter { it.state == "rejected" }.toMutableList()
+                budgetAdapter =
+                    BudgetAdapter(viewModel.budgetFilter.value!!, requireContext())
+                recBudgets.adapter = budgetAdapter
+            }
+
+            button_pending.setOnClickListener {
+                actualState = "pending"
+                viewModel.budgetFilter.value =
+                    budgetList.filter { it.state == "pending" }.toMutableList()
+
+                var debug = viewModel.budgetFilter.value
+                debug.toString()
+
+                budgetAdapter = BudgetAdapter(viewModel.budgetFilter.value!!, requireContext())
+                recBudgets.adapter = budgetAdapter
+            }
+
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     return false
                 }
 
-                override fun onQueryTextChange(query : String?): Boolean {
-                    search(budgetList,query)
+                override fun onQueryTextChange(query: String?): Boolean {
+                    if (actualState == "all") {
+                        search(budgetList, query)
+                        return true
+
+                    } else if (actualState == "approved") {
+
+                        search(viewModel.budgetFilter.value!!, query)
+                        return true
+
+                    } else if (actualState == "rejected") {
+
+                        search(viewModel.budgetFilter.value!!, query)
+                        return true
+
+                    } else if (actualState == "pending") {
+
+                        search(viewModel.budgetFilter.value!!, query)
+                        return true
+
+                    }
+
                     return true
                 }
+
 
             })
         })
@@ -93,8 +154,9 @@ class BudgetList : Fragment() {
         }
     }
 
+
     @SuppressLint("SuspiciousIndentation")
-    private fun search(budgetList : MutableList<Budget>, query: String?) {
+    private fun search(budgetList: MutableList<Budget>, query: String?) {
 
         val temporalBudgetList = mutableListOf<Budget>()
         val queryLowerCase = query!!.lowercase(Locale.getDefault())
@@ -103,19 +165,11 @@ class BudgetList : Fragment() {
             if (it.clientDomicile.lowercase().contains(queryLowerCase)) {
                 temporalBudgetList.add(it)
             }
-                 var auxiliarAdapter = BudgetAdapter(temporalBudgetList, requireContext())
-                     recBudgets.setAdapter(auxiliarAdapter)
+            var auxiliarAdapter =
+                BudgetAdapter(temporalBudgetList, requireContext())
+            recBudgets.setAdapter(auxiliarAdapter)
 
-                 }
         }
-
-    fun onItemClick ( position : Int )  {
-        Snackbar.make(v,position.toString(), Snackbar.LENGTH_SHORT).show()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BudgetListViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 }

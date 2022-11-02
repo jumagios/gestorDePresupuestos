@@ -1,9 +1,12 @@
 package com.example.gestionpresupuesto.viewmodels
 
+
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gestionpresupuesto.entities.Product
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductCreator
 import com.example.gestionpresupuesto.repository.ProductRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -11,17 +14,26 @@ import kotlinx.coroutines.launch
 class ProductCreatorViewModel : ViewModel() {
 
     var productRepository = ProductRepository()
+    var imagenURL = MutableLiveData<String>()
 
-    fun createProduct(productToCreate: Product) {
+    fun setImageURL(url : String){
+
+        imagenURL.value = url
+
+    }
+
+    fun createProduct(productToCreate: Product, fragment : ProductCreator) {
         viewModelScope.launch(Dispatchers.Main) {
 
             try {
+                productToCreate.firestoreID = setFirestoreID(productToCreate.internalProductCode)
 
                 var productListFound = productRepository.findProductByID(productToCreate.firestoreID)
 
                 if ( productListFound.size == 0) {
 
                     productRepository.createProduct(productToCreate)
+                    fragment.showAlert()
 
                 } else {
 
@@ -36,7 +48,6 @@ class ProductCreatorViewModel : ViewModel() {
             }
         }
     }
-    }
 
     private fun setFirestoreID(internalProductCode : String) : String {
 
@@ -44,4 +55,10 @@ class ProductCreatorViewModel : ViewModel() {
 
         return firestoreID
 
-    }
+}
+}
+
+
+
+
+

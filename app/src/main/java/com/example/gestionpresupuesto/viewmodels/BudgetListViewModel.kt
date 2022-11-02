@@ -13,6 +13,8 @@ class BudgetListViewModel : ViewModel() {
 
     var budgetRepository = BudgetRepository()
     var budgetList = MutableLiveData<MutableList<Budget>>()
+    var budgetFilter = MutableLiveData<MutableList<Budget>>()
+
 
     fun getAllBudgets() {
 
