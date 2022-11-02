@@ -9,11 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.gestionpresupuesto.databinding.FragmentUserCreatorBinding
 import com.example.gestionpresupuesto.repository.UserRepository
 import com.example.gestionpresupuesto.viewmodels.UserCreatorViewModel
 import com.example.gestionpresupuesto.entities.User
+import com.example.gestionpresupuesto.viewmodels.BudgetCreatorViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class UserCreator : Fragment() {
@@ -25,7 +27,8 @@ class UserCreator : Fragment() {
         fun newInstance() = UserCreator()
     }
 
-    private lateinit var viewModel: UserCreatorViewModel
+//    private lateinit var viewModel: UserCreatorViewModel
+    private val viewModel: UserCreatorViewModel by viewModels()
     private lateinit var userCreator: ConstraintLayout
 
     override fun onCreateView(
@@ -48,16 +51,17 @@ class UserCreator : Fragment() {
 
                 viewModel.registerUser(
                     User(
-                        binding.Useremail.text.toString(), binding.userdni.text.toString(),
-                        binding.userName.text.toString(), binding.userPassword.text.toString(), binding.userSwitch.isChecked //si esta chequeado graba deschequeado
+                        binding.userSwitch.isChecked, binding.userdni.text.toString(), binding.Useremail.text.toString(),
+                        binding.userName.text.toString(), binding.userPassword.text.toString()  //isChecked : si esta chequeado graba deschequeado
                     )
-                )
 
+                )
                 Snackbar.make(
                     binding.frameLayout6,
                     "Usuario grabado con Exito!",
                     Snackbar.LENGTH_LONG
                 ).show()
+
             }
                 else {
                     Snackbar.make(
