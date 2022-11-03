@@ -10,4 +10,9 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string-array name="stateBudget">
+        <item>Aprobados</item>
+        <item>Pendientes</item>
+        <item>Rechazados</item>
+    </string-array>
 </resources>

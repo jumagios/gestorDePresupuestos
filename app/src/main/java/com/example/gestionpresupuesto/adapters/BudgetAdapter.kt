@@ -4,8 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +13,7 @@ import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.Bud
 
 class BudgetAdapter(
     var budgetList: MutableList<Budget>,
+
     val context: Context) : RecyclerView.Adapter<BudgetAdapter.MainHolder>() {
 
     class MainHolder(v: View) : RecyclerView.ViewHolder(v) {

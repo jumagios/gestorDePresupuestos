@@ -6,7 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewParent
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -27,7 +32,8 @@ class BudgetList : Fragment() {
     companion object {
         fun newInstance() = BudgetList()
     }
-
+    //private val stateBudget = resources.getStringArray(R.array.stateBudget)
+    //private lateinit var spinner: Spinner
     lateinit var v: View
     private lateinit var button_approved: Button
     private lateinit var button_rejected: Button
@@ -52,6 +58,18 @@ class BudgetList : Fragment() {
         button_rejected = v.findViewById(R.id.button_rejected)
         button_all = v.findViewById(R.id.button_all)
         button_pending = v.findViewById(R.id.button_pending)
+        /** spinner = v.findViewById(R.id.spinner)
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                Toast.makeText(applicationContext, "Seleccion la lista de =" + stateBudget[position], Toast.LENGTH_SHORT).show()
+            }
+
+        }*/
 
         return v
     }
