@@ -118,8 +118,6 @@ class BudgetCreator : Fragment() {
 
         }, 1700)
 
-
-
     }
 
     @SuppressLint("SuspiciousIndentation")
