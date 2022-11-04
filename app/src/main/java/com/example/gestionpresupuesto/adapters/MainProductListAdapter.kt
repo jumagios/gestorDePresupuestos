@@ -15,13 +15,14 @@ import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.MainProductListDirections
 
 class MainProductListAdapter(
+    private val isAdmin: Boolean,
     var productList: MutableList<Product>,
     val context: Context,
-    var onClick : (Int) -> Unit
-) : RecyclerView.Adapter<MainProductListAdapter.MainHolder>()
-{
-    class MainHolder (v: View) : RecyclerView.ViewHolder(v) {
+    var onClick: (Int) -> Unit
+) : RecyclerView.Adapter<MainProductListAdapter.MainHolder>() {
+    class MainHolder(v: View) : RecyclerView.ViewHolder(v) {
         private var view: View
+
         init {
             this.view = v
         }
@@ -43,8 +44,8 @@ class MainProductListAdapter(
         }
 
         fun setImage(img: String) {
-            var imgURL : ImageView = view.findViewById(R.id.img_item)
-            Glide.with(imgURL).load(img).override(200,200).into(imgURL)
+            var imgURL: ImageView = view.findViewById(R.id.img_item)
+            Glide.with(imgURL).load(img).override(200, 200).into(imgURL)
 
         }
 
@@ -52,15 +53,14 @@ class MainProductListAdapter(
             return view.findViewById(R.id.product_item_detail)
         }
 
-        fun getCard () : CardView {
+        fun getCard(): CardView {
             return view.findViewById(R.id.card)
         }
-
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        val view =  LayoutInflater.from(parent.context).inflate(R.layout.item_product,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
         return (MainHolder(view))
     }
 
@@ -75,18 +75,23 @@ class MainProductListAdapter(
         }
 
 
-        holder.getProductItemDetail().setOnClickListener{
-            val action = MainProductListDirections.actionMainProductListToProductDetail(productList[position])
-            //Este genera la cción de ir a el detalle del producto
-            holder.itemView.findNavController().navigate(action)
-            //Este ejecuta la acción de ir al action que generé
-        }
+        holder.getProductItemDetail().setOnClickListener {
 
-        holder.getCard().setOnClickListener {
-            onClick(position)
-        }
+            if (isAdmin) {
+                val action =
+                    MainProductListDirections.actionMainProductListToProductDetail(productList[position])
+                //Este genera la cción de ir a el detalle del producto
+                holder.itemView.findNavController().navigate(action)
+                //Este ejecuta la acción de ir al action que generé
+            }
 
+            holder.getCard().setOnClickListener {
+                onClick(position)
+
+            }
+        }
     }
+
 
     override fun getItemCount(): Int {
         return productList.size
