@@ -1,20 +1,16 @@
 package com.example.gestionpresupuesto.fragments.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.example.gestionpresupuesto.R
+import com.example.gestionpresupuesto.activities.MenuActivity
 import com.example.gestionpresupuesto.databinding.FragmentLoginBinding
-import com.example.gestionpresupuesto.databinding.FragmentResetPasswordBinding
-import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreatorDirections
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
@@ -35,14 +31,18 @@ class Login : Fragment() {
         super.onStart()
 
 
+        /*
         binding.btnLogin.setOnClickListener {
 
-            binding.root.findNavController().navigate(
-                LoginDirections.actionLoginToMenuActivity())
+           // binding.root.findNavController().navigate(
+              //  LoginDirections.actionLoginToMenuActivity())
+
+            val i = Intent(this@Login.requireContext(), MenuActivity::class.java)
+            startActivity(i)
 
         }
+        */
 
-        /*
 
         binding.btnLogin.setOnClickListener {
             val email = binding.loginUserMail.text.toString()
@@ -62,8 +62,13 @@ class Login : Fragment() {
 
                             Handler(Looper.getMainLooper()).postDelayed({
 
+                                /*
                                 binding.root.findNavController().navigate(
                                     LoginDirections.actionLoginToMenuActivity())
+                                    */
+
+                                val i = Intent(this@Login.requireContext(), MenuActivity::class.java)
+                                startActivity(i)
 
                             }, 200)
 
@@ -87,7 +92,6 @@ class Login : Fragment() {
             }
         }
 
-         */
 
         binding.resetPassword.setOnClickListener() {
 

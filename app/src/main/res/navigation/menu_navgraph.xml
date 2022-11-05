@@ -94,6 +94,14 @@
         <action
             android:id="@+id/action_userCreator_to_userList"
             app:destination="@id/userList" />
+        <action
+            android:id="@+id/action_userCreator_to_login"
+            app:destination="@id/login2" />
     </fragment>
+    <fragment
+        android:id="@+id/login2"
+        android:name="com.example.gestionpresupuesto.fragments.login.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 
 </navigation>

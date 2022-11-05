@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -29,16 +31,20 @@ class BudgetList : Fragment() {
     }
 
     lateinit var v: View
-    private lateinit var button_approved: Button
-    private lateinit var button_rejected: Button
-    private lateinit var button_all: Button
-    private lateinit var button_pending: Button
+
+    private lateinit var spinner: Spinner
     lateinit var recBudgets: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var budgetAdapter: BudgetAdapter
     private lateinit var searchView: SearchView
     private lateinit var buttonAdd: FloatingActionButton
     private val viewModel: BudgetListViewModel by viewModels()
+
+    val states = arrayOf(
+        "Todos", "Aprobados", "Pendientes", "Rechazados"
+    )
+
+    var budgetList = mutableListOf<Budget>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,10 +54,7 @@ class BudgetList : Fragment() {
         recBudgets = v.findViewById(R.id.rec_budgets)
         searchView = v.findViewById(R.id.searchViewBudget)
         buttonAdd = v.findViewById(R.id.floating_action_button_user)
-        button_approved = v.findViewById(R.id.button_approved)
-        button_rejected = v.findViewById(R.id.button_rejected)
-        button_all = v.findViewById(R.id.button_all)
-        button_pending = v.findViewById(R.id.button_pending)
+        spinner = v.findViewById(R.id.budget_list_spinner)
 
         return v
     }
@@ -59,16 +62,18 @@ class BudgetList : Fragment() {
 
     override fun onStart() {
 
-        var actualState = "all"
-
         super.onStart()
+
+        var actualState = "Todos"
+
+        initSprinner(states)
 
         viewModel.getAllBudgets()
 
         viewModel.budgetList.observe(viewLifecycleOwner, Observer { result ->
 
             searchView.setQuery("", false);
-            var budgetList = result
+            budgetList = result
             recBudgets.setHasFixedSize(true)
             linearLayoutManager = LinearLayoutManager(context)
             recBudgets.layoutManager = linearLayoutManager
@@ -77,42 +82,6 @@ class BudgetList : Fragment() {
             recBudgets.adapter = budgetAdapter
 
 
-            button_all.setOnClickListener {
-                actualState = "all"
-                budgetAdapter = BudgetAdapter(budgetList, requireContext())
-                recBudgets.adapter = budgetAdapter
-            }
-
-            button_approved.setOnClickListener {
-                actualState = "approved"
-                viewModel.budgetFilter.value =
-                    budgetList.filter { it.state == "approved" }.toMutableList()
-                budgetAdapter =
-                    BudgetAdapter(viewModel.budgetFilter.value!!, requireContext())
-                recBudgets.adapter = budgetAdapter
-            }
-
-
-            button_rejected.setOnClickListener {
-                actualState = "rejected"
-                viewModel.budgetFilter.value =
-                    budgetList.filter { it.state == "rejected" }.toMutableList()
-                budgetAdapter =
-                    BudgetAdapter(viewModel.budgetFilter.value!!, requireContext())
-                recBudgets.adapter = budgetAdapter
-            }
-
-            button_pending.setOnClickListener {
-                actualState = "pending"
-                viewModel.budgetFilter.value =
-                    budgetList.filter { it.state == "pending" }.toMutableList()
-
-                var debug = viewModel.budgetFilter.value
-                debug.toString()
-
-                budgetAdapter = BudgetAdapter(viewModel.budgetFilter.value!!, requireContext())
-                recBudgets.adapter = budgetAdapter
-            }
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -148,10 +117,62 @@ class BudgetList : Fragment() {
             })
         })
 
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+               if(states[position].equals("Todos")) {
+                    actualState = "all"
+                    budgetAdapter = BudgetAdapter(budgetList, requireContext())
+                    recBudgets.adapter = budgetAdapter
+
+                } else if(states[position].equals("Aprobados")){
+                   actualState = "approved"
+                   viewModel.budgetFilter.value =
+                       budgetList.filter { it.state == "approved" }.toMutableList()
+                   budgetAdapter =
+                       BudgetAdapter(viewModel.budgetFilter.value!!, requireContext())
+                   recBudgets.adapter = budgetAdapter
+
+               }else if(states[position].equals("Rechazados")){
+                   actualState = "rejected"
+                   viewModel.budgetFilter.value =
+                       budgetList.filter { it.state == "rejected" }.toMutableList()
+                   budgetAdapter =
+                       BudgetAdapter(viewModel.budgetFilter.value!!, requireContext())
+                   recBudgets.adapter = budgetAdapter
+
+               }else if(states[position].equals("Pendientes")){
+                   actualState = "pending"
+                   viewModel.budgetFilter.value =
+                       budgetList.filter { it.state == "pending" }.toMutableList()
+                   budgetAdapter =
+                       BudgetAdapter(viewModel.budgetFilter.value!!, requireContext())
+                   recBudgets.adapter = budgetAdapter
+               }
+
+            }
+        }
+
         buttonAdd.setOnClickListener {
             val action = BudgetListDirections.actionMainBudgetListToBudgetForm()
             v.findNavController().navigate(action)
         }
+    }
+
+    private fun initSprinner(states: Array<String>) {
+
+        val arrayAdapter =
+            ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, states)
+        spinner.adapter = arrayAdapter
     }
 
 

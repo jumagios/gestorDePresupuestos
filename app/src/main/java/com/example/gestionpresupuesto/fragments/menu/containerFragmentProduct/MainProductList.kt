@@ -27,6 +27,7 @@ class MainProductList : Fragment() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var productListAdapter : MainProductListAdapter
     private lateinit var binding: FragmentMainProductListBinding
+    private var admin = false;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +48,8 @@ class MainProductList : Fragment() {
 
         viewModel.isAdmin.observe(viewLifecycleOwner, Observer { isAdmin ->
 
+            admin = isAdmin
+
             if(viewModel.isAdmin.value == true) {
 
                 binding.floatingActionButtonUser.show()
@@ -63,7 +66,7 @@ class MainProductList : Fragment() {
                 linearLayoutManager = LinearLayoutManager(context)
                 binding.recProducts.layoutManager = linearLayoutManager
 
-                productListAdapter = MainProductListAdapter(productList,requireContext()) {
+                productListAdapter = MainProductListAdapter(admin,productList,requireContext()) {
                     onItemClick(it)
                 }
 
@@ -104,7 +107,7 @@ class MainProductList : Fragment() {
 
             }
 
-            var auxiliarAdapter = MainProductListAdapter(temporalBudgetList, requireContext()){
+            var auxiliarAdapter = MainProductListAdapter(admin,temporalBudgetList, requireContext()){
                 onItemClick(it)
             }
             cont += cont

@@ -1,14 +1,8 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Paint
-import android.graphics.Typeface
-import android.graphics.pdf.PdfDocument
-import androidx.lifecycle.ViewModelProvider
+
 import android.os.Bundle
-import android.os.Environment
-import android.text.TextPaint
+import androidx.lifecycle.ViewModelProvider
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.TextureView
@@ -16,13 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat
 import androidx.navigation.findNavController
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.viewmodels.BudgetWithItemsDetailsViewModel
-import java.io.File
-import java.io.FileOutputStream
+
 
 class BudgetWithItemsDetailsFragment : Fragment() {
 
@@ -75,7 +66,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         budgetNumber.text = budgetDetails.budgetNumber
 
         budgetDate = v.findViewById(R.id.budget_details_creation_date)
-        budgetDate.text = budgetDetails.budgetDate.toDate().toString()
+        budgetDate.text = budgetDetails.budgetDate
 
         clientName = v.findViewById(R.id.budget_clientName)
         clientName.text = budgetDetails.clientName
