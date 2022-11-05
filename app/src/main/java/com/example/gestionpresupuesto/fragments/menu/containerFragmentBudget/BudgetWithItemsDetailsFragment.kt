@@ -103,6 +103,8 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
         detailsProducts = v.findViewById(R.id.productList)
         detailsProducts.text = budgetDetails.productsItems.toString()
+        detailsProducts.text = detailsProducts.text.substring(1, detailsProducts.text.length - 1)
+
 
         deleteButton.setOnClickListener{
             viewModel.deleteBudget(budgetDetails)
