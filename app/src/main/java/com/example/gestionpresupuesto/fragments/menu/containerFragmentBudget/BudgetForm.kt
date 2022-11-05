@@ -15,6 +15,8 @@ import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class BudgetForm : Fragment() {
 
@@ -57,9 +59,14 @@ class BudgetForm : Fragment() {
 
                 if (true) {//!binding.inputName.text.isNullOrBlank() && !binding.inputAdress.text.isNullOrBlank() && !binding.inputAdress2.text.isNullOrBlank() && !binding.inputPhone.text.isNullOrBlank() && !binding.inputAlternativePhone.text.isNullOrBlank() && !binding.inputExpirationDate.text.isNullOrBlank()){
 
+
+
+
                     var parcialBudget = Budget(
                         "",
                         binding.inputName.text.toString(),
+                        "",
+                        "",
                         binding.inputAdress.text.toString(),
                         binding.inputAdress2.text.toString(),
                         binding.inputAdress3.text.toString(),
@@ -68,7 +75,8 @@ class BudgetForm : Fragment() {
                         binding.inputProvince.text.toString(),
                         binding.inputPhone.text.toString(),
                         binding.inputAlternativePhone.text.toString(),
-                        Timestamp.now(),
+                        setLocalDate(),
+                        setLocalHour(),
                         Timestamp.now().toDate().toString(),
                         false,
                         0.0,
@@ -90,5 +98,23 @@ class BudgetForm : Fragment() {
                 }
             }
         })
+    }
+
+    private fun setLocalDate(): String {
+
+        var dateTime = LocalDateTime.now()
+        var dateFormated = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        var date = dateFormated.format(dateTime)
+        return date
+
+    }
+
+    private fun setLocalHour(): String {
+
+        var dateTime = LocalDateTime.now()
+        var hourFormated = DateTimeFormatter.ofPattern("HH:mm:ss")
+        var hour = hourFormated.format(dateTime)
+        return hour
+
     }
 }

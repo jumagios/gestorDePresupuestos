@@ -72,7 +72,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         budgetNumber.text = budgetDetails.budgetNumber
 
         budgetDate = v.findViewById(R.id.budget_details_creation_date)
-        budgetDate.text = budgetDetails.budgetDate.toDate().toString()
+        budgetDate.text = budgetDetails.budgetDate
 
         clientName = v.findViewById(R.id.budget_clientName)
         clientName.text = budgetDetails.clientName
