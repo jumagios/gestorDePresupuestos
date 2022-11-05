@@ -1,27 +1,18 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Paint
-import android.graphics.Typeface
-import android.graphics.pdf.PdfDocument
-import androidx.lifecycle.ViewModelProvider
+
 import android.os.Bundle
-import android.os.Environment
-import android.text.TextPaint
+import androidx.lifecycle.ViewModelProvider
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat
 import androidx.navigation.findNavController
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.viewmodels.BudgetWithItemsDetailsViewModel
-import java.io.File
-import java.io.FileOutputStream
+
 
 class BudgetWithItemsDetailsFragment : Fragment() {
 
