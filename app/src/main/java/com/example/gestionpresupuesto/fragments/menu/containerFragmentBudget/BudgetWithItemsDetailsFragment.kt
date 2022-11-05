@@ -69,6 +69,9 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         clientName = v.findViewById(R.id.budget_clientName)
         clientName.text = budgetDetails.clientName
 
+        clientCuit_dni = v.findViewById(R.id.budget_cuit_dni)
+        clientCuit_dni.text = budgetDetails.clientDNI_CUIT.toString()
+
         clientDomicile = v.findViewById(R.id.budget_clientDomicile)
         clientDomicile.text = budgetDetails.clientDomicile
 
