@@ -9,6 +9,7 @@
     tools:context=".fragments.BudgetWithItemsDetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/budget_approved"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -153,15 +154,15 @@
             app:layout_constraintTop_toBottomOf="@+id/budget_locality" />
 
         <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="302dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/cctvlogo"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.46"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/imageView2"
+            android:layout_width="302dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/cctvlogo"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.46"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/budget_details_creation_date"
@@ -186,11 +187,11 @@
             app:layout_constraintTop_toBottomOf="@+id/txt1" />
 
         <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="50dp" />
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="50dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline8"
@@ -200,11 +201,11 @@
             app:layout_constraintGuide_begin="84dp" />
 
         <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="50dp" />
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="50dp" />
 
         <TextView
             android:id="@+id/txt1"
@@ -355,6 +356,17 @@
             app:layout_constraintEnd_toStartOf="@+id/delete_button"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline1" />
+
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Presupuesto aprobado"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintTop_toBottomOf="@+id/budget_totalGross" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
