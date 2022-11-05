@@ -14,4 +14,11 @@ data class Item(
 
 ) : Parcelable {
     constructor() : this ("","","",0.0, 0)
+
+    override fun toString(): String {
+
+        return "Nombre: '$name' \n Descripcion: '$description' \n Cod. Int. Prod: '$internalProductCode' \n Precio: $price \n Cantidad: $quantity \n \n"
+    }
+
+
 }

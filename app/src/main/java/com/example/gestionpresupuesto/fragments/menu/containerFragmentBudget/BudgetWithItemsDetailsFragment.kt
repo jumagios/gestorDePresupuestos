@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -32,6 +33,8 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     private lateinit var clientPhone: TextView
     private lateinit var budgetTotalGross: TextView
     private lateinit var clientAlternativePhone: TextView
+    private lateinit var detailsProducts: TextView
+
 
     private lateinit var deleteButton: Button
     private lateinit var createPDFButton: Button
@@ -101,6 +104,11 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
         budgetTotalGross = v.findViewById(R.id.budget_totalGross)
         budgetTotalGross.text = budgetDetails.totalGross.toString()
+
+        detailsProducts = v.findViewById(R.id.productList)
+        detailsProducts.text = budgetDetails.productsItems.toString()
+        detailsProducts.text = detailsProducts.text.substring(1, detailsProducts.text.length - 1)
+
 
         deleteButton.setOnClickListener{
             viewModel.deleteBudget(budgetDetails)
