@@ -11,8 +11,7 @@ data class Budget (
 
     var budgetNumber: String,
     var clientName: String,
-    var clientDNI : String,
-    var clientCUIT: String,
+    var clientDNI_CUIT : String,
     var clientDomicile: String,
     var betweenStreet1: String,
     var betweenStreet2: String,
@@ -30,7 +29,7 @@ data class Budget (
     var productsItems: MutableList<Item>
 ) : Parcelable {
 
-    constructor() : this("","","","","","",
+    constructor() : this("","","","","",
         "","", "","","","",
          "", "","",false,0.0,"pending", mutableListOf())
 }
