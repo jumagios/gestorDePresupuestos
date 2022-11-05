@@ -76,7 +76,7 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
         var derecha : Float = 100f
 
         var budgetNumber = "Presupuesto Nro:  " + budgetDetails.budgetNumber
-        var date = budgetDetails.budgetDate.toDate().toString()
+        var date = budgetDetails.budgetDate
         var clientName = "Cliente: " + budgetDetails.clientName
         var cliente_domicile = "Domicilio: " + budgetDetails.clientDomicile
         var totalGross = "TOTAL: " + budgetDetails.totalGross

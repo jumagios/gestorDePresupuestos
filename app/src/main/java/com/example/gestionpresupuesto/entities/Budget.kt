@@ -1,6 +1,7 @@
 package com.example.gestionpresupuesto.entities
 
 import android.os.Parcelable
+import androidx.annotation.DoNotInline
 import com.google.firebase.Timestamp
 import kotlinx.parcelize.Parcelize
 
@@ -10,6 +11,8 @@ data class Budget (
 
     var budgetNumber: String,
     var clientName: String,
+    var clientDNI : String,
+    var clientCUIT: String,
     var clientDomicile: String,
     var betweenStreet1: String,
     var betweenStreet2: String,
@@ -18,7 +21,8 @@ data class Budget (
     var province: String,
     var phone : String,
     var alternativePhone : String,
-    var budgetDate : Timestamp,
+    var budgetDate : String,
+    var budgetCreationHour: String,
     var expirationDate : String,
     var isErased: Boolean,
     var totalGross : Double,
@@ -26,9 +30,9 @@ data class Budget (
     var productsItems: MutableList<Item>
 ) : Parcelable {
 
-    constructor() : this("","","","",
+    constructor() : this("","","","","","",
         "","", "","","","",
-         Timestamp.now(),"",false,0.0,"pending", mutableListOf())
+         "", "","",false,0.0,"pending", mutableListOf())
 }
 
 
