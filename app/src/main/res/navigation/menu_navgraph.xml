@@ -81,6 +81,19 @@
         android:id="@+id/userList"
         android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.UserList"
         android:label="fragment_user_list"
-        tools:layout="@layout/fragment_user_list" />
+        tools:layout="@layout/fragment_user_list" >
+        <action
+            android:id="@+id/action_userList_to_userCreator"
+            app:destination="@id/userCreator" />
+    </fragment>
+    <fragment
+        android:id="@+id/userCreator"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.UserCreator"
+        android:label="fragment_user_creator"
+        tools:layout="@layout/fragment_user_creator" >
+        <action
+            android:id="@+id/action_userCreator_to_userList"
+            app:destination="@id/userList" />
+    </fragment>
 
 </navigation>

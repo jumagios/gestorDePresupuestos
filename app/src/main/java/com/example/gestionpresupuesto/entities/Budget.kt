@@ -22,18 +22,13 @@ data class Budget (
     var expirationDate : String,
     var isErased: Boolean,
     var totalGross : Double,
+    var state : String,
     var productsItems: MutableList<Item>
 ) : Parcelable {
 
     constructor() : this("","","","",
         "","", "","","","",
-         Timestamp.now(),"",false,0.0, mutableListOf())
-
-    override fun toString(): String {
-        return "Budget(productsItems=$productsItems)"
-    }
-
-
+         Timestamp.now(),"",false,0.0,"pending", mutableListOf())
 }
 
 
