@@ -66,7 +66,6 @@ class BudgetForm : Fragment() {
                         "",
                         binding.inputName.text.toString(),
                         "",
-                        "",
                         binding.inputAdress.text.toString(),
                         binding.inputAdress2.text.toString(),
                         binding.inputAdress3.text.toString(),
