@@ -54,8 +54,8 @@
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:digits="0123456789."
-            android:inputType="number"
             android:hint="Teléfono"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -127,6 +127,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/inputDNI" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputDNI"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:hint="CUIT/DNI"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/inputName" />
 
         <com.google.android.material.textfield.TextInputEditText
@@ -139,7 +150,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintHorizontal_bias="0.571"
             app:layout_constraintStart_toEndOf="@+id/inputAdress"
-            app:layout_constraintTop_toBottomOf="@+id/inputName" />
+            app:layout_constraintTop_toBottomOf="@+id/inputDNI" />
 
         <TextView
             android:id="@+id/clientForm"

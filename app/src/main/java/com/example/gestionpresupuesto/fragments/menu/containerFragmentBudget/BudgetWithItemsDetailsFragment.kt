@@ -22,6 +22,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     private lateinit var budgetDate: TextView
     private lateinit var budgetExpirationDate: TextView
     private lateinit var clientName: TextView
+    private lateinit var clientCuit_dni: TextView
     private lateinit var clientDomicile: TextView
     private lateinit var clientBetweenStreet1: TextView
     private lateinit var clientBetweenStreet2: TextView
