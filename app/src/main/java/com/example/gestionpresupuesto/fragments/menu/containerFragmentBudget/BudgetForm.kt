@@ -65,7 +65,7 @@ class BudgetForm : Fragment() {
                     var parcialBudget = Budget(
                         "",
                         binding.inputName.text.toString(),
-                        "",
+                        binding.inputDNI.text.toString(),
                         binding.inputAdress.text.toString(),
                         binding.inputAdress2.text.toString(),
                         binding.inputAdress3.text.toString(),
