@@ -28,6 +28,12 @@ data class Budget (
     constructor() : this("","","","",
         "","", "","","","",
          Timestamp.now(),"",false,0.0, mutableListOf())
+
+    override fun toString(): String {
+        return "Budget(productsItems=$productsItems)"
+    }
+
+
 }
 
 
