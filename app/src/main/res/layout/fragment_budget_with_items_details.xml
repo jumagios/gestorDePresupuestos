@@ -34,7 +34,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/budget_expirationDate" />
+            app:layout_constraintTop_toBottomOf="@+id/productList" />
 
         <TextView
             android:id="@+id/budget_expirationDate"
@@ -142,6 +142,18 @@
             app:layout_constraintTop_toBottomOf="@+id/budget_alternativePhone" />
 
         <TextView
+            android:id="@+id/txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Detalle:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintTop_toBottomOf="@+id/budget_expirationDate" />
+
+        <TextView
             android:id="@+id/txt10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -244,6 +256,18 @@
             app:layout_constraintTop_toBottomOf="@+id/budget_details_creation_date" />
 
         <TextView
+            android:id="@+id/txt13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="CUIT/DNI del cliente:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintTop_toBottomOf="@+id/budget_clientName" />
+
+        <TextView
             android:id="@+id/txt4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -253,7 +277,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/budget_clientName" />
+            app:layout_constraintTop_toBottomOf="@+id/budget_dni_cuit" />
 
         <TextView
             android:id="@+id/budget_betweenStreet1"
@@ -295,7 +319,7 @@
             android:layout_marginTop="16dp"
             android:text="budget.province"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.165"
+            app:layout_constraintHorizontal_bias="0.059"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
             app:layout_constraintTop_toBottomOf="@+id/txt7" />
 
@@ -322,6 +346,17 @@
             app:layout_constraintTop_toBottomOf="@+id/txt3" />
 
         <TextView
+            android:id="@+id/budget_dni_cuit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="budget.dni_CUIT"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/txt13" />
+
+        <TextView
             android:id="@+id/budget_clientDomicile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -334,42 +369,44 @@
 
         <Button
             android:id="@+id/delete_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_width="144dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
             android:text="BORRAR"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/switch2" />
 
         <Button
             android:id="@+id/button_create_pdf"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="8dp"
             android:text="CREAR PDF"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/delete_button"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/switch2"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/productList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:text="product.list"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.005"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline8"
             app:layout_constraintTop_toBottomOf="@+id/txt" />
 
         <Switch
             android:id="@+id/switch2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:text="Presupuesto aprobado"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
             app:layout_constraintTop_toBottomOf="@+id/budget_totalGross" />
 
