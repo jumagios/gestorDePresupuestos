@@ -9,6 +9,7 @@ import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Switch
 import android.widget.TextView
 import androidx.navigation.findNavController
 import com.example.gestionpresupuesto.R
@@ -34,6 +35,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     private lateinit var budgetTotalGross: TextView
     private lateinit var clientAlternativePhone: TextView
     private lateinit var detailsProducts: TextView
+    private lateinit var swithState : Switch
 
 
     private lateinit var deleteButton: Button
@@ -46,6 +48,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.fragment_budget_with_items_details, container, false)
         deleteButton = v.findViewById(R.id.delete_button)
+        swithState = v.findViewById(R.id.budget_detail_state_switch)
         createPDFButton = v.findViewById(R.id.button_create_pdf)
         return v
     }
@@ -120,6 +123,12 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         createPDFButton.setOnClickListener() {
 
             viewModel.createPDF(this.requireContext(), budgetDetails)
+
+        }
+
+        swithState.setOnClickListener{
+
+            viewModel.updateBudgetState()
 
         }
     }

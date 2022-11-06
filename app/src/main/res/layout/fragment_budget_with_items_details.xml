@@ -376,7 +376,7 @@
             android:text="BORRAR"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/switch2" />
+            app:layout_constraintTop_toBottomOf="@+id/budget_detail_state_switch" />
 
         <Button
             android:id="@+id/button_create_pdf"
@@ -387,7 +387,7 @@
             android:text="CREAR PDF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toBottomOf="@+id/switch2"
+            app:layout_constraintTop_toBottomOf="@+id/budget_detail_state_switch"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
@@ -402,7 +402,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt" />
 
         <Switch
-            android:id="@+id/switch2"
+            android:id="@+id/budget_detail_state_switch"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
