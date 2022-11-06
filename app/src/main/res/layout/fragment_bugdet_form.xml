@@ -62,6 +62,19 @@
             app:layout_constraintTop_toBottomOf="@+id/inputProvince" />
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputdni_cuit"
+            android:layout_width="175dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:digits="0123456789."
+            android:hint="CUIT/DNI"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/inputAdress" />
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputAdress2"
             android:layout_width="280dp"
             android:layout_height="48dp"
@@ -70,7 +83,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toBottomOf="@+id/inputAdress" />
+            app:layout_constraintTop_toBottomOf="@+id/inputdni_cuit" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputAdress3"
