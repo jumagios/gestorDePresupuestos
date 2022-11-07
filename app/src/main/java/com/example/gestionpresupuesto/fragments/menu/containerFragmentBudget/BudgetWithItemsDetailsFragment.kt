@@ -9,6 +9,8 @@ import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.RadioButton
+import android.widget.Switch
 import android.widget.TextView
 import androidx.navigation.findNavController
 import com.example.gestionpresupuesto.R
@@ -34,6 +36,8 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     private lateinit var budgetTotalGross: TextView
     private lateinit var clientAlternativePhone: TextView
     private lateinit var detailsProducts: TextView
+    private lateinit var approvedRadioButton : RadioButton
+    private lateinit var rejectedRadioButton : RadioButton
 
 
     private lateinit var deleteButton: Button
@@ -46,6 +50,8 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.fragment_budget_with_items_details, container, false)
         deleteButton = v.findViewById(R.id.delete_button)
+        rejectedRadioButton = v.findViewById(R.id.state_rejected)
+        approvedRadioButton = v.findViewById(R.id.state_approved)
         createPDFButton = v.findViewById(R.id.button_create_pdf)
         return v
     }
@@ -122,5 +128,29 @@ class BudgetWithItemsDetailsFragment : Fragment() {
             viewModel.createPDF(this.requireContext(), budgetDetails)
 
         }
+
+        approvedRadioButton.setOnClickListener{
+
+            if(rejectedRadioButton.isChecked) {
+
+                approvedRadioButton.isChecked = true
+                rejectedRadioButton.isChecked = false
+            }
+
+        }
+
+        rejectedRadioButton.setOnClickListener{
+
+            if(approvedRadioButton.isChecked) {
+
+                rejectedRadioButton.isChecked = true
+                approvedRadioButton.isChecked = false
+
+            }
+
+        }
+
+
+
     }
 }

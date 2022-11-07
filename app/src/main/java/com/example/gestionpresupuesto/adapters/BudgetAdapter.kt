@@ -42,14 +42,12 @@ class BudgetAdapter(
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
 
-        if (!budgetList[position].isErased) {
             if(!budgetList[position].apartment.isNullOrBlank()) {
                 holder.setClientDomicile(budgetList[position].clientDomicile + " Dpto: " + budgetList[position].apartment)
             } else {
                 holder.setClientDomicile(budgetList[position].clientDomicile)
             }
 
-        }
 
         holder.getTxItem().setOnClickListener {
              val action = BudgetListDirections.actionMainBudgetListToBudgetWithItemsDetailsFragment(budgetList[position])

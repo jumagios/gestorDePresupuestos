@@ -77,6 +77,10 @@ class BudgetList : Fragment() {
             recBudgets.setHasFixedSize(true)
             linearLayoutManager = LinearLayoutManager(context)
             recBudgets.layoutManager = linearLayoutManager
+
+
+            budgetList = budgetList.filter { it.erased == false }.toMutableList()
+
             budgetAdapter = BudgetAdapter(budgetList, requireContext())
 
             recBudgets.adapter = budgetAdapter

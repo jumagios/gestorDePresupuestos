@@ -23,7 +23,7 @@ data class Budget (
     var budgetDate : String,
     var budgetCreationHour: String,
     var expirationDate : String,
-    var isErased: Boolean,
+    var erased: Boolean,
     var totalGross : Double,
     var state : String,
     var productsItems: MutableList<Item>

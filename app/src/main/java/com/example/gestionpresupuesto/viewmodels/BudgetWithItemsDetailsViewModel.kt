@@ -79,7 +79,7 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
         var date = budgetDetails.budgetDate
         var clientName = "Cliente: " + budgetDetails.clientName
         var cliente_domicile = "Domicilio: " + budgetDetails.clientDomicile
-        var totalGross = "TOTAL: " + budgetDetails.totalGross
+        var totalGross = "TOTAL: $ " + budgetDetails.totalGross
         var PdfName = budgetDetails.budgetNumber.toString() + ".pdf"
 
         titulo.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
@@ -134,5 +134,23 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
             pdfDocument.close()
 
         }
+    }
+
+    fun updateBudgetState(budgetToUpdate : Budget) {
+
+        viewModelScope.launch(Dispatchers.Main) {
+
+            try {
+
+                budgetRepository.updateBudgetState(budgetToUpdate)
+
+
+            } catch (e: Exception) {
+
+                Log.d("BudgetCreatorViewModel", e.message.toString())
+
+            }
+        }
+
     }
 }

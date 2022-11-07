@@ -90,7 +90,30 @@ class BudgetRepository {
 
                     var documentID = document.id
                     val data = db.collection("budgets").document(documentID)
-                        .update("isErased", true)
+                        .update("erased", true)
+
+                }
+            }
+
+        } catch (e : Exception) {
+
+            Log.d("BudgetRepository", e.message.toString())
+        }
+    }
+
+    suspend fun updateBudgetState(budgetToUpdate : Budget) {
+
+        try{
+
+            val data = db.collection("budgets").whereEqualTo("budgetNumber", budgetToUpdate.budgetNumber).get().await()
+
+            if (!data.isEmpty) {
+
+                for (document in data) {
+
+                    var documentID = document.id
+                    db.collection("budgets").document(documentID)
+                        .update("state", budgetToUpdate.state)
 
                 }
             }
@@ -131,5 +154,6 @@ class BudgetRepository {
         }
 
         }
+
 }
 
