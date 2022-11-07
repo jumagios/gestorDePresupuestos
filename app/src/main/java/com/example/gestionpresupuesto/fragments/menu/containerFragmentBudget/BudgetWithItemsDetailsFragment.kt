@@ -9,6 +9,7 @@ import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.RadioButton
 import android.widget.Switch
 import android.widget.TextView
 import androidx.navigation.findNavController
@@ -35,7 +36,8 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     private lateinit var budgetTotalGross: TextView
     private lateinit var clientAlternativePhone: TextView
     private lateinit var detailsProducts: TextView
-    private lateinit var swithState : Switch
+    private lateinit var approvedRadioButton : RadioButton
+    private lateinit var rejectedRadioButton : RadioButton
 
 
     private lateinit var deleteButton: Button
@@ -48,7 +50,8 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     ): View? {
         v = inflater.inflate(R.layout.fragment_budget_with_items_details, container, false)
         deleteButton = v.findViewById(R.id.delete_button)
-        swithState = v.findViewById(R.id.budget_detail_state_switch)
+        rejectedRadioButton = v.findViewById(R.id.state_rejected)
+        approvedRadioButton = v.findViewById(R.id.state_approved)
         createPDFButton = v.findViewById(R.id.button_create_pdf)
         return v
     }
@@ -64,10 +67,6 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
         var budgetDetails =
             BudgetWithItemsDetailsFragmentArgs.fromBundle(requireArguments()).budgetDetails
-
-        if(budgetDetails.state == "approved") {
-            swithState.isChecked = true
-        }
 
 
         budgetNumber = v.findViewById(R.id.budget_details_budgetnumber)
@@ -130,22 +129,28 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
         }
 
-        swithState.setOnClickListener{
+        approvedRadioButton.setOnClickListener{
 
-            if(swithState.isChecked){
+            if(rejectedRadioButton.isChecked) {
 
-                budgetDetails.state = "approved"
+                approvedRadioButton.isChecked = true
+                rejectedRadioButton.isChecked = false
+            }
 
-            } else {
+        }
 
-                budgetDetails.state = "rejected"
+        rejectedRadioButton.setOnClickListener{
 
+            if(approvedRadioButton.isChecked) {
+
+                rejectedRadioButton.isChecked = true
+                approvedRadioButton.isChecked = false
 
             }
 
-
-            viewModel.updateBudgetState(budgetDetails)
-
         }
+
+
+
     }
 }
