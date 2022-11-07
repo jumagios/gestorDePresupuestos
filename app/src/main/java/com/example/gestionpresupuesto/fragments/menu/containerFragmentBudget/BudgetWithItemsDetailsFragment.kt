@@ -14,6 +14,7 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.navigation.findNavController
 import com.example.gestionpresupuesto.R
+import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.viewmodels.BudgetWithItemsDetailsViewModel
 
 
@@ -68,6 +69,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         var budgetDetails =
             BudgetWithItemsDetailsFragmentArgs.fromBundle(requireArguments()).budgetDetails
 
+        setRadioButtonState(budgetDetails)
 
         budgetNumber = v.findViewById(R.id.budget_details_budgetnumber)
         budgetNumber.text = budgetDetails.budgetNumber
@@ -135,6 +137,11 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
                 approvedRadioButton.isChecked = true
                 rejectedRadioButton.isChecked = false
+
+                budgetDetails.state = "approved"
+
+                viewModel.updateBudgetState(budgetDetails)
+
             }
 
         }
@@ -146,6 +153,12 @@ class BudgetWithItemsDetailsFragment : Fragment() {
                 rejectedRadioButton.isChecked = true
                 approvedRadioButton.isChecked = false
 
+                budgetDetails.state = "rejected"
+
+
+                viewModel.updateBudgetState(budgetDetails)
+
+
             }
 
         }
@@ -153,4 +166,15 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
 
     }
+
+    private fun setRadioButtonState(budgetDetails: Budget) {
+
+        if (budgetDetails.state == "approved") {
+            approvedRadioButton.isChecked = true
+        } else if (budgetDetails.state == "rejected") {
+            approvedRadioButton.isChecked = true
+
+        }
+ }
+
 }
