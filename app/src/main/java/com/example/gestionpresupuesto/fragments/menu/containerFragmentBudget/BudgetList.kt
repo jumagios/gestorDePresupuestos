@@ -81,7 +81,6 @@ class BudgetList : Fragment() {
 
             budgetList = budgetList.filter { it.erased == false }.toMutableList()
 
-
             budgetAdapter = BudgetAdapter(budgetList, requireContext())
 
             recBudgets.adapter = budgetAdapter

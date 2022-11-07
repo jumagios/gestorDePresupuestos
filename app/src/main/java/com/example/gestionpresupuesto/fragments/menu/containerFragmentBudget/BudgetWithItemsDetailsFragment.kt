@@ -65,6 +65,10 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         var budgetDetails =
             BudgetWithItemsDetailsFragmentArgs.fromBundle(requireArguments()).budgetDetails
 
+        if(budgetDetails.state == "approved") {
+            swithState.isChecked = true
+        }
+
 
         budgetNumber = v.findViewById(R.id.budget_details_budgetnumber)
         budgetNumber.text = budgetDetails.budgetNumber
@@ -128,7 +132,19 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
         swithState.setOnClickListener{
 
-            viewModel.updateBudgetState()
+            if(swithState.isChecked){
+
+                budgetDetails.state = "approved"
+
+            } else {
+
+                budgetDetails.state = "rejected"
+
+
+            }
+
+
+            viewModel.updateBudgetState(budgetDetails)
 
         }
     }

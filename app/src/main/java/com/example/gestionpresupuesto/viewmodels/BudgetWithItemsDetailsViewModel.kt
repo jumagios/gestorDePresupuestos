@@ -136,7 +136,21 @@ class BudgetWithItemsDetailsViewModel : ViewModel() {
         }
     }
 
-    fun updateBudgetState() {
-        TODO("Not yet implemented")
+    fun updateBudgetState(budgetToUpdate : Budget) {
+
+        viewModelScope.launch(Dispatchers.Main) {
+
+            try {
+
+                budgetRepository.updateBudgetState(budgetToUpdate)
+
+
+            } catch (e: Exception) {
+
+                Log.d("BudgetCreatorViewModel", e.message.toString())
+
+            }
+        }
+
     }
 }
