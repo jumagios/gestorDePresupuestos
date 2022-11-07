@@ -172,7 +172,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         if (budgetDetails.state == "approved") {
             approvedRadioButton.isChecked = true
         } else if (budgetDetails.state == "rejected") {
-            approvedRadioButton.isChecked = true
+            rejectedRadioButton.isChecked = true
 
         }
  }
