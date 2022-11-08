@@ -59,9 +59,6 @@ class BudgetForm : Fragment() {
 
                 if (true) {//!binding.inputName.text.isNullOrBlank() && !binding.inputAdress.text.isNullOrBlank() && !binding.inputAdress2.text.isNullOrBlank() && !binding.inputPhone.text.isNullOrBlank() && !binding.inputAlternativePhone.text.isNullOrBlank() && !binding.inputExpirationDate.text.isNullOrBlank()){
 
-
-
-
                     var parcialBudget = Budget(
                         "",
                         binding.inputName.text.toString(),

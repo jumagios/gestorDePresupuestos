@@ -175,6 +175,6 @@ class BudgetWithItemsDetailsFragment : Fragment() {
             rejectedRadioButton.isChecked = true
 
         }
- }
+    }
 
 }

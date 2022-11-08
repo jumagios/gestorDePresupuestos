@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -20,6 +21,7 @@ import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.adapters.BudgetAdapter
 import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.viewmodels.BudgetListViewModel
+import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 
@@ -39,6 +41,7 @@ class BudgetList : Fragment() {
     private lateinit var searchView: SearchView
     private lateinit var buttonAdd: FloatingActionButton
     private val viewModel: BudgetListViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     val states = arrayOf(
         "Todos", "Aprobados", "Pendientes", "Rechazados"
@@ -63,6 +66,7 @@ class BudgetList : Fragment() {
     override fun onStart() {
 
         super.onStart()
+        sharedViewModel.clearState()
 
         var actualState = "Todos"
 

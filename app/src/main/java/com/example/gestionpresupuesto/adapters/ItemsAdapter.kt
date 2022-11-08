@@ -48,7 +48,7 @@ class ItemsAdapter(
 
         fun setStock(stock: Int) {
             val sto: TextView = view.findViewById(R.id.product_item_detail_for_budget_txt_stock_item)
-            sto.text = stock.toString()
+            sto.text ="Stock " + stock.toString()
         }
 
         fun setImage(img: String) {

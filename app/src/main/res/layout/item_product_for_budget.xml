@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/product_item_detail_for_budget_img_item"
-            android:layout_width="84dp"
-            android:layout_height="88dp"
+            android:layout_width="55dp"
+            android:layout_height="56dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -30,7 +30,7 @@
             app:layout_constraintDimensionRatio="h,1:1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.315"
+            app:layout_constraintVertical_bias="0.289"
             app:srcCompat="@drawable/ic_launcher_foreground" />
 
         <TextView
@@ -39,10 +39,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="167dp"
             android:text="Product"
-            android:textSize="24sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/product_item_detail_for_budget_guideline3"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.175" />
@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="131dp" />
+            app:layout_constraintGuide_begin="79dp" />
 
         <TextView
             android:id="@+id/product_item_detail_for_budget_textView3"
