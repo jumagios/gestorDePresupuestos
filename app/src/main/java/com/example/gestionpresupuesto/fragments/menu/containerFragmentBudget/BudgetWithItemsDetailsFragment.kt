@@ -39,6 +39,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     private lateinit var detailsProducts: TextView
     private lateinit var approvedRadioButton : RadioButton
     private lateinit var rejectedRadioButton : RadioButton
+    private lateinit var pendingRadioButton : RadioButton
 
 
     private lateinit var deleteButton: Button
@@ -53,6 +54,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         deleteButton = v.findViewById(R.id.delete_button)
         rejectedRadioButton = v.findViewById(R.id.state_rejected)
         approvedRadioButton = v.findViewById(R.id.state_approved)
+        pendingRadioButton = v.findViewById(R.id.state_pending)
         createPDFButton = v.findViewById(R.id.button_create_pdf)
         return v
     }
@@ -133,10 +135,11 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
         approvedRadioButton.setOnClickListener{
 
-            if(rejectedRadioButton.isChecked) {
+            if(rejectedRadioButton.isChecked || pendingRadioButton.isChecked) {
 
                 approvedRadioButton.isChecked = true
                 rejectedRadioButton.isChecked = false
+                pendingRadioButton.isChecked = false
 
                 budgetDetails.state = "approved"
 
@@ -148,12 +151,31 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
         rejectedRadioButton.setOnClickListener{
 
-            if(approvedRadioButton.isChecked) {
+            if(approvedRadioButton.isChecked || pendingRadioButton.isChecked) {
 
                 rejectedRadioButton.isChecked = true
                 approvedRadioButton.isChecked = false
+                pendingRadioButton.isChecked = false
 
                 budgetDetails.state = "rejected"
+
+
+                viewModel.updateBudgetState(budgetDetails)
+
+
+            }
+
+        }
+
+        pendingRadioButton.setOnClickListener{
+
+            if(approvedRadioButton.isChecked || rejectedRadioButton.isChecked) {
+
+                pendingRadioButton.isChecked = true
+                rejectedRadioButton.isChecked = false
+                approvedRadioButton.isChecked = false
+
+                budgetDetails.state = "pending"
 
 
                 viewModel.updateBudgetState(budgetDetails)
