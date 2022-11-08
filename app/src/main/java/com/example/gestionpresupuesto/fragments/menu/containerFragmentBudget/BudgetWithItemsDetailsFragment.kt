@@ -135,8 +135,6 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
         approvedRadioButton.setOnClickListener{
 
-            if(rejectedRadioButton.isChecked || pendingRadioButton.isChecked) {
-
                 approvedRadioButton.isChecked = true
                 rejectedRadioButton.isChecked = false
                 pendingRadioButton.isChecked = false
@@ -144,14 +142,9 @@ class BudgetWithItemsDetailsFragment : Fragment() {
                 budgetDetails.state = "approved"
 
                 viewModel.updateBudgetState(budgetDetails)
-
-            }
-
         }
 
         rejectedRadioButton.setOnClickListener{
-
-            if(approvedRadioButton.isChecked || pendingRadioButton.isChecked) {
 
                 rejectedRadioButton.isChecked = true
                 approvedRadioButton.isChecked = false
@@ -159,17 +152,13 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
                 budgetDetails.state = "rejected"
 
-
                 viewModel.updateBudgetState(budgetDetails)
 
-
-            }
 
         }
 
         pendingRadioButton.setOnClickListener{
 
-            if(approvedRadioButton.isChecked || rejectedRadioButton.isChecked) {
 
                 pendingRadioButton.isChecked = true
                 rejectedRadioButton.isChecked = false
@@ -180,13 +169,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
                 viewModel.updateBudgetState(budgetDetails)
 
-
-            }
-
         }
-
-
-
     }
 
     private fun setRadioButtonState(budgetDetails: Budget) {
@@ -196,7 +179,8 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         } else if (budgetDetails.state == "rejected") {
             rejectedRadioButton.isChecked = true
 
-        }
+        } else if (budgetDetails.state == "pending") {
+            pendingRadioButton.isChecked = true
+     }
     }
-
 }
