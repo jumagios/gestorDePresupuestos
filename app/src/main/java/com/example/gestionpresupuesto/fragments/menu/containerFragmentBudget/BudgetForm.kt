@@ -60,8 +60,7 @@ class BudgetForm : Fragment() {
 
             binding.siguienteButton.setOnClickListener {
 
-
-                if (!isValidDate(binding.inputExpirationDate.text.toString())) {
+                if (isValidDate(binding.inputExpirationDate.text.toString())) {
 
                     val date = LocalDate.now()
                     val date2 = LocalDate.parse(
@@ -71,19 +70,54 @@ class BudgetForm : Fragment() {
 
                     if (date2.isBefore(date)) {
 
+                        if(binding.inputExpirationDate.text.toString().isNullOrBlank()){
+
+                            Snackbar.make(
+                                binding.budgetCreator,
+                                "Campos incompletos",
+                                Snackbar.LENGTH_LONG
+                            ).show()
+
+                        } else {
+
+                            Snackbar.make(
+                                binding.budgetCreator,
+                                "La fecha de vencimiento no puede ser anterior a la actual",
+                                Snackbar.LENGTH_LONG
+                            ).show()
+
+                        }
+
+                    } else {
+
+                        createBudget()
+                    }
+
+                } else {
+
+                    if(binding.inputExpirationDate.text.toString().isNullOrBlank()){
+
                         Snackbar.make(
                             binding.budgetCreator,
-                            "La fecha de vencimiento no puede ser anterior a la actual",
+                            "Complete los campos",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    } else {
+                        Snackbar.make(
+                            binding.budgetCreator,
+                            "Fecha invalida, EJ: 12-12-2022",
                             Snackbar.LENGTH_LONG
                         ).show()
 
-
-            }
                     }
 
+
+
+                }
             }
         })
-    }
+
+}
 
 
     private fun createBudget() {
@@ -98,9 +132,8 @@ class BudgetForm : Fragment() {
             && !binding.inputLocality.text.isNullOrBlank()
             && !binding.inputPhone.text.isNullOrBlank()
             && !binding.inputExpirationDate.text.isNullOrBlank()
-            && !binding.inputExpirationDate.text.isNullOrBlank())
-
-        {
+            && !binding.inputExpirationDate.text.isNullOrBlank()
+        ) {
 
             var parcialBudget = Budget(
                 "",
@@ -116,7 +149,7 @@ class BudgetForm : Fragment() {
                 binding.inputAlternativePhone.text.toString(),
                 setLocalDate(),
                 setLocalHour(),
-                Timestamp.now().toDate().toString(),
+                binding.inputExpirationDate.text.toString(),
                 false,
                 0.0,
                 "pending",
