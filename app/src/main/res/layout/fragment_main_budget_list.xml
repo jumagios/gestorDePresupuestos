@@ -65,7 +65,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:contentDescription="@string/fab_content_desc"
-        app:backgroundTint="@color/teal_200"
+        app:backgroundTint="@color/grey"
         app:rippleColor="@color/teal_200"
         app:srcCompat="@drawable/ic_baseline_add_circle_24" />
 

@@ -86,7 +86,7 @@ class BudgetForm : Fragment() {
                         binding.inputAlternativePhone.text.toString(),
                         setLocalDate(),
                         setLocalHour(),
-                        Timestamp.now().toDate().toString(),
+                        binding.inputExpirationDate.text.toString(),
                         false,
                         0.0,
                         "pending",
