@@ -1,10 +1,10 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -15,8 +15,13 @@ import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
+import java.text.ParseException
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
+import java.time.format.ResolverStyle
+import java.util.*
 
 class BudgetForm : Fragment() {
 
@@ -55,45 +60,81 @@ class BudgetForm : Fragment() {
 
             binding.siguienteButton.setOnClickListener {
 
-                var budgetToCreate = Budget()
 
-                if (true) {//!binding.inputName.text.isNullOrBlank() && !binding.inputAdress.text.isNullOrBlank() && !binding.inputAdress2.text.isNullOrBlank() && !binding.inputPhone.text.isNullOrBlank() && !binding.inputAlternativePhone.text.isNullOrBlank() && !binding.inputExpirationDate.text.isNullOrBlank()){
+                if (!isValidDate(binding.inputExpirationDate.text.toString())) {
 
-                    var parcialBudget = Budget(
-                        "",
-                        binding.inputName.text.toString(),
-                        "",
-                        binding.inputAdress.text.toString(),
-                        binding.inputAdress2.text.toString(),
-                        binding.inputAdress3.text.toString(),
-                        binding.inputDepto.text.toString(),
-                        binding.inputLocality.text.toString(),
-                        binding.inputProvince.text.toString(),
-                        binding.inputPhone.text.toString(),
-                        binding.inputAlternativePhone.text.toString(),
-                        setLocalDate(),
-                        setLocalHour(),
-                        Timestamp.now().toDate().toString(),
-                        false,
-                        0.0,
-                        "pending",
-                        mutableListOf()
+                    val date = LocalDate.now()
+                    val date2 = LocalDate.parse(
+                        binding.inputExpirationDate.text.toString(),
+                        DateTimeFormatter.ofPattern("dd-MM-uuuu")
                     )
 
-                    sharedViewModel.setBudgetToCreate(parcialBudget)
-                    var action = BudgetFormDirections.actionBudgetFormToBudgetCreator()
-                    binding.root.findNavController().navigate(action)
+                    if (date2.isBefore(date)) {
 
-                } else {
-                    Snackbar.make(
-                        binding.budgetCreator,
-                        "Todos los campos deben tener valores",
-                        Snackbar.LENGTH_LONG
-                    ).show()
+                        Snackbar.make(
+                            binding.budgetCreator,
+                            "La fecha de vencimiento no puede ser anterior a la actual",
+                            Snackbar.LENGTH_LONG
+                        ).show()
 
-                }
+
+            }
+                    }
+
             }
         })
+    }
+
+
+    private fun createBudget() {
+
+        if (!binding.inputName.text.isNullOrBlank()
+            && !binding.inputAdress.text.isNullOrBlank()
+            && !binding.inputdniCuit.text.isNullOrBlank()
+            && !binding.inputAdress2.text.isNullOrBlank()
+            && !binding.inputAdress3.text.isNullOrBlank()
+            && !binding.inputLocality.text.isNullOrBlank()
+            && !binding.inputProvince.text.isNullOrBlank()
+            && !binding.inputLocality.text.isNullOrBlank()
+            && !binding.inputPhone.text.isNullOrBlank()
+            && !binding.inputExpirationDate.text.isNullOrBlank()
+            && !binding.inputExpirationDate.text.isNullOrBlank())
+
+        {
+
+            var parcialBudget = Budget(
+                "",
+                binding.inputName.text.toString(),
+                binding.inputdniCuit.text.toString(),
+                binding.inputAdress.text.toString(),
+                binding.inputAdress2.text.toString(),
+                binding.inputAdress3.text.toString(),
+                binding.inputDepto.text.toString(),
+                binding.inputLocality.text.toString(),
+                binding.inputProvince.text.toString(),
+                binding.inputPhone.text.toString(),
+                binding.inputAlternativePhone.text.toString(),
+                setLocalDate(),
+                setLocalHour(),
+                Timestamp.now().toDate().toString(),
+                false,
+                0.0,
+                "pending",
+                mutableListOf()
+            )
+
+            sharedViewModel.setBudgetToCreate(parcialBudget)
+            var action = BudgetFormDirections.actionBudgetFormToBudgetCreator()
+            binding.root.findNavController().navigate(action)
+
+        } else {
+            Snackbar.make(
+                binding.budgetCreator,
+                "Campos incompletos",
+                Snackbar.LENGTH_LONG
+            ).show()
+
+        }
     }
 
     private fun setLocalDate(): String {
@@ -113,4 +154,20 @@ class BudgetForm : Fragment() {
         return hour
 
     }
+
+
+    fun isValidDate(dateStr: String): Boolean {
+        try {
+            LocalDate.parse(
+                dateStr,
+                DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                    .withResolverStyle(ResolverStyle.STRICT)
+            )
+
+        } catch (e: DateTimeParseException) {
+            return false;
+        }
+        return true;
+    }
+
 }
