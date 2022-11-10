@@ -85,6 +85,9 @@
         <action
             android:id="@+id/action_userList_to_userCreator"
             app:destination="@id/userCreator" />
+        <action
+            android:id="@+id/action_userList_to_user_detail2"
+            app:destination="@id/user_detail2" />
     </fragment>
     <fragment
         android:id="@+id/userCreator"
@@ -103,5 +106,14 @@
         android:name="com.example.gestionpresupuesto.fragments.login.Login"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/user_detail2"
+        android:name="com.example.gestionpresupuesto.viewmodels.user_detail"
+        android:label="fragment_user_detail"
+        tools:layout="@layout/fragment_user_detail" >
+        <action
+            android:id="@+id/action_user_detail2_to_userList"
+            app:destination="@id/userList" />
+    </fragment>
 
 </navigation>

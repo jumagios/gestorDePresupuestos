@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gestionpresupuesto.adapters.MainProductListAdapter
 import com.example.gestionpresupuesto.adapters.UsersAdapter
 import com.example.gestionpresupuesto.databinding.FragmentUserListBinding
 import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
@@ -25,11 +26,13 @@ class UserList : Fragment() {
 
     lateinit var v : View
     lateinit var recUsers : RecyclerView
+    private lateinit var userListAdapter : UsersAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var userAdapter : UsersAdapter
     private lateinit var searchView : SearchView
     private val userListViewModel: UserListViewModel by viewModels()
     private val viewModel: MainProductListViewModel by viewModels()
+    private var admin = false;
 
     private lateinit var binding: FragmentUserListBinding
 
@@ -55,6 +58,8 @@ class UserList : Fragment() {
 
         viewModel.isAdmin.observe(viewLifecycleOwner, Observer { isAdmin ->
 
+            admin = isAdmin
+
             if(viewModel.isAdmin.value == true) {
 
               binding.floatingButtonUserList.show()
@@ -71,9 +76,13 @@ class UserList : Fragment() {
             recUsers.setHasFixedSize(true)
             linearLayoutManager = LinearLayoutManager(context)
             recUsers.layoutManager = linearLayoutManager
-            userAdapter = UsersAdapter(userList)
             recUsers.adapter = userAdapter
 
+            userAdapter = UsersAdapter(admin,userList,requireContext()) {
+                onItemClick(it)
+            }
+
+            binding.recUsers.adapter = userListAdapter
 
             binding.floatingButtonUserList.setOnClickListener {
 
@@ -106,13 +115,20 @@ class UserList : Fragment() {
                 temporalUserList.add(it)
             }
 
-            var auxiliarAdapter = UsersAdapter(temporalUserList)
+            var auxiliarAdapter = UsersAdapter(admin,temporalUserList, requireContext()){
+                onItemClick(it)
+            }
 
             cont += cont
             recUsers.setAdapter(auxiliarAdapter)
 
         }
     }
+
+    fun onItemClick ( position : Int )  {
+        com.google.android.material.snackbar.Snackbar.make(binding.root,position.toString(), com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show()
+    }
+
 }
 
 
