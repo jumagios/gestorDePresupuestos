@@ -28,7 +28,6 @@ class UserList : Fragment() {
     lateinit var recUsers : RecyclerView
     private lateinit var userListAdapter : UsersAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var userAdapter : UsersAdapter
     private lateinit var searchView : SearchView
     private val userListViewModel: UserListViewModel by viewModels()
     private val viewModel: MainProductListViewModel by viewModels()
@@ -76,9 +75,8 @@ class UserList : Fragment() {
             recUsers.setHasFixedSize(true)
             linearLayoutManager = LinearLayoutManager(context)
             recUsers.layoutManager = linearLayoutManager
-            recUsers.adapter = userAdapter
 
-            userAdapter = UsersAdapter(admin,userList,requireContext()) {
+            userListAdapter = UsersAdapter(admin,userList,requireContext()) {
                 onItemClick(it)
             }
 
@@ -120,7 +118,7 @@ class UserList : Fragment() {
             }
 
             cont += cont
-            recUsers.setAdapter(auxiliarAdapter)
+            binding.recUsers.setAdapter(auxiliarAdapter)
 
         }
     }
