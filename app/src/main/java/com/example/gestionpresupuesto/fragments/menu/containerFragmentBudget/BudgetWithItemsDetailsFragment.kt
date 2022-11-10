@@ -39,6 +39,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
     private lateinit var detailsProducts: TextView
     private lateinit var approvedRadioButton : RadioButton
     private lateinit var rejectedRadioButton : RadioButton
+    private lateinit var pendingRadioButton : RadioButton
 
 
     private lateinit var deleteButton: Button
@@ -53,6 +54,7 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         deleteButton = v.findViewById(R.id.delete_button)
         rejectedRadioButton = v.findViewById(R.id.state_rejected)
         approvedRadioButton = v.findViewById(R.id.state_approved)
+        pendingRadioButton = v.findViewById(R.id.state_pending)
         createPDFButton = v.findViewById(R.id.button_create_pdf)
         return v
     }
@@ -133,38 +135,41 @@ class BudgetWithItemsDetailsFragment : Fragment() {
 
         approvedRadioButton.setOnClickListener{
 
-            if(rejectedRadioButton.isChecked) {
-
                 approvedRadioButton.isChecked = true
                 rejectedRadioButton.isChecked = false
+                pendingRadioButton.isChecked = false
 
                 budgetDetails.state = "approved"
 
                 viewModel.updateBudgetState(budgetDetails)
-
-            }
-
         }
 
         rejectedRadioButton.setOnClickListener{
 
-            if(approvedRadioButton.isChecked) {
-
                 rejectedRadioButton.isChecked = true
                 approvedRadioButton.isChecked = false
+                pendingRadioButton.isChecked = false
 
                 budgetDetails.state = "rejected"
-
 
                 viewModel.updateBudgetState(budgetDetails)
 
 
-            }
-
         }
 
+        pendingRadioButton.setOnClickListener{
 
 
+                pendingRadioButton.isChecked = true
+                rejectedRadioButton.isChecked = false
+                approvedRadioButton.isChecked = false
+
+                budgetDetails.state = "pending"
+
+
+                viewModel.updateBudgetState(budgetDetails)
+
+        }
     }
 
     private fun setRadioButtonState(budgetDetails: Budget) {
@@ -174,7 +179,8 @@ class BudgetWithItemsDetailsFragment : Fragment() {
         } else if (budgetDetails.state == "rejected") {
             rejectedRadioButton.isChecked = true
 
-        }
- }
-
+        } else if (budgetDetails.state == "pending") {
+            pendingRadioButton.isChecked = true
+     }
+    }
 }

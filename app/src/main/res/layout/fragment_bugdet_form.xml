@@ -18,7 +18,7 @@
             android:layout_width="280dp"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
-            android:hint="Province"
+            android:hint="Provincia"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -192,6 +192,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="395dp" />
+
+        <Button
+            android:id="@+id/datePickerBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="21dp"
+            android:layout_marginBottom="8dp"
+            android:text="Fecha"
+            app:layout_constraintBottom_toTopOf="@+id/siguiente_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/inputExpirationDate"
+            app:layout_constraintTop_toBottomOf="@+id/inputAlternativePhone"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -1,10 +1,16 @@
 package com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget
 
+import android.app.DatePickerDialog
+import android.app.Dialog
+import android.icu.util.Calendar
 import android.os.Bundle
+import android.text.InputType
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -13,6 +19,9 @@ import com.example.gestionpresupuesto.databinding.FragmentBugdetFormBinding
 import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.SharedViewModel
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
 import java.time.LocalDateTime
@@ -47,6 +56,10 @@ class BudgetForm : Fragment() {
 
         super.onStart()
 
+
+        binding.inputExpirationDate.setRawInputType(InputType.TYPE_NULL)
+
+
         mainProductListViewModel.getAllProducts()
 
         mainProductListViewModel.productList.observe(viewLifecycleOwner, Observer { result ->
@@ -58,9 +71,6 @@ class BudgetForm : Fragment() {
                 var budgetToCreate = Budget()
 
                 if (true) {//!binding.inputName.text.isNullOrBlank() && !binding.inputAdress.text.isNullOrBlank() && !binding.inputAdress2.text.isNullOrBlank() && !binding.inputPhone.text.isNullOrBlank() && !binding.inputAlternativePhone.text.isNullOrBlank() && !binding.inputExpirationDate.text.isNullOrBlank()){
-
-
-
 
                     var parcialBudget = Budget(
                         "",
@@ -76,7 +86,7 @@ class BudgetForm : Fragment() {
                         binding.inputAlternativePhone.text.toString(),
                         setLocalDate(),
                         setLocalHour(),
-                        Timestamp.now().toDate().toString(),
+                        binding.inputExpirationDate.text.toString(),
                         false,
                         0.0,
                         "pending",
@@ -97,6 +107,29 @@ class BudgetForm : Fragment() {
                 }
             }
         })
+
+
+
+        val constraintsBuilder =
+            CalendarConstraints.Builder()
+                .setValidator(DateValidatorPointForward.now())
+
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText("Selecciona la fecha de vencimiento")
+            .setCalendarConstraints(constraintsBuilder.build())
+            .build()
+
+
+
+
+
+        binding.datePickerBtn.setOnClickListener {
+            datePicker.show(parentFragmentManager,"DATE_PICKER")
+        }
+
+        datePicker.addOnPositiveButtonClickListener {
+            binding.inputExpirationDate.setText(datePicker.headerText)
+        }
     }
 
     private fun setLocalDate(): String {
