@@ -14,7 +14,6 @@ class UserRepository {
     private val db = Firebase.firestore
     private val auth = Firebase.auth
 
-
     fun createUser(userToCreate: User, mutableLiveData: MutableLiveData<String>) {
 
         db.collection("users").document(userToCreate.email).set(userToCreate)
@@ -27,6 +26,30 @@ class UserRepository {
                 mutableLiveData.postValue("Error creating User: ${exception.message}")
             }
     }
+
+    suspend fun deleteUser(userToDelete: User) {
+
+        try{
+
+            val data = db.collection("users").whereEqualTo("email", userToDelete.email).get().await()
+
+            if (!data.isEmpty) {
+
+                for (document in data) {
+
+                    var documentID = document.id
+                    db.collection("users").document(documentID)
+                        .update("isErased", true)
+                }
+            }
+
+        } catch (e : Exception) {
+
+            Log.d("UserRepository", e.message.toString())
+        }
+
+    }
+
 
     suspend fun getAllUsers(): MutableList<User> {
 

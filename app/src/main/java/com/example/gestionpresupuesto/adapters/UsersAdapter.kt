@@ -11,9 +11,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.R
-import com.example.gestionpresupuesto.entities.Product
 import com.example.gestionpresupuesto.entities.User
-import com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.MainProductListDirections
 import com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.UserListDirections
 
 class UsersAdapter(
@@ -93,7 +91,8 @@ class UsersAdapter(
             if (isAdmin) {
                 //faltan los argumentos para ir al detalle porque no tiene nada el detalle, despues se
                 //pone                 val action = UserListDirections.actionUserListToUserDetail2(userList[position])
-                val action = UserListDirections.actionUserListToUserDetail2()
+                val action = UserListDirections.actionUserListToUserDetail2(userList[position])
+
                 //Este genera la cción de ir a el detalle del producto
                 holder.itemView.findNavController().navigate(action)
                 //Este ejecuta la acción de ir al action que generé

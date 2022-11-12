@@ -87,7 +87,7 @@
             app:destination="@id/userCreator" />
         <action
             android:id="@+id/action_userList_to_user_detail2"
-            app:destination="@id/user_detail2" />
+            app:destination="@id/userdetail2" />
     </fragment>
     <fragment
         android:id="@+id/userCreator"
@@ -101,16 +101,21 @@
             android:id="@+id/action_userCreator_to_login"
             app:destination="@id/login2" />
     </fragment>
+
     <fragment
         android:id="@+id/login2"
         android:name="com.example.gestionpresupuesto.fragments.login.Login"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
+
     <fragment
-        android:id="@+id/user_detail2"
-        android:name="com.example.gestionpresupuesto.viewmodels.user_detail"
+        android:id="@+id/userdetail2"
+        android:name="com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.user_detail"
         android:label="fragment_user_detail"
         tools:layout="@layout/fragment_user_detail" >
+        <argument
+            android:name="userDetail2"
+            app:argType="com.example.gestionpresupuesto.entities.User" />
         <action
             android:id="@+id/action_user_detail2_to_userList"
             app:destination="@id/userList" />
