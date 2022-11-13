@@ -40,12 +40,6 @@ class user_detail : Fragment() {
 
         binding.userDetailMail.text = userDetails.email
 
-        binding.userDeleteButton.setOnClickListener{
-
-            viewModel.deleteUser(userDetails)
-
-            binding.root.findNavController().navigate(user_detailDirections.actionUserDetail2ToUserList())
-        }
 
         binding.userAdminButton.setOnClickListener{
 

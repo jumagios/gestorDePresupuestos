@@ -15,20 +15,6 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="-64dp">
 
-        <Button
-            android:id="@+id/user_cancel_button"
-            android:layout_width="149dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="36dp"
-            android:text="CANCELAR"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.047"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toBottomOf="@+id/user_detail_deleted"
-            app:layout_constraintVertical_bias="0.884" />
-
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
@@ -59,18 +45,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="395dp" />
-
-        <Button
-            android:id="@+id/user_delete_button"
-            android:layout_width="149dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginBottom="36dp"
-            android:text="BORRAR"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline10"
-            app:layout_constraintTop_toBottomOf="@+id/user_detail_deleted"
-            app:layout_constraintVertical_bias="0.884" />
 
         <ImageView
             android:id="@+id/user_detail_imagen"

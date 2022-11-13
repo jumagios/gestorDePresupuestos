@@ -74,7 +74,7 @@ class Login : Fragment() {
 
                         if (userFound.size == 1) {
 
-                            if(userFound.get(0).erased) {
+                            if (userFound.get(0).erased) {
 
                                 Snackbar.make(
                                     binding.frameLayout,
@@ -97,7 +97,7 @@ class Login : Fragment() {
 
                 })
 
-                }
+            }
 
             viewModel.OK.observe(viewLifecycleOwner, Observer { OK ->
 
@@ -108,48 +108,48 @@ class Login : Fragment() {
 
             binding.resetPassword.setOnClickListener() {
 
-                    binding.root.findNavController()
-                        .navigate(LoginDirections.actionLoginToResetPasswordFragment())
+                binding.root.findNavController()
+                    .navigate(LoginDirections.actionLoginToResetPasswordFragment())
 
-                }
             }
         }
+    }
 
     private fun login() {
 
         val email = binding.loginUserMail.text.toString()
         var password = binding.loginUserPassword.text.toString()
 
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
 
-                        Snackbar.make(
-                            binding.frameLayout,
-                            "Login correcto",
-                            Snackbar.LENGTH_SHORT
+                    Snackbar.make(
+                        binding.frameLayout,
+                        "Login correcto",
+                        Snackbar.LENGTH_SHORT
+                    )
+                        .show()
+
+                    Handler(Looper.getMainLooper()).postDelayed({
+
+                        val i = Intent(
+                            this@Login.requireContext(),
+                            MenuActivity::class.java
                         )
-                            .show()
+                        startActivity(i)
 
-                        Handler(Looper.getMainLooper()).postDelayed({
-
-                            val i = Intent(
-                                this@Login.requireContext(),
-                                MenuActivity::class.java
-                            )
-                            startActivity(i)
-
-                        }, 1200)
+                    }, 1200)
 
 
-                    } else {
-                        Snackbar.make(
-                            binding.frameLayout,
-                            "Email o Contraseña incorrecta",
-                            Snackbar.LENGTH_LONG
-                        )
-                            .show()
-                    }
+                } else {
+                    Snackbar.make(
+                        binding.frameLayout,
+                        "Email o Contraseña incorrecta",
+                        Snackbar.LENGTH_LONG
+                    )
+                        .show()
                 }
-        }
+            }
+    }
 }
