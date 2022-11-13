@@ -66,8 +66,6 @@ class MainProductList : Fragment() {
                 linearLayoutManager = LinearLayoutManager(context)
                 binding.recProducts.layoutManager = linearLayoutManager
 
-                productList = productList.filter { it.erased == false }.toMutableList()
-
                 productListAdapter = MainProductListAdapter(admin,productList,requireContext()) {
                     onItemClick(it)
                 }

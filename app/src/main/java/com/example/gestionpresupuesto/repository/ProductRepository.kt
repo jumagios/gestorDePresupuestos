@@ -39,7 +39,12 @@ class ProductRepository {
 
             for (document in data) {
 
-                productList.add(document.toObject<Product>())
+                var actualProduct = document.toObject<Product>()
+                if(actualProduct.erased == false) {
+                    productList.add(actualProduct)
+                }
+
+
             }
 
         } catch (e: Exception) {
