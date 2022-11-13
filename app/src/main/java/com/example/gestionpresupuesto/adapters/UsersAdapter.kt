@@ -1,17 +1,24 @@
 package com.example.gestionpresupuesto.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.R
 import com.example.gestionpresupuesto.entities.User
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentUser.UserListDirections
 
 class UsersAdapter(
-    var userList: MutableList<User>
+    private val isAdmin: Boolean,
+    var userList: MutableList<User>,
+    val context: Context,
+    var onClick: (Int) -> Unit
 
 ) : RecyclerView.Adapter<UsersAdapter.MainHolder>() {
 
@@ -56,6 +63,14 @@ class UsersAdapter(
 
         }
 
+        fun getUserItemDetail(): View {
+            return view.findViewById(R.id.user_detail)
+        }
+
+        fun getCard(): CardView {
+            return view.findViewById(R.id.card)
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -70,6 +85,22 @@ class UsersAdapter(
         holder.setUserDNI(userList[position].dni)
         holder.setIsAdmin(userList[position].admin)
         holder.setImage()
+
+        holder.getUserItemDetail().setOnClickListener {
+
+            if (isAdmin) {
+
+              val action = UserListDirections.actionUserListToUserdetail2(userList[position])
+
+                holder.itemView.findNavController().navigate(action)
+            }
+
+            holder.getCard().setOnClickListener {
+                onClick(position)
+
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
