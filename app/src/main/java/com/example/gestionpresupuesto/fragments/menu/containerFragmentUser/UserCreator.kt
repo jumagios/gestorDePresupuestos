@@ -74,7 +74,7 @@ class UserCreator : Fragment() {
                 viewModel.registerUser(
                     User(
                         binding.userSwitch.isChecked, binding.userdni.text.toString(), binding.Useremail.text.toString(),
-                        binding.userName.text.toString(), binding.userPassword.text.toString()  //isChecked : si esta chequeado graba deschequeado
+                        binding.userName.text.toString(), binding.userPassword.text.toString(), false  //isChecked : si esta chequeado graba deschequeado
                     )
 
                 )

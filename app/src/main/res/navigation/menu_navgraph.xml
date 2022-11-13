@@ -86,7 +86,7 @@
             android:id="@+id/action_userList_to_userCreator"
             app:destination="@id/userCreator" />
         <action
-            android:id="@+id/action_userList_to_user_detail2"
+            android:id="@+id/action_userList_to_userdetail2"
             app:destination="@id/userdetail2" />
     </fragment>
     <fragment

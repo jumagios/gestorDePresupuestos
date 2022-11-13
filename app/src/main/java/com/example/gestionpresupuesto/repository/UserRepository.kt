@@ -2,6 +2,7 @@ package com.example.gestionpresupuesto.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.gestionpresupuesto.entities.Budget
 import com.example.gestionpresupuesto.entities.User
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -27,11 +28,41 @@ class UserRepository {
             }
     }
 
-    suspend fun deleteUser(userToDelete: User) {
+    suspend fun getUserByEmail(email: String) : MutableList<User> {
+
+        var userList = mutableListOf<User>()
 
         try{
 
-            val data = db.collection("users").whereEqualTo("email", userToDelete.email).get().await()
+            val data = db.collection("users").whereEqualTo("email", email).get().await()
+
+            if(!data.isEmpty) {
+
+                for (document in data) {
+
+                    var userFound = document.toObject<User>()
+
+                    userList.add(userFound)
+
+                }
+
+            }
+
+        } catch (e : Exception) {
+
+            Log.d("UserRepository", e.message.toString())
+        }
+
+        return userList
+
+    }
+
+    suspend fun deleteUser(userToDelete: User) {
+
+        try {
+
+            val data =
+                db.collection("users").whereEqualTo("email", userToDelete.email).get().await()
 
             if (!data.isEmpty) {
 
@@ -39,11 +70,11 @@ class UserRepository {
 
                     var documentID = document.id
                     db.collection("users").document(documentID)
-                        .update("isErased", true)
+                        .update("erased", true)
                 }
             }
 
-        } catch (e : Exception) {
+        } catch (e: Exception) {
 
             Log.d("UserRepository", e.message.toString())
         }
@@ -74,6 +105,7 @@ class UserRepository {
         return userList
 
     }
+
 
     suspend fun isAdmin(): Boolean {
 
@@ -107,4 +139,22 @@ class UserRepository {
 
     }
 
+     fun updateAdminState(userToUpdate : User) {
+
+        try {
+        db.collection("users").document(userToUpdate.email)
+                        .update("admin", userToUpdate.admin)
+
+        db.collection("users").document(userToUpdate.email)
+                .update("erased", false)
+
+
+        } catch (e: Exception) {
+
+            Log.d("UserRepository", e.message.toString())
+
+        }
+    }
 }
+
+

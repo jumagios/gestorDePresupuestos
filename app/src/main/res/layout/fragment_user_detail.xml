@@ -11,31 +11,23 @@
         android:id="@+id/frameLayout6"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.menu.containerFragmentUser.UserCreator">
-
-        <Button
-            android:id="@+id/user_accept_button"
-            android:layout_width="149dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="24dp"
-            android:text="ACEPTAR"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline10"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/user_cancel_button" />
+        tools:context=".fragments.menu.containerFragmentUser.UserCreator"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="-64dp">
 
         <Button
             android:id="@+id/user_cancel_button"
             android:layout_width="149dp"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="36dp"
             android:text="CANCELAR"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline8" />
+            app:layout_constraintHorizontal_bias="0.047"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/user_detail_deleted"
+            app:layout_constraintVertical_bias="0.884" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -46,58 +38,6 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/userdni"
-            android:layout_width="280dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="32dp"
-            android:hint="DNI"
-            android:inputType="number"
-            app:layout_constraintEnd_toStartOf="@+id/guideline10"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toBottomOf="@+id/userName" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/Useremail"
-            android:layout_width="280dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="76dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toBottomOf="@+id/userdni"
-            app:layout_constraintVertical_bias="0.056" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/userName"
-            android:layout_width="280dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="32dp"
-            android:hint="Nombre del Usuario:"
-            app:layout_constraintEnd_toStartOf="@+id/guideline10"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-        <TextView
-            android:id="@+id/esadmin"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginTop="100dp"
-            android:text="Es Administrador?:"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/user_cancel_button"
-            app:layout_constraintEnd_toStartOf="@+id/guideline10"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toBottomOf="@+id/Useremail"
-            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier2"
@@ -113,19 +53,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="20dp" />
 
-        <Switch
-            android:id="@+id/user_switch"
-            android:layout_width="91dp"
-            android:layout_height="53dp"
-            android:layout_marginBottom="196dp"
-            android:text="SI"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline10"
-            app:layout_constraintHorizontal_bias="0.177"
-            app:layout_constraintStart_toEndOf="@+id/esadmin"
-            app:layout_constraintTop_toBottomOf="@+id/Useremail"
-            app:layout_constraintVertical_bias="1.0" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline10"
             android:layout_width="wrap_content"
@@ -133,33 +60,74 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="395dp" />
 
+        <Button
+            android:id="@+id/user_delete_button"
+            android:layout_width="149dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="36dp"
+            android:text="BORRAR"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintTop_toBottomOf="@+id/user_detail_deleted"
+            app:layout_constraintVertical_bias="0.884" />
+
+        <ImageView
+            android:id="@+id/user_detail_imagen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            tools:src="@tools:sample/avatars" />
+
+        <RadioButton
+            android:id="@+id/user_admin_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Administrador"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_detail_mail" />
+
+        <RadioButton
+            android:id="@+id/user_seller_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Vendedor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.455"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_admin_button" />
+
+        <TextView
+            android:id="@+id/user_detail_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.468"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/user_detail_imagen" />
+
+        <RadioButton
+            android:id="@+id/user_detail_deleted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Inactivo"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.425"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/user_seller_button" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/user_delete_button"
-        android:layout_width="149dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:text="BORRAR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline12"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959" />
-
-    <Button
-        android:id="@+id/user_edit_button"
-        android:layout_width="149dp"
-        android:layout_height="48dp"
-        android:text="EDITAR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/user_delete_button"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline12"

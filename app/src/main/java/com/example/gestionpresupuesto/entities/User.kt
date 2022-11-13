@@ -9,7 +9,8 @@ data class User (
     var dni: String,
     var email: String,
     var name: String,
-    var password: String
+    var password: String,
+    var erased : Boolean
     ) : Parcelable {
-    constructor() : this (false,"","", "","")
+    constructor() : this (false,"","", "","", false)
 }

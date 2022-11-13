@@ -1,24 +1,29 @@
 package com.example.gestionpresupuesto.viewmodels
 
-import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gestionpresupuesto.entities.Product
-//import com.example.gestionpresupuesto.repository.ProductRepository
+import com.example.gestionpresupuesto.entities.User
+import com.example.gestionpresupuesto.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
 
-    //TEST BASE DE DATOS
+    val userRepository = UserRepository()
 
-   // var productRepository = ProductRepository()
+    var userList = MutableLiveData<MutableList<User>>()
 
-    fun  createProduct(ID : String, price : Double)  {
+
+    fun getUserState(email : String)  {
 
         viewModelScope.launch(Dispatchers.Main) {
 
-         //   productRepository.createProduct(ID, price)
+            var userListFound = userRepository.getUserByEmail(email)
+
+            userList.value = userListFound
+
         }
     }
 }
+
