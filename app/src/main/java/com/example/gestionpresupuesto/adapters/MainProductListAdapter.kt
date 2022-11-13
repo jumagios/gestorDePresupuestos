@@ -67,12 +67,10 @@ class MainProductListAdapter(
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
 
 
-        if (!productList[position].isErased) {
             holder.setName(productList[position].name)
             holder.setPrice(productList[position].price)
             holder.setStock(productList[position].stock)
             holder.setImage(productList[position].imageURL)
-        }
 
 
         holder.getProductItemDetail().setOnClickListener {

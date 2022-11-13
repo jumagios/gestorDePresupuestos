@@ -11,9 +11,7 @@ import kotlinx.coroutines.tasks.await
 class ProductRepository {
 
     private val db = Firebase.firestore
-    private val auth = Firebase.auth
     private val ref = db.collection("products").document()
-    private val id = ref.id
 
     fun createProduct(productToCreate: Product) {
 
@@ -66,7 +64,7 @@ class ProductRepository {
 
                     var documentID = document.id
                     db.collection("products").document(documentID)
-                        .update("isErased", true)
+                        .update("erased", true)
                 }
             }
 
