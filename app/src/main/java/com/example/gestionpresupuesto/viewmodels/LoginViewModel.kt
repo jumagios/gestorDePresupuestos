@@ -13,6 +13,7 @@ class LoginViewModel : ViewModel() {
     val userRepository = UserRepository()
 
     var userList = MutableLiveData<MutableList<User>>()
+    var OK =  MutableLiveData<Boolean>();
 
 
     fun getUserState(email : String)  {
