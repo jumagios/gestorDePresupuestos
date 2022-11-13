@@ -25,6 +25,7 @@ class UsersAdapter(
     class MainHolder(v: View) : RecyclerView.ViewHolder(v) {
 
         private var view: View
+
         init {
             this.view = v
         }
@@ -39,22 +40,24 @@ class UsersAdapter(
             userEmail.text = email
         }
 
-        fun setUserDNI(dni : String) {
+        fun setUserDNI(dni: String) {
             val userDNI: TextView = view.findViewById(R.id.user_dni)
             userDNI.text = dni
 
         }
 
         fun setImage() {
-            var imgURL : ImageView = view.findViewById(R.id.img_user)
-            Glide.with(imgURL).load("https://firebasestorage.googleapis.com/v0/b/gestion-de-presupuesto.appspot.com/o/images%2Fuser.webp?alt=media&token=7de2722d-6e41-4c25-a5b5-5ff4f4205126").override(200,200).into(imgURL)
+            var imgURL: ImageView = view.findViewById(R.id.img_user)
+            Glide.with(imgURL)
+                .load("https://firebasestorage.googleapis.com/v0/b/gestion-de-presupuesto.appspot.com/o/images%2Fuser.webp?alt=media&token=7de2722d-6e41-4c25-a5b5-5ff4f4205126")
+                .override(200, 200).into(imgURL)
         }
 
 
-        fun setIsAdmin(boolean : Boolean) {
+        fun setIsAdmin(boolean: Boolean) {
             val isAdmin: TextView = view.findViewById(R.id.user_isAdmin)
 
-            if(boolean) {
+            if (boolean) {
                 isAdmin.text = "Usuario ADMINISTRADOR"
             } else {
                 isAdmin.text = "Usuario VENDEDOR"
@@ -90,7 +93,7 @@ class UsersAdapter(
 
             if (isAdmin) {
 
-              val action = UserListDirections.actionUserListToUserdetail2(userList[position])
+                val action = UserListDirections.actionUserListToUserdetail2(userList[position])
 
                 holder.itemView.findNavController().navigate(action)
             }

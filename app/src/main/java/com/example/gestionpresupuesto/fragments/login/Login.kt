@@ -1,5 +1,6 @@
 package com.example.gestionpresupuesto.fragments.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -7,6 +8,8 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -16,6 +19,7 @@ import com.example.gestionpresupuesto.databinding.FragmentLoginBinding
 import com.example.gestionpresupuesto.viewmodels.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+
 
 class Login : Fragment() {
 
@@ -37,6 +41,10 @@ class Login : Fragment() {
         super.onStart()
 
         binding.btnLogin.setOnClickListener {
+
+            val imm =  context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm?.hideSoftInputFromWindow(view?.windowToken , 0)
+
 
             val email = binding.loginUserMail.text.toString()
             var password = binding.loginUserPassword.text.toString()
@@ -106,12 +114,13 @@ class Login : Fragment() {
             })
 
 
-            binding.resetPassword.setOnClickListener() {
+        }
 
-                binding.root.findNavController()
-                    .navigate(LoginDirections.actionLoginToResetPasswordFragment())
+        binding.resetPassword.setOnClickListener() {
 
-            }
+            binding.root.findNavController()
+                .navigate(LoginDirections.actionLoginToResetPasswordFragment())
+
         }
     }
 
