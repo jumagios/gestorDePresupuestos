@@ -7,7 +7,9 @@
     android:layout_margin="8dp"
     android:backgroundTintMode="add"
     app:cardCornerRadius="15dp"
-    app:cardElevation="8dp">>
+    app:cardElevation="8dp"><![CDATA[>
+
+    ]]>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/budget_item_details"

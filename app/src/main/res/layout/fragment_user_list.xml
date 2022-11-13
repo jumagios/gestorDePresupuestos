@@ -41,6 +41,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchViewUser" />
  </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_button_user_list"
         android:layout_width="wrap_content"
@@ -48,7 +49,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:contentDescription="@string/fab_content_desc"
-        app:backgroundTint="@color/teal_200"
-        app:rippleColor="@color/teal_200"
+        app:backgroundTint="@color/grey"
+        app:rippleColor="@color/grey"
         app:srcCompat="@drawable/ic_baseline_add_circle_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
