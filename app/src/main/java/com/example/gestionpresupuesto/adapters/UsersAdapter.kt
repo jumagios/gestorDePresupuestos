@@ -50,7 +50,7 @@ class UsersAdapter(
             var imgURL: ImageView = view.findViewById(R.id.img_user)
             Glide.with(imgURL)
                 .load("https://firebasestorage.googleapis.com/v0/b/gestion-de-presupuesto.appspot.com/o/images%2Fuser.webp?alt=media&token=7de2722d-6e41-4c25-a5b5-5ff4f4205126")
-                .override(200, 200).into(imgURL)
+                .override(150, 150).into(imgURL)
         }
 
 
