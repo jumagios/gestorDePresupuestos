@@ -77,7 +77,7 @@ class ProductDetail : Fragment() {
             if(binding.updateButton.text.toString() == viewModel.getUpdatedTxt()){
 
                 if(binding.productInternalCode.text.isNullOrBlank() || binding.productname.text.isNullOrBlank()
-                    || binding.productdescription.text.isNullOrBlank() || binding.productcategory.text.isNullOrBlank()
+                    || binding.productcategory.text.isNullOrBlank()
                     || binding.productInternalCode.text.isNullOrBlank() || binding.productPrice.text.isNullOrBlank()
                     || binding.productStock.text.isNullOrBlank() ) {
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".fragments.BudgetWithItemsDetailsFragment">
+    tools:context=".fragments.menu.containerFragmentBudget.BudgetWithItemsDetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/budget_approved"
