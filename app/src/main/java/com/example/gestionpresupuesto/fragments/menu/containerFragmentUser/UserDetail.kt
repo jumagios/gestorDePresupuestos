@@ -71,6 +71,8 @@ class user_detail : Fragment() {
             binding.userSellerButton.isChecked = false
             binding.userAdminButton.isChecked = false
             binding.userDetailDeleted.isChecked = true
+            viewModel.deleteUser(userDetails)
+
         }
     }
 
