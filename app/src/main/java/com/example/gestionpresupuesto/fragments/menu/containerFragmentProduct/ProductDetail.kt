@@ -2,6 +2,8 @@ package com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.InputType
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,9 +12,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.gestionpresupuesto.databinding.FragmentProductDetailBinding
 import com.example.gestionpresupuesto.entities.Product
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentBudget.BudgetCreatorDirections
 import com.example.gestionpresupuesto.viewmodels.ProductDetailViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -38,11 +42,6 @@ class ProductDetail : Fragment() {
         return binding.root
     }
 
-   /* override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProductDetailViewModel::class.java)
-        // TODO: Use the ViewModel
-    }*/
 
     override fun onStart() {
         super.onStart()
@@ -127,10 +126,9 @@ class ProductDetail : Fragment() {
         }
 
         binding.productDeleteButton.setOnClickListener{
-            viewModel.deleteProduct(productDetails)
+            viewModel.deleteProduct(productDetails, this)
 
-            val action = ProductDetailDirections.actionProductDetailToMainProductList()
-            binding.root.findNavController().navigate(action)
+
         }
 
     }
@@ -147,6 +145,20 @@ class ProductDetail : Fragment() {
 
 
         return productDetails
+
+    }
+
+    fun showAlert() {
+
+        val oSnackbar = Snackbar.make(requireView(), "Producto eliminado con exito", Snackbar.LENGTH_LONG)
+        oSnackbar.show()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+
+            val action = ProductDetailDirections.actionProductDetailToMainProductList()
+            binding.root.findNavController().navigate(action)
+
+        }, 350)
 
     }
 

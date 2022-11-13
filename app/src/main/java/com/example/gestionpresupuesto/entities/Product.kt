@@ -17,7 +17,7 @@ data class Product (
     var price: Double,
     var stock: Int,
     var creationDate: Timestamp,
-    var isErased: Boolean,
+    var erased: Boolean,
     var imageURL: String
 ) : Parcelable {
     constructor() : this ("","","","","","",0.0,0,Timestamp.now(),false, "")

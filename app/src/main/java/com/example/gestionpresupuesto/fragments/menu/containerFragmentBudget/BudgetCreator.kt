@@ -108,7 +108,6 @@ class BudgetCreator : Fragment() {
         sharedViewModel.clearState()
 
         val oSnackbar = Snackbar.make(requireView(), "Presupuesto guardado con exito", Snackbar.LENGTH_LONG)
-        oSnackbar.duration = 9999000
         oSnackbar.show()
 
         Handler(Looper.getMainLooper()).postDelayed({

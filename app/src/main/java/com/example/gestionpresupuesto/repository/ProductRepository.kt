@@ -2,6 +2,7 @@ package com.example.gestionpresupuesto.repository
 
 import android.util.Log
 import com.example.gestionpresupuesto.entities.Product
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductDetail
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -11,9 +12,7 @@ import kotlinx.coroutines.tasks.await
 class ProductRepository {
 
     private val db = Firebase.firestore
-    private val auth = Firebase.auth
     private val ref = db.collection("products").document()
-    private val id = ref.id
 
     fun createProduct(productToCreate: Product) {
 
@@ -41,7 +40,12 @@ class ProductRepository {
 
             for (document in data) {
 
-                productList.add(document.toObject<Product>())
+                var actualProduct = document.toObject<Product>()
+                if(actualProduct.erased == false) {
+                    productList.add(actualProduct)
+                }
+
+
             }
 
         } catch (e: Exception) {
@@ -66,7 +70,7 @@ class ProductRepository {
 
                     var documentID = document.id
                     db.collection("products").document(documentID)
-                        .update("isErased", true)
+                        .update("erased", true)
                 }
             }
 
