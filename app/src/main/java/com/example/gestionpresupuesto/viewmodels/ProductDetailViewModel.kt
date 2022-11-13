@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gestionpresupuesto.entities.Product
+import com.example.gestionpresupuesto.fragments.menu.containerFragmentProduct.ProductDetail
 import com.example.gestionpresupuesto.repository.ProductRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -48,12 +49,13 @@ class ProductDetailViewModel : ViewModel() {
 
     }
 
-    fun deleteProduct(productToDelete: Product) {
+    fun deleteProduct(productToDelete: Product, fragment : ProductDetail) {
         viewModelScope.launch(Dispatchers.Main) {
 
             try {
 
                 productRepository.deleteProduct(productToDelete)
+                fragment.showAlert()
 
             } catch (e: Exception) {
 
