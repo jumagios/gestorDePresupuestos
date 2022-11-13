@@ -66,16 +66,46 @@ class BudgetForm : Fragment() {
 
             sharedViewModel.setProductList(result)
 
+
+
+            val constraintsBuilder =
+                CalendarConstraints.Builder()
+                    .setValidator(DateValidatorPointForward.now())
+
+            val datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Selecciona la fecha de vencimiento")
+                .setCalendarConstraints(constraintsBuilder.build())
+                .build()
+
+            binding.datePickerBtn.setOnClickListener {
+                datePicker.show(parentFragmentManager,"DATE_PICKER")
+            }
+
+            datePicker.addOnPositiveButtonClickListener {
+                binding.inputExpirationDate.setText(datePicker.headerText)
+            }
+
+
+
             binding.siguienteButton.setOnClickListener {
 
-                var budgetToCreate = Budget()
-
-                if (true) {//!binding.inputName.text.isNullOrBlank() && !binding.inputAdress.text.isNullOrBlank() && !binding.inputAdress2.text.isNullOrBlank() && !binding.inputPhone.text.isNullOrBlank() && !binding.inputAlternativePhone.text.isNullOrBlank() && !binding.inputExpirationDate.text.isNullOrBlank()){
+                if (!binding.inputName.text.isNullOrBlank()
+                    && !binding.inputAdress.text.isNullOrBlank()
+                    && !binding.inputdniCuit.text.isNullOrBlank()
+                    && !binding.inputAdress2.text.isNullOrBlank()
+                    && !binding.inputAdress3.text.isNullOrBlank()
+                    && !binding.inputLocality.text.isNullOrBlank()
+                    && !binding.inputProvince.text.isNullOrBlank()
+                    && !binding.inputLocality.text.isNullOrBlank()
+                    && !binding.inputPhone.text.isNullOrBlank()
+                    && !binding.inputExpirationDate.text.isNullOrBlank()
+                    && !binding.inputExpirationDate.text.isNullOrBlank()
+                ) {
 
                     var parcialBudget = Budget(
                         "",
                         binding.inputName.text.toString(),
-                        "",
+                        binding.inputdniCuit.text.toString(),
                         binding.inputAdress.text.toString(),
                         binding.inputAdress2.text.toString(),
                         binding.inputAdress3.text.toString(),
@@ -100,7 +130,7 @@ class BudgetForm : Fragment() {
                 } else {
                     Snackbar.make(
                         binding.budgetCreator,
-                        "Todos los campos deben tener valores",
+                        "Campos incompletos",
                         Snackbar.LENGTH_LONG
                     ).show()
 
@@ -108,28 +138,6 @@ class BudgetForm : Fragment() {
             }
         })
 
-
-
-        val constraintsBuilder =
-            CalendarConstraints.Builder()
-                .setValidator(DateValidatorPointForward.now())
-
-        val datePicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Selecciona la fecha de vencimiento")
-            .setCalendarConstraints(constraintsBuilder.build())
-            .build()
-
-
-
-
-
-        binding.datePickerBtn.setOnClickListener {
-            datePicker.show(parentFragmentManager,"DATE_PICKER")
-        }
-
-        datePicker.addOnPositiveButtonClickListener {
-            binding.inputExpirationDate.setText(datePicker.headerText)
-        }
     }
 
     private fun setLocalDate(): String {
