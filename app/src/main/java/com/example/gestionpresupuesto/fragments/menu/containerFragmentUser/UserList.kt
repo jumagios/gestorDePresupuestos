@@ -20,6 +20,8 @@ import com.example.gestionpresupuesto.databinding.FragmentUserListBinding
 import com.example.gestionpresupuesto.viewmodels.MainProductListViewModel
 import com.example.gestionpresupuesto.viewmodels.UserListViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 class UserList : Fragment() {
@@ -128,8 +130,3 @@ class UserList : Fragment() {
     }
 
 }
-
-
-
-
-
