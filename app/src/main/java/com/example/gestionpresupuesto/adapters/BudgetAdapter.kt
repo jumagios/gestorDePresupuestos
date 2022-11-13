@@ -29,7 +29,6 @@ class BudgetAdapter(
             txt.text = domicile
         }
 
-
         fun getTxItem(): View {
             return view.findViewById(R.id.budget_item_details)
         }
