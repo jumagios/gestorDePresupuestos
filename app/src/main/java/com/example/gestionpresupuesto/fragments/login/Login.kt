@@ -40,6 +40,9 @@ class Login : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        binding.loginUserMail.text.clear()
+        binding.loginUserPassword.text.clear()
+
         binding.btnLogin.setOnClickListener {
 
             val imm =  context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -129,38 +132,54 @@ class Login : Fragment() {
         val email = binding.loginUserMail.text.toString()
         var password = binding.loginUserPassword.text.toString()
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
+        try{
 
-                    Snackbar.make(
-                        binding.frameLayout,
-                        "Login correcto",
-                        Snackbar.LENGTH_SHORT
-                    )
-                        .show()
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
 
-                    Handler(Looper.getMainLooper()).postDelayed({
-
-
-                        val i = Intent(
-                            this@Login.requireContext(),
-                            MenuActivity::class.java
+                        Snackbar.make(
+                            binding.frameLayout,
+                            "Login correcto",
+                            Snackbar.LENGTH_SHORT
                         )
-                        startActivity(i)
+                            .show()
+
+                        Handler(Looper.getMainLooper()).postDelayed({
 
 
-                    }, 1200)
+                            val i = Intent(
+                                this@Login.requireContext(),
+                                MenuActivity::class.java
+                            )
+                            startActivity(i)
 
 
-                } else {
-                    Snackbar.make(
-                        binding.frameLayout,
-                        "Email o Contraseña incorrecta",
-                        Snackbar.LENGTH_LONG
-                    )
-                        .show()
+                        }, 1200)
+
+
+                    } else {
+                        Snackbar.make(
+                            binding.frameLayout,
+                            "Email o Contraseña incorrecta",
+                            Snackbar.LENGTH_LONG
+                        )
+                            .show()
+                    }
                 }
-            }
+
+
+
+
+        } catch (e :Exception) {
+
+            Snackbar.make(
+                binding.frameLayout,
+                "Complete los campos",
+                Snackbar.LENGTH_LONG
+            )
+                .show()
+
+        }
     }
 }
