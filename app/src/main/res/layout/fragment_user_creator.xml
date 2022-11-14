@@ -1,139 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    layout_width="match_parent"
+    layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".fragments.menu.containerFragmentUser.UserCreator">
 
-    <Button
-        android:id="@+id/user_accept_button"
-        android:layout_width="149dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="24dp"
-        android:text="ACEPTAR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintStart_toEndOf="@+id/user_cancel_button" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.menu.containerFragmentUser.UserCreator">
 
-    <Button
-        android:id="@+id/user_cancel_button"
-        android:layout_width="149dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="24dp"
-        android:text="CANCELAR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.004"
-        app:layout_constraintStart_toStartOf="@+id/guideline8" />
+        <Button
+            android:id="@+id/user_accept_button"
+            android:layout_width="149dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:text="ACEPTAR"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintStart_toEndOf="@+id/user_cancel_button" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/cctvlogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/user_cancel_button"
+            android:layout_width="149dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:text="CANCELAR"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.004"
+            app:layout_constraintStart_toStartOf="@+id/guideline8" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/userdni"
-        android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:hint="DNI"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/userName" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cctvlogo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/Useremail"
-        android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="76dp"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/userdni" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/userdni"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:hint="DNI"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/userName" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/user_password"
-        android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="76dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/esadmin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/Useremail" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Useremail"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="76dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/userdni" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/userName"
-        android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:hint="Nombre del Usuario:"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_password"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="76dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/Useremail" />
 
-    <TextView
-        android:id="@+id/esadmin"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="108dp"
-        android:text="Es Administrador?:"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/Useremail" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/userName"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:hint="Nombre del Usuario:"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="left"
-        app:constraint_referenced_ids="frameLayout6" />
+        <TextView
+            android:id="@+id/esadmin"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:text="Es Administrador?:"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/user_password" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="left"
+            app:constraint_referenced_ids="frameLayout6" />
 
-    <Switch
-        android:id="@+id/user_switch"
-        android:layout_width="89dp"
-        android:layout_height="48dp"
-        android:text="SI"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintHorizontal_bias="0.296"
-        app:layout_constraintStart_toEndOf="@+id/esadmin"
-        app:layout_constraintTop_toBottomOf="@+id/user_password"
-        app:layout_constraintVertical_bias="0.144" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="395dp" />
+        <Switch
+            android:id="@+id/user_switch"
+            android:layout_width="89dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:text="SI"
+            app:layout_constraintBottom_toTopOf="@+id/user_accept_button"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintStart_toEndOf="@+id/esadmin"
+            app:layout_constraintTop_toBottomOf="@+id/user_password"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="395dp" />
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
