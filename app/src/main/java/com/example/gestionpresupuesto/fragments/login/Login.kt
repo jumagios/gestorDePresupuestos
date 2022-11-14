@@ -142,11 +142,13 @@ class Login : Fragment() {
 
                     Handler(Looper.getMainLooper()).postDelayed({
 
+
                         val i = Intent(
                             this@Login.requireContext(),
                             MenuActivity::class.java
                         )
                         startActivity(i)
+
 
                     }, 1200)
 

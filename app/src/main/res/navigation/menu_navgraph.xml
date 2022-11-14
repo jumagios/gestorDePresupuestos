@@ -98,15 +98,9 @@
             android:id="@+id/action_userCreator_to_userList"
             app:destination="@id/userList" />
         <action
-            android:id="@+id/action_userCreator_to_login"
-            app:destination="@id/login2" />
+            android:id="@+id/action_userCreator_to_loginActivity"
+            app:destination="@id/loginActivity" />
     </fragment>
-
-    <fragment
-        android:id="@+id/login2"
-        android:name="com.example.gestionpresupuesto.fragments.login.Login"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
 
     <fragment
         android:id="@+id/userdetail2"
@@ -120,5 +114,9 @@
             android:id="@+id/action_user_detail2_to_userList"
             app:destination="@id/userList" />
     </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.gestionpresupuesto.activities.LoginActivity"
+        android:label="LoginActivity" />
 
 </navigation>
