@@ -52,7 +52,7 @@ class UserCreator : Fragment() {
                 Snackbar.make(binding.frameLayout6, "Usaurio creado con exito", Snackbar.LENGTH_SHORT)
                     .show()
                 Handler(Looper.getMainLooper()).postDelayed({
-                    var action = UserCreatorDirections.actionUserCreatorToLogin()
+                    var action = UserCreatorDirections.actionUserCreatorToUserList()
                     binding.root.findNavController().navigate(action)
                 }, 450)
 
